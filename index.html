@@ -12,18 +12,6 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:system-ui,-apple-system,sans-serif;background:#050510;color:#E0E0E0;min-height:100vh}
 .w{max-width:700px;margin:0 auto;padding:12px 14px 30px}
-.hdr{text-align:center;padding:16px 0 12px}
-.hdr h1{font-size:28px;font-weight:900;background:linear-gradient(90deg,#00F0FF,#FF2E97,#BF40FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-0.5px}
-.hdr p{font-size:11px;color:#444;margin-top:4px;letter-spacing:2px;font-weight:600}
-.stat{display:flex;align-items:center;justify-content:center;gap:8px;background:#0A0A1A;border-radius:12px;padding:8px 14px;margin-bottom:14px;font-size:11px;border:1px solid #1a1a3e}
-.badge{background:#00FF8820;color:#39FF14;padding:3px 10px;border-radius:20px;font-weight:700;font-size:10px;border:1px solid #39FF1433}
-.hero{border-radius:16px;padding:16px;margin-bottom:14px;position:relative;overflow:hidden}
-.tabs{display:flex;gap:5px;margin-bottom:14px;position:sticky;top:0;z-index:10;background:#050510;padding:4px 0}
-.tab{flex:1;padding:10px 0;border-radius:10px;cursor:pointer;font-weight:800;font-size:14px;text-align:center;background:#0A0A1A;color:#555;border:1px solid #1a1a3e}
-.tab.on{background:#00F0FF11;color:#00F0FF;border-color:#00F0FF;box-shadow:0 0 15px rgba(0,240,255,0.1);text-shadow:0 0 8px rgba(0,240,255,0.5)}
-.mc{background:#0A0A1A;border:1px solid #1a1a3e;border-radius:14px;padding:12px;margin-bottom:8px;cursor:pointer}
-.bar{height:3px;background:#111;border-radius:3px;margin-top:8px;overflow:hidden}
-.det{margin-top:10px;border-top:1px solid #1a1a3e;padding-top:8px}
 @keyframes slideIn{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
 </style>
 </head>
@@ -38,68 +26,71 @@ const R={
 "Shubman Gill":{m:"Viraj Patel",r:"Bat",t:"GT"},"Rachin Ravindra":{m:"Viraj Patel",r:"AR",t:"CSK"},"Mitchell Marsh":{m:"Viraj Patel",r:"AR",t:"DC"},"Sanju Samson":{m:"Viraj Patel",r:"WK",t:"CSK"},"Matthew Short":{m:"Viraj Patel",r:"AR",t:"RR"},"Yuzvendra Chahal":{m:"Viraj Patel",r:"Bowler",t:"PBKS"},"Aiden Markram":{m:"Viraj Patel",r:"Bat",t:"LSG"},"Abhishek Sharma":{m:"Viraj Patel",r:"AR",t:"SRH"},"Ravi Bishnoi":{m:"Viraj Patel",r:"Bowler",t:"LSG"},"Pat Cummins":{m:"Viraj Patel",r:"Bowler",t:"SRH"},"Rishabh Pant":{m:"Viraj Patel",r:"WK",t:"LSG"},"Prithvi Shaw":{m:"Viraj Patel",r:"Bat",t:"MI"},"Sandeep Sharma":{m:"Viraj Patel",r:"Bowler",t:"KKR"},"Shreyas Gopal":{m:"Viraj Patel",r:"Bowler",t:"GT"},"Ramandeep Singh":{m:"Viraj Patel",r:"AR",t:"MI"},
 "Surya Kumar Yadav":{m:"Kritik Khanuja",r:"Bat",t:"MI"},"Vaibhav Suryavanshi":{m:"Kritik Khanuja",r:"Bat",t:"RR"},"Rashid Khan":{m:"Kritik Khanuja",r:"Bowler",t:"GT"},"Axar Patel":{m:"Kritik Khanuja",r:"AR",t:"DC"},"Trent Boult":{m:"Kritik Khanuja",r:"Bowler",t:"MI"},"Sai Kishore":{m:"Kritik Khanuja",r:"AR",t:"GT"},"Cameron Green":{m:"Kritik Khanuja",r:"AR",t:"KKR"},"Rajat Patidar":{m:"Kritik Khanuja",r:"Bat",t:"RCB"},"Krunal Pandya":{m:"Kritik Khanuja",r:"AR",t:"RCB"},"Abishek Porel":{m:"Kritik Khanuja",r:"WK",t:"DC"},"Khaleel Ahmed":{m:"Kritik Khanuja",r:"Bowler",t:"CSK"},"Harshit Rana":{m:"Kritik Khanuja",r:"Bowler",t:"KKR"},"Priyansh Arya":{m:"Kritik Khanuja",r:"AR",t:"PBKS"},"Finn Allen":{m:"Kritik Khanuja",r:"WK",t:"KKR"},"Romario Shepherd":{m:"Kritik Khanuja",r:"AR",t:"RCB"}
 };
+const P={r:1,w:25,c:5,ro:5};
 const MA=[
 {id:"M1",ti:"RCB vs SRH",dt:"Mar 28",rs:"RCB won by 6 wkts",
 b:{"Phil Salt":8,"Virat Kohli":69,"Rajat Patidar":31,"Abhishek Sharma":7,"Travis Head":11,"Ishan Kishan":80,"Nitish Kumar Reddy":4,"Aniket Verma":43,"Harshal Patel":2},
-w:{"Romario Shepherd":3}},
+w:{"Romario Shepherd":3},ct:{"Phil Salt":3,"Virat Kohli":1},ro:{}},
 {id:"M2",ti:"MI vs KKR",dt:"Mar 29",rs:"MI won by 6 wkts",
 b:{"Finn Allen":37,"Ajinkya Rahane":67,"Cameron Green":18,"Angkrish Raghuvanshi":51,"Rinku Singh":33,"Ramandeep Singh":4,"Surya Kumar Yadav":16,"Hardik Pandya":18,"Tilak Varma":20},
-w:{"Hardik Pandya":1,"Sunil Narine":1}}
+w:{"Hardik Pandya":1,"Sunil Narine":1},ct:{"Tilak Varma":2,"Hardik Pandya":1,"Rinku Singh":1},ro:{}},
+{id:"M3",ti:"RR vs CSK",dt:"Mar 30",rs:"RR won by 8 wkts",
+b:{"Sanju Samson":6,"Ruturaj Gaikwad":6,"Shivam Dube":6,"Noor Ahmed":1,"Matthew Short":2,"Vaibhav Suryavanshi":52,"Yashasvi Jaiswal":38,"Dhruv Jurel":18,"Riyan Parag":14},
+w:{"Ravindra Jadeja":2,"Ravi Bishnoi":1},ct:{"Dhruv Jurel":2,"Ravi Bishnoi":1},ro:{}}
 ];
-let st={tab:"board",exp:null,selM:MA.length-1};
+let st={tab:"board",exp:null,selM:MA.length-1,selT:"Mintu Raval"};
 function calc(){
-  let mg={},ps={},pm={};
-  Object.keys(M).forEach(k=>{mg[k]={runs:0,wk:0,tot:0,pl:[]};pm[k]=[0]});
+  let mg={},ps={};
+  Object.keys(M).forEach(k=>{mg[k]={r:0,w:0,c:0,ro:0,tot:0,pl:[]}});
+  Object.entries(R).forEach(([p,i])=>{ps[p]={n:p,r:0,w:0,c:0,ro:0,pt:0,mg:i.m,rl:i.r,t:i.t}});
   MA.forEach(match=>{
-    let mp={};Object.keys(M).forEach(k=>{mp[k]=0});
     Object.entries(R).forEach(([p,i])=>{
-      let r=match.b?.[p]||0,wk=match.w?.[p]||0;
-      if(r>0||wk>0){let pt=r+wk*25;mg[i.m].runs+=r;mg[i.m].wk+=wk;mg[i.m].tot+=pt;mg[i.m].pl.push({n:p,r,wk,pt,t:i.t,mt:match.ti});mp[i.m]+=pt;
-      if(!ps[p])ps[p]={n:p,r:0,wk:0,pt:0,mg:i.m,rl:i.r,t:i.t};ps[p].r+=r;ps[p].wk+=wk;ps[p].pt+=pt}
+      let r=match.b?.[p]||0,w=match.w?.[p]||0,c=match.ct?.[p]||0,ro=match.ro?.[p]||0;
+      if(r>0||w>0||c>0||ro>0){let pt=r*P.r+w*P.w+c*P.c+ro*P.ro;
+      mg[i.m].r+=r;mg[i.m].w+=w;mg[i.m].c+=c;mg[i.m].ro+=ro;mg[i.m].tot+=pt;
+      mg[i.m].pl.push({n:p,r,w,c,ro,pt,t:i.t,mt:match.ti});
+      ps[p].r+=r;ps[p].w+=w;ps[p].c+=c;ps[p].ro+=ro;ps[p].pt+=pt}
     });
-    Object.keys(M).forEach(k=>{pm[k].push(pm[k][pm[k].length-1]+mp[k])});
   });
-  return{mg,so:Object.entries(mg).sort((a,b)=>b[1].tot-a[1].tot),tp:Object.values(ps).sort((a,b)=>b.pt-a.pt).slice(0,15),pm};
+  return{mg,so:Object.entries(mg).sort((a,b)=>b[1].tot-a[1].tot),tp:Object.values(ps).filter(x=>x.pt>0).sort((a,b)=>b.pt-a.pt).slice(0,20),ps};
 }
+function pb(p){let s=[];if(p.r>0)s.push(p.r+"r");if(p.w>0)s.push(p.w+"w");if(p.c>0)s.push(p.c+"c");if(p.ro>0)s.push(p.ro+"ro");return s.join("+")}
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
 function render(){
-  const{mg,so,tp,pm}=calc();
-  const ld=so[0],ln=ld[0],lv=ld[1],lc=M[ln];
-  let h=`<div class="hdr"><h1>🏏 FANTASY IPL 2026</h1><p>1 RUN = 1PT · 1 WICKET = 25PTS</p></div>`;
-  h+=`<div class="stat"><span class="badge">✅ ${MA.length} MATCHES</span><span style="color:#555;font-weight:600">NEXT: RR vs CSK — MAR 30</span></div>`;
-  // Leader
-  h+=`<div class="hero" style="background:${lc.c}10;border:1px solid ${lc.c}33;box-shadow:0 0 40px ${lc.c}10"><div style="position:absolute;right:-15px;top:-15px;font-size:100px;opacity:.04">🏆</div><div style="font-size:9px;color:${lc.c};font-weight:800;letter-spacing:2px;text-shadow:0 0 10px ${lc.c}40">🏆 CURRENT LEADER</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px"><div><div style="font-size:22px;font-weight:900;color:#fff">${lc.e} ${esc(ln)}</div><div style="font-size:12px;color:#666;margin-top:2px">#1 · ${lv.pl.length} scorers</div></div><div style="text-align:right"><div style="font-size:38px;font-weight:900;color:${lc.c};text-shadow:0 0 20px ${lc.c}40">${lv.tot}</div><div style="font-size:9px;color:#555">POINTS</div></div></div><div style="display:flex;gap:14px;margin-top:8px;font-size:11px;color:#888">🏃 ${lv.runs}r · 🎯 ${lv.wk}w${so.length>1?` · <span style="color:${lc.c}">${lv.tot-so[1][1].tot} ahead</span>`:""}</div></div>`;
-  // Tabs
-  h+=`<div class="tabs">${[["board","🏆"],["graph","📈"],["highlights","🎯"],["players","👤"]].map(([k,ic])=>`<div class="tab ${st.tab===k?"on":""}" onclick="st.tab='${k}';render()">${ic}</div>`).join("")}</div>`;
-  // Board
+  const{mg,so,tp,ps}=calc();const ld=so[0],ln=ld[0],lv=ld[1],lc=M[ln];
+  const bg="#050510",cd="#0A0A1A",bd="#1a1a3e";
+  let h=`<div style="text-align:center;padding:16px 0 12px"><div style="font-size:28px;font-weight:900;background:linear-gradient(90deg,#00F0FF,#FF2E97,#BF40FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent">🏏 FANTASY IPL 2026</div><div style="font-size:10px;color:#444;margin-top:4px;letter-spacing:2px;font-weight:600">1RUN=1PT · 1WKT=25PT · 1CT/RO=5PT</div></div>`;
+  h+=`<div style="display:flex;align-items:center;justify-content:center;gap:8px;background:${cd};border-radius:12px;padding:8px 14px;margin-bottom:14px;font-size:11px;border:1px solid ${bd}"><span style="background:#00FF8820;color:#39FF14;padding:3px 10px;border-radius:20px;font-weight:700;font-size:10px;border:1px solid #39FF1433">✅ ${MA.length} MATCHES</span><span style="color:#555;font-weight:600">NEXT: PBKS vs GT — MAR 31</span></div>`;
+  h+=`<div style="background:${lc.c}10;border-radius:16px;padding:16px;margin-bottom:14px;position:relative;overflow:hidden;border:1px solid ${lc.c}33;box-shadow:0 0 40px ${lc.c}10"><div style="position:absolute;right:-15px;top:-15px;font-size:100px;opacity:.04">🏆</div><div style="font-size:9px;color:${lc.c};font-weight:800;letter-spacing:2px;text-shadow:0 0 10px ${lc.c}40">🏆 CURRENT LEADER</div><div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px"><div><div style="font-size:22px;font-weight:900;color:#fff">${lc.e} ${esc(ln)}</div><div style="font-size:12px;color:#666;margin-top:2px">#1 · ${lv.pl.length} scorers</div></div><div style="text-align:right"><div style="font-size:38px;font-weight:900;color:${lc.c};text-shadow:0 0 20px ${lc.c}40">${lv.tot}</div><div style="font-size:9px;color:#555">POINTS</div></div></div><div style="display:flex;gap:12px;margin-top:8px;font-size:11px;color:#888;flex-wrap:wrap">🏃${lv.r}r · 🎯${lv.w}w · 🧤${lv.c}c${so.length>1?` · <span style="color:${lc.c}">📊 ${lv.tot-so[1][1].tot} ahead</span>`:""}</div></div>`;
+  h+=`<div style="display:flex;gap:4px;margin-bottom:14px;position:sticky;top:0;z-index:10;background:${bg};padding:4px 0">${[["board","🏆"],["squads","👥"],["highlights","🎯"],["players","👤"]].map(([k,ic])=>`<div onclick="st.tab='${k}';render()" style="flex:1;padding:10px 0;border:1px solid ${st.tab===k?"#00F0FF":bd};border-radius:10px;cursor:pointer;font-weight:800;font-size:14px;text-align:center;background:${st.tab===k?"#00F0FF11":cd};color:${st.tab===k?"#00F0FF":"#555"};box-shadow:${st.tab===k?"0 0 15px rgba(0,240,255,0.1)":"none"}">${ic}</div>`).join("")}</div>`;
+
   if(st.tab==="board"){so.forEach(([n,d],i)=>{const c=M[n],isE=st.exp===n,bw=ld[1].tot>0?(d.tot/ld[1].tot)*100:0;
-  h+=`<div class="mc" style="${i===0?`box-shadow:0 0 20px ${c.c}08`:""}" onclick="st.exp=st.exp==='${esc(n)}'?null:'${esc(n)}';render()"><div style="display:flex;align-items:center;justify-content:space-between"><div style="display:flex;align-items:center;gap:10px"><div style="width:38px;height:38px;border-radius:50%;background:${c.g};display:flex;align-items:center;justify-content:center;color:#000;font-weight:900;font-size:15px;box-shadow:0 0 15px ${c.c}30">${i===0?"👑":i+1}</div><div><div style="font-weight:800;font-size:14px">${c.e} ${esc(n)}</div><div style="font-size:10px;color:#555">${d.runs}r · ${d.wk}w · ${d.pl.length} scorers</div></div></div><div style="text-align:right"><div style="font-size:24px;font-weight:900;color:${c.c};text-shadow:0 0 10px ${c.c}30">${d.tot}</div><div style="font-size:8px;color:#444;font-weight:700">PTS</div></div></div><div class="bar"><div style="height:100%;width:${bw}%;background:${c.g};border-radius:3px;transition:width .6s;box-shadow:0 0 6px ${c.c}40"></div></div>`;
-  if(isE){h+=`<div class="det">`;if(d.pl.length>0){h+=`<div style="font-size:9px;font-weight:800;color:#444;margin-bottom:5px;letter-spacing:1.5px">SCORING PLAYERS</div>`;d.pl.sort((a,b)=>b.pt-a.pt).forEach((p,j)=>{h+=`<div style="display:flex;justify-content:space-between;padding:5px 0;font-size:11px;border-bottom:${j<d.pl.length-1?"1px solid #111":"none"}"><div><span style="font-weight:700;color:#ccc">${esc(p.n)}</span><span style="font-size:9px;color:#444;margin-left:5px">${p.t} · ${p.mt}</span></div><div style="font-weight:800;color:${c.c};font-size:12px">${p.r>0?p.r+"r":""}${p.r>0&&p.wk>0?"+":""}${p.wk>0?p.wk+"w":""} = ${p.pt}</div></div>`})}else{h+=`<div style="font-size:11px;color:#444;font-style:italic">No scorers yet</div>`}h+=`</div>`}
+  h+=`<div onclick="st.exp=st.exp==='${esc(n)}'?null:'${esc(n)}';render()" style="background:${cd};border:1px solid ${bd};border-radius:14px;padding:12px;margin-bottom:8px;cursor:pointer;${i===0?`box-shadow:0 0 20px ${c.c}08`:""}"><div style="display:flex;align-items:center;justify-content:space-between"><div style="display:flex;align-items:center;gap:10px"><div style="width:38px;height:38px;border-radius:50%;background:${c.g};display:flex;align-items:center;justify-content:center;color:#000;font-weight:900;font-size:15px;box-shadow:0 0 15px ${c.c}30">${i===0?"👑":i+1}</div><div><div style="font-weight:800;font-size:14px">${c.e} ${esc(n)}</div><div style="font-size:10px;color:#555">${d.r}r · ${d.w}w · ${d.c}c · ${d.pl.length} scorers</div></div></div><div style="text-align:right"><div style="font-size:24px;font-weight:900;color:${c.c};text-shadow:0 0 10px ${c.c}30">${d.tot}</div><div style="font-size:8px;color:#444;font-weight:700">PTS</div></div></div><div style="height:3px;background:#111;border-radius:3px;margin-top:8px;overflow:hidden"><div style="height:100%;width:${bw}%;background:${c.g};border-radius:3px;transition:width .6s;box-shadow:0 0 6px ${c.c}40"></div></div>`;
+  if(isE){h+=`<div style="margin-top:10px;border-top:1px solid ${bd};padding-top:8px">`;if(d.pl.length>0){h+=`<div style="font-size:9px;font-weight:800;color:#444;margin-bottom:5px;letter-spacing:1.5px">SCORING PLAYERS</div>`;d.pl.sort((a,b)=>b.pt-a.pt).forEach((p,j)=>{h+=`<div style="display:flex;justify-content:space-between;padding:5px 0;font-size:11px;border-bottom:${j<d.pl.length-1?"1px solid #111":"none"}"><div><span style="font-weight:700;color:#ccc">${esc(p.n)}</span><span style="font-size:9px;color:#444;margin-left:5px">${p.t} · ${p.mt}</span></div><div style="font-weight:800;color:${c.c};font-size:12px">${pb(p)} = ${p.pt}</div></div>`})}else{h+=`<div style="font-size:11px;color:#444;font-style:italic">No scorers yet</div>`}h+=`</div>`}
   h+=`</div>`})}
-  // Graph
-  if(st.tab==="graph"){
-    const ns=Object.keys(M),max=Math.max(...ns.map(n=>pm[n][pm[n].length-1]),1),W=100,H=50,p=3,pts=pm[ns[0]].length;
-    const gx=i=>p+(i/(pts-1))*(W-p*2),gy=v=>H-p-(v/max)*(H-p*2);
-    h+=`<div style="background:#0A0A1A;border-radius:16px;padding:16px;margin-bottom:14px;border:1px solid #1a1a3e;box-shadow:0 0 30px rgba(0,240,255,0.05)"><div style="font-size:14px;font-weight:800;color:#00F0FF;margin-bottom:12px;text-shadow:0 0 10px rgba(0,240,255,0.5)">📈 POINTS RACE</div><svg viewBox="0 0 ${W} ${H}" style="width:100%;height:200px"><defs>${ns.map(n=>`<linearGradient id="wg-${n.replace(/\s/g,"")}" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="${M[n].c}" stop-opacity="0.2"/><stop offset="100%" stop-color="${M[n].c}"/></linearGradient>`).join("")}<filter id="gl"><feGaussianBlur stdDeviation="0.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>`;
-    for(let i=0;i<5;i++){const y=p+(i/4)*(H-p*2);h+=`<line x1="${p}" y1="${y}" x2="${W-p}" y2="${y}" stroke="#1a1a3e" stroke-width="0.15"/>`}
-    for(let i=0;i<pts;i++){h+=`<text x="${gx(i)}" y="${H-0.3}" fill="#444" font-size="2.2" text-anchor="middle" font-weight="700">${i===0?"0":"M"+i}</text>`}
-    ns.forEach(n=>{const d=pm[n].map((v,i)=>`${i===0?"M":"L"}${gx(i)},${gy(v)}`).join(" ");const last=pm[n][pm[n].length-1],lx=gx(pts-1),ly=gy(last);
-    h+=`<g filter="url(#gl)"><path d="${d}" fill="none" stroke="url(#wg-${n.replace(/\s/g,"")})" stroke-width="0.8" stroke-linecap="round"/><circle cx="${lx}" cy="${ly}" r="1.3" fill="${M[n].c}" stroke="#0A0A1A" stroke-width="0.5"/><text x="${lx+1.8}" y="${ly+0.8}" fill="${M[n].c}" font-size="2.5" font-weight="800">${last}</text></g>`});
-    h+=`</svg><div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;justify-content:center">${ns.map(n=>`<div style="display:flex;align-items:center;gap:4px;font-size:10px"><div style="width:8px;height:3px;border-radius:2px;background:${M[n].c};box-shadow:0 0 6px ${M[n].c}"></div><span style="color:#888">${n.split(" ")[0]}</span></div>`).join("")}</div></div>`;
-  }
-  // Highlights
-  if(st.tab==="highlights"){
-    h+=`<div style="display:flex;gap:6px;margin-bottom:12px">${MA.map((mt,i)=>`<button onclick="st.selM=${i};render()" style="flex:1;padding:8px 0;border-radius:8px;cursor:pointer;font-weight:800;font-size:11px;border:1px solid ${st.selM===i?"#FF2E97":"#1a1a3e"};background:${st.selM===i?"#FF2E9711":"#0A0A1A"};color:${st.selM===i?"#FF2E97":"#555"};box-shadow:${st.selM===i?"0 0 10px rgba(255,46,151,0.1)":"none"}">${mt.ti}</button>`).join("")}</div>`;
-    const match=MA[st.selM],sc=[];
-    Object.entries(R).forEach(([p,i])=>{let r=match.b?.[p]||0,wk=match.w?.[p]||0;if(r>0||wk>0)sc.push({n:p,r,wk,pt:r+wk*25,mg:i.m,t:i.t})});
-    sc.sort((a,b)=>b.pt-a.pt);
-    h+=`<div style="background:#0A0A1A;border-radius:16px;padding:14px;border:1px solid #1a1a3e"><div style="margin-bottom:12px"><div style="font-size:15px;font-weight:800;color:#FF2E97;text-shadow:0 0 10px rgba(255,46,151,0.4)">🎯 ${match.ti}</div><div style="font-size:11px;color:#555">${match.dt} · ${match.rs}</div></div>`;
-    sc.forEach((s,i)=>{h+=`<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;margin-bottom:4px;border-radius:10px;background:${i===0?"linear-gradient(135deg,#1a0a00,#1a1000)":"#0D0D20"};border:1px solid ${i===0?"#FFE60044":"#1a1a3e"};animation:slideIn .5s ease ${i*0.06}s both"><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:50%;background:${M[s.mg]?.g};display:flex;align-items:center;justify-content:center;font-size:11px;box-shadow:0 0 10px ${M[s.mg]?.c}33">${i===0?"⭐":M[s.mg]?.e}</div><div><div style="font-weight:700;font-size:12px;color:#E0E0E0">${esc(s.n)}</div><div style="font-size:9px;color:#555">${s.t} · ${s.mg.split(" ")[0]}</div></div></div><div style="text-align:right"><div style="font-weight:900;font-size:17px;color:${i===0?"#FFE600":M[s.mg]?.c};text-shadow:${i===0?"0 0 8px rgba(255,230,0,0.4)":"none"}">${s.pt}</div><div style="font-size:8px;color:#555">${s.r>0?s.r+"r":""}${s.r>0&&s.wk>0?"+":""}${s.wk>0?s.wk+"w":""}</div></div></div>`});
+
+  if(st.tab==="squads"){
+    const tc=M[st.selT];const sqPl=Object.values(ps).filter(p=>p.mg===st.selT).sort((a,b)=>b.pt-a.pt);
+    h+=`<div style="display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap">${Object.keys(M).map(n=>`<div onclick="st.selT='${esc(n)}';render()" style="flex:1;min-width:60px;padding:8px 4px;border-radius:8px;cursor:pointer;font-weight:800;font-size:10px;text-align:center;border:1px solid ${st.selT===n?M[n].c:bd};background:${st.selT===n?M[n].c+"15":cd};color:${st.selT===n?M[n].c:"#555"}">${M[n].e} ${n.split(" ")[0]}</div>`).join("")}</div>`;
+    h+=`<div style="background:${cd};border-radius:14px;padding:14px;border:1px solid ${tc.c}33;box-shadow:0 0 20px ${tc.c}08"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><div><div style="font-size:18px;font-weight:900;color:${tc.c};text-shadow:0 0 10px ${tc.c}40">${tc.e} ${esc(st.selT)}</div><div style="font-size:11px;color:#555">15 players · Total: ${mg[st.selT].tot} pts</div></div><div style="font-size:28px;font-weight:900;color:${tc.c}">${mg[st.selT].tot}</div></div>`;
+    h+=`<div style="display:grid;grid-template-columns:1fr 35px 25px 25px 45px;gap:0;font-size:9px;font-weight:800;color:#555;padding:0 0 6px;border-bottom:1px solid ${bd};letter-spacing:.5px"><div>PLAYER</div><div style="text-align:center">R</div><div style="text-align:center">W</div><div style="text-align:center">C</div><div style="text-align:right">PTS</div></div>`;
+    sqPl.forEach(p=>{h+=`<div style="display:grid;grid-template-columns:1fr 35px 25px 25px 45px;gap:0;padding:7px 0;font-size:12px;border-bottom:1px solid #111;align-items:center"><div><div style="font-weight:700;font-size:11px;color:${p.pt>0?"#E0E0E0":"#444"}">${esc(p.n)}</div><div style="font-size:9px;color:#444">${p.t} · ${p.rl}</div></div><div style="text-align:center;color:${p.r>0?"#E0E0E0":"#333"};font-weight:700;font-size:11px">${p.r||"-"}</div><div style="text-align:center;color:${p.w>0?"#39FF14":"#333"};font-weight:700;font-size:11px">${p.w||"-"}</div><div style="text-align:center;color:${p.c>0?"#00F0FF":"#333"};font-weight:700;font-size:11px">${p.c||"-"}</div><div style="text-align:right;font-weight:900;font-size:13px;color:${p.pt>0?tc.c:"#222"};text-shadow:${p.pt>0?`0 0 8px ${tc.c}30`:"none"}">${p.pt||"0"}</div></div>`});
     h+=`</div>`;
   }
-  // Players
-  if(st.tab==="players"){tp.forEach((p,i)=>{h+=`<div style="display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border-radius:10px;margin-bottom:5px;background:${i===0?"linear-gradient(135deg,#1a1000,#0A0A1A)":"#0A0A1A"};border:1px solid ${i<3?"#FFE60022":"#1a1a3e"}"><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:900;font-size:14px;width:24px;text-align:center;color:${i===0?"#FFE600":i<3?"#aaa":"#555"}">${i===0?"🥇":i===1?"🥈":i===2?"🥉":i+1}</span><div><div style="font-weight:700;font-size:12px;color:#E0E0E0">${esc(p.n)}</div><div style="font-size:9px;color:#555">${p.t} · <span style="color:${M[p.mg]?.c};font-weight:700">${p.mg.split(" ")[0]}</span></div></div></div><div style="text-align:right"><div style="font-weight:900;font-size:17px;color:${i===0?"#FFE600":"#00F0FF"};text-shadow:${i===0?"0 0 8px rgba(255,230,0,0.3)":"none"}">${p.pt}</div><div style="font-size:8px;color:#444">${p.r}r · ${p.wk}w</div></div></div>`})}
-  h+=`<div style="text-align:center;margin-top:20px;padding:12px 0;border-top:1px solid #1a1a3e"><div style="font-size:9px;color:#333;font-weight:700;letter-spacing:1.5px">FANTASY IPL 2026 · 5 MANAGERS · 75 PLAYERS</div></div>`;
+
+  if(st.tab==="highlights"){
+    h+=`<div style="display:flex;gap:5px;margin-bottom:12px">${MA.map((mt,i)=>`<div onclick="st.selM=${i};render()" style="flex:1;padding:8px 0;border-radius:8px;cursor:pointer;font-weight:800;font-size:10px;text-align:center;border:1px solid ${st.selM===i?"#FF2E97":bd};background:${st.selM===i?"#FF2E9711":cd};color:${st.selM===i?"#FF2E97":"#555"}">${mt.ti}</div>`).join("")}</div>`;
+    const match=MA[st.selM],sc=[];
+    Object.entries(R).forEach(([p,i])=>{let r=match.b?.[p]||0,w=match.w?.[p]||0,c=match.ct?.[p]||0,ro=match.ro?.[p]||0;if(r>0||w>0||c>0||ro>0)sc.push({n:p,r,w,c,ro,pt:r*P.r+w*P.w+c*P.c+ro*P.ro,mg:i.m,t:i.t})});
+    sc.sort((a,b)=>b.pt-a.pt);
+    h+=`<div style="background:${cd};border-radius:16px;padding:14px;border:1px solid ${bd}"><div style="margin-bottom:12px"><div style="font-size:15px;font-weight:800;color:#FF2E97;text-shadow:0 0 10px rgba(255,46,151,0.4)">🎯 ${match.ti}</div><div style="font-size:11px;color:#555">${match.dt} · ${match.rs}</div></div>`;
+    sc.forEach((s,i)=>{h+=`<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;margin-bottom:4px;border-radius:10px;background:${i===0?"linear-gradient(135deg,#1a0a00,#1a1000)":"#0D0D20"};border:${i===0?"1px solid #FFE60044":"1px solid "+bd};animation:slideIn .5s ease ${i*.06}s both"><div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:50%;background:${M[s.mg]?.g};display:flex;align-items:center;justify-content:center;font-size:11px;box-shadow:0 0 10px ${M[s.mg]?.c}33">${i===0?"⭐":M[s.mg]?.e}</div><div><div style="font-weight:700;font-size:12px;color:#E0E0E0">${esc(s.n)}</div><div style="font-size:9px;color:#555">${s.t} · ${s.mg.split(" ")[0]}</div></div></div><div style="text-align:right"><div style="font-weight:900;font-size:17px;color:${i===0?"#FFE600":M[s.mg]?.c};text-shadow:${i===0?"0 0 8px rgba(255,230,0,0.4)":"none"}">${s.pt}</div><div style="font-size:8px;color:#555">${pb(s)}</div></div></div>`});
+    h+=`</div>`;
+  }
+
+  if(st.tab==="players"){tp.forEach((p,i)=>{h+=`<div style="display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border-radius:10px;margin-bottom:5px;background:${i===0?"linear-gradient(135deg,#1a1000,#0A0A1A)":cd};border:1px solid ${i<3?"#FFE60022":bd}"><div style="display:flex;align-items:center;gap:8px"><span style="font-weight:900;font-size:14px;width:24px;text-align:center;color:${i===0?"#FFE600":i<3?"#aaa":"#555"}">${i===0?"🥇":i===1?"🥈":i===2?"🥉":i+1}</span><div><div style="font-weight:700;font-size:12px;color:#E0E0E0">${esc(p.n)}</div><div style="font-size:9px;color:#555">${p.t} · <span style="color:${M[p.mg]?.c};font-weight:700">${p.mg.split(" ")[0]}</span></div></div></div><div style="text-align:right"><div style="font-weight:900;font-size:17px;color:${i===0?"#FFE600":"#00F0FF"}">${p.pt}</div><div style="font-size:8px;color:#444">${pb(p)}</div></div></div>`})}
+
+  h+=`<div style="text-align:center;margin-top:20px;padding:12px 0;border-top:1px solid ${bd}"><div style="font-size:9px;color:#333;font-weight:700;letter-spacing:1.5px">FANTASY IPL 2026 · 5 MANAGERS · 75 PLAYERS · ${MA.length} MATCHES</div></div>`;
   document.getElementById("app").innerHTML=h;
 }
 render();
