@@ -260,7 +260,7 @@ function calc(){
   return{mg,so:Object.entries(mg).sort((a,b)=>b[1].tot-a[1].tot),tp:Object.values(ps).filter(x=>x.pt>0).sort((a,b)=>b.pt-a.pt).slice(0,20),ps};
 }
 
-function pb(p){let s=[];if(p.r>0)s.push(p.r+"r");if(p.w>0)s.push(p.w+"w");if(p.c>0)s.push(p.c+"c");if(p.ro>0)s.push(p.ro+"ro");return s.join(" · ")}
+function pb(p){let s=[];if(p.r>0)s.push(p.r+"R");if(p.w>0)s.push(p.w+"W");if(p.c>0)s.push(p.c+"C");if(p.ro>0)s.push(p.ro+"RO");return s.join(" · ")}
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
 function animNum(id,target){const el=document.getElementById(id);if(!el)return;let c=0;const step=Math.max(1,Math.floor(target/30));const iv=setInterval(()=>{c+=step;if(c>=target){c=target;clearInterval(iv)}el.textContent=c},18)}
 function getNext(){return SCH.find(s=>!s.done)}
@@ -295,23 +295,18 @@ function render(){
         <span class="badge" style="background:${lc.c}20;color:${lc.c};border:1px solid ${lc.c}40;font-size:11px;letter-spacing:1.5px">🏆 #1 LEADER</span>
         <span style="font-size:20px;animation:crownBob 2s ease-in-out infinite;display:inline-block">👑</span>
       </div>
-      <div style="display:flex;align-items:center;gap:20px">
+      <div style="display:flex;align-items:center;gap:14px">
         <div class="avatar-lg" style="box-shadow:0 8px 40px ${lc.c}35,0 0 80px ${lc.c}10">${ROBOTS[ln]}</div>
-        <div style="flex:1">
-          <div style="font-size:13px;color:${lc.c};font-weight:800;letter-spacing:2px;text-transform:uppercase;opacity:.7">${lc.tag}</div>
-          <div style="font-size:26px;font-weight:900;letter-spacing:-.5px;margin-top:2px">${esc(ln)}</div>
-          <div style="display:flex;gap:14px;margin-top:12px;font-size:12px;color:#999">
-            <span style="display:flex;align-items:center;gap:3px">🏏 <strong style="color:#e8e8f0">${lv.r}</strong>r</span>
-            <span style="display:flex;align-items:center;gap:3px">🎯 <strong style="color:#e8e8f0">${lv.w}</strong>w</span>
-            <span style="display:flex;align-items:center;gap:3px">🧤 <strong style="color:#e8e8f0">${lv.c}</strong>c</span>
-          </div>
-          <div style="margin-top:10px;font-size:12px;color:${lc.c};font-weight:700">${so.length>1?`▲ ${lv.tot-so[1][1].tot} pts ahead of ${so[1][0]}`:""}</div>
-        </div>
-        <div style="text-align:right">
-          <div id="lp" class="gl" style="font-size:52px;font-weight:900;color:${lc.c};line-height:1;--gc:${lc.c}40;letter-spacing:-2px">0</div>
-          <div class="pts-label" style="margin-top:6px;color:${lc.c}88">POINTS</div>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:11px;color:${lc.c};font-weight:800;letter-spacing:2px;text-transform:uppercase;opacity:.7">${lc.tag}</div>
+          <div style="font-size:20px;font-weight:900;letter-spacing:-.5px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(ln)}</div>
+          <div id="lp" class="gl" style="font-size:40px;font-weight:900;color:${lc.c};line-height:1;--gc:${lc.c}40;letter-spacing:-1px;margin-top:8px">0</div>
+          <div class="pts-label" style="margin-top:4px;color:${lc.c}88">POINTS</div>
         </div>
       </div>
+      <div style="display:flex;gap:10px;margin-top:14px;font-size:11px;color:#999;flex-wrap:wrap">
+            <span>🏏 <strong style="color:#e8e8f0">${lv.r}</strong>R</span>
+            <span>🎯 <strong style="color:#e8e8f0">${lv.w}</strong>W</span>
       <div style="margin-top:18px;display:flex;gap:6px">
         ${lv.pl.sort((a,b)=>b.pt-a.pt).slice(0,3).map((p,i)=>`<div style="flex:1;background:rgba(255,255,255,.04);border:1px solid ${lc.c}22;border-radius:12px;padding:10px 10px;text-align:center">
           <div style="font-size:9px;color:#666;font-weight:700">${i===0?"⭐ MVP":i===1?"2ND":"3RD"}</div>
@@ -334,7 +329,7 @@ function render(){
             <div class="avatar-sm" style="box-shadow:0 4px 16px ${c.c}20">${ROBOTS[n]}</div>
             <div>
               <div style="font-weight:800;font-size:15px">${c.e} ${esc(n)} ${i===0?'<span style="font-size:9px;background:'+c.c+'22;color:'+c.c+';padding:2px 6px;border-radius:4px;margin-left:4px;vertical-align:middle">LEADER</span>':''}</div>
-              <div style="font-size:11px;color:#555;margin-top:3px">${c.tag} · ${d.r}r · ${d.w}w · ${d.c}c · ${d.pl.length} scorers</div>
+              <div style="font-size:11px;color:#555;margin-top:3px">${c.tag} · ${d.r}R · ${d.w}W · ${d.c}C · ${d.pl.length} scorers</div>
             </div>
           </div>
           <div style="text-align:right">
