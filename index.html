@@ -4,54 +4,50 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#050510">
+<meta name="theme-color" content="#0a0a1a">
 <title>Fantasy IPL 2026</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏏</text></svg>">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#050510;color:#e8e8f0;min-height:100vh;overflow-x:hidden}
-.w{max-width:640px;margin:0 auto;padding:16px 16px 50px}
-.cd{background:#0c0c20;border-radius:16px;padding:16px;margin-bottom:12px;border:1px solid #1a1a3e;backdrop-filter:blur(10px);box-shadow:0 4px 24px rgba(0,0,0,.4);transition:border-color .3s,box-shadow .3s}
-.cd:hover{border-color:#2a2a5e}
-.tab-bar{display:flex;gap:4px;margin-bottom:16px;position:sticky;top:0;z-index:10;background:#050510;padding:8px 0 6px}
-.tab-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 2px 6px;border-radius:10px;cursor:pointer;font-weight:700;font-size:9px;text-align:center;background:#0c0c20;color:#555;border:1px solid #1a1a3e;transition:all .25s;letter-spacing:.3px;user-select:none}
+:root{--bg:#0a0a1a;--card:rgba(255,255,255,.04);--card-border:rgba(255,255,255,.08);--card-hover:rgba(255,255,255,.07);--glass:rgba(255,255,255,.06);--glass-border:rgba(255,255,255,.12);--text:#f0f0f8;--text2:#8888aa;--text3:#555568}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 20%,rgba(99,102,241,.08) 0%,transparent 50%),radial-gradient(circle at 70% 80%,rgba(168,85,247,.06) 0%,transparent 50%),radial-gradient(circle at 50% 50%,rgba(236,72,153,.04) 0%,transparent 50%);z-index:0;pointer-events:none}
+.w{max-width:640px;margin:0 auto;padding:16px 16px 50px;position:relative;z-index:1}
+.glass{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:18px;padding:16px;margin-bottom:12px;transition:all .3s ease;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.glass:hover{background:var(--card-hover);border-color:rgba(255,255,255,.15)}
+.glass-strong{background:rgba(255,255,255,.08);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,.15);border-radius:22px;padding:20px;margin-bottom:14px;box-shadow:0 8px 40px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.1)}
+.tab-bar{display:flex;gap:4px;margin-bottom:16px;position:sticky;top:0;z-index:10;padding:10px 0 8px;background:linear-gradient(180deg,var(--bg) 60%,transparent)}
+.tab-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 2px 6px;border-radius:12px;cursor:pointer;font-weight:700;font-size:9px;text-align:center;background:var(--glass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--text3);border:1px solid transparent;transition:all .25s;letter-spacing:.3px;user-select:none}
 .tab-btn .tab-icon{font-size:14px;line-height:1}
-.tab-btn.on{background:#FF004D11;color:#FF004D;border-color:#FF004D55;box-shadow:0 0 16px #FF004D15}
-.bar{height:6px;background:#111;border-radius:6px;margin-top:10px;overflow:hidden}
-.bar div{height:100%;border-radius:6px;transition:width .8s cubic-bezier(.22,1,.36,1)}
-.ri{animation:ri .45s cubic-bezier(.22,1,.36,1) both}
-@keyframes ri{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.tab-btn.on{background:rgba(99,102,241,.15);color:#818cf8;border-color:rgba(99,102,241,.3);box-shadow:0 0 20px rgba(99,102,241,.1)}
+.bar{height:5px;background:rgba(255,255,255,.06);border-radius:5px;margin-top:10px;overflow:hidden}
+.bar div{height:100%;border-radius:5px;transition:width .8s cubic-bezier(.22,1,.36,1)}
+.ri{animation:ri .5s cubic-bezier(.22,1,.36,1) both}
+@keyframes ri{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 @keyframes glow{0%,100%{text-shadow:0 0 8px var(--gc)}50%{text-shadow:0 0 20px var(--gc),0 0 40px var(--gc)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-@keyframes orb{0%{transform:translate(0,0) scale(1)}25%{transform:translate(30px,-20px) scale(1.1)}50%{transform:translate(-10px,15px) scale(.95)}75%{transform:translate(-25px,-10px) scale(1.05)}100%{transform:translate(0,0) scale(1)}}
 @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
-@keyframes crownBob{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-6px) rotate(5deg)}}
-@keyframes borderGlow{0%,100%{border-color:var(--bg1)}50%{border-color:var(--bg2)}}
-.ld{display:inline-block;width:7px;height:7px;border-radius:50%;background:#FF004D;animation:pulse 1.5s infinite;margin-right:5px;vertical-align:middle}
+.ld{display:inline-block;width:7px;height:7px;border-radius:50%;background:#818cf8;animation:pulse 1.5s infinite;margin-right:5px;vertical-align:middle}
 .gl{animation:glow 2.5s ease-in-out infinite}
-.dh{background:linear-gradient(90deg,#FF004D22,transparent);border-left:3px solid #FF004D;padding:5px 12px;border-radius:0 8px 8px 0;font-size:10px;font-weight:800;color:#FF004D;margin-bottom:8px;letter-spacing:1px}
-.header-title{font-size:28px;font-weight:900;background:linear-gradient(135deg,#FF004D,#FF6600,#A855F7,#3B82F6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.pts-label{font-size:9px;color:#555;font-weight:700;letter-spacing:1px;text-transform:uppercase}
-.grid-header{display:grid;font-size:9px;font-weight:700;color:#555;padding-bottom:8px;border-bottom:1px solid #1a1a3e;letter-spacing:.5px;margin-bottom:2px}
-.grid-row{display:grid;padding:9px 0;border-bottom:1px solid #111;align-items:center}
-.section-title{font-size:10px;font-weight:800;color:#555;letter-spacing:1.5px;margin-bottom:8px;text-transform:uppercase}
-.badge{padding:4px 10px;border-radius:6px;font-weight:800;font-size:10px;letter-spacing:.5px;display:inline-block}
-.score-chip{display:flex;align-items:center;gap:10px;padding:10px 12px;margin-bottom:6px;border-radius:12px;border:1px solid #1a1a3e;transition:all .25s;background:rgba(255,255,255,.02)}
-.score-chip:hover{border-color:#2a2a5e;transform:translateX(2px)}
+.dh{background:linear-gradient(90deg,rgba(236,72,153,.12),transparent);border-left:3px solid #ec4899;padding:5px 12px;border-radius:0 10px 10px 0;font-size:10px;font-weight:800;color:#ec4899;margin-bottom:8px;letter-spacing:1px}
+.header-title{font-size:28px;font-weight:900;background:linear-gradient(135deg,#818cf8,#a78bfa,#c084fc,#e879f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.pts-label{font-size:9px;color:var(--text3);font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.grid-header{display:grid;font-size:9px;font-weight:700;color:var(--text3);padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06);letter-spacing:.5px;margin-bottom:2px}
+.grid-row{display:grid;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.04);align-items:center}
+.section-title{font-size:10px;font-weight:800;color:var(--text3);letter-spacing:1.5px;margin-bottom:8px;text-transform:uppercase}
+.badge{padding:4px 10px;border-radius:8px;font-weight:800;font-size:10px;letter-spacing:.5px;display:inline-block;backdrop-filter:blur(10px)}
+.score-chip{display:flex;align-items:center;gap:10px;padding:10px 12px;margin-bottom:6px;border-radius:14px;border:1px solid rgba(255,255,255,.06);transition:all .25s;background:rgba(255,255,255,.02)}
+.score-chip:hover{background:rgba(255,255,255,.05);transform:translateX(2px)}
 .float{animation:float 3s ease-in-out infinite}
-.leader-card{position:relative;overflow:hidden;border-radius:24px;padding:0;margin-bottom:16px;border:2px solid;animation:borderGlow 3s ease-in-out infinite}
-.leader-inner{position:relative;z-index:2;padding:26px 22px 22px}
-.leader-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
-.leader-bg .orb{position:absolute;border-radius:50%;filter:blur(40px);opacity:.15;animation:orb 8s ease-in-out infinite}
-.leader-shimmer{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--bg2),transparent);background-size:200% 100%;animation:shimmer 3s linear infinite}
-.avatar-lg{width:100px;height:100px;border-radius:24px;flex-shrink:0;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.avatar-lg{width:90px;height:90px;border-radius:20px;flex-shrink:0;overflow:hidden}
 .avatar-lg svg{width:100%;height:100%;display:block}
-.avatar-sm{width:52px;height:52px;border-radius:14px;flex-shrink:0;overflow:hidden}
+.avatar-sm{width:48px;height:48px;border-radius:14px;flex-shrink:0;overflow:hidden}
 .avatar-sm svg{width:100%;height:100%;display:block}
-.avatar-sq{width:54px;height:54px;border-radius:14px;flex-shrink:0;overflow:hidden}
+.avatar-sq{width:50px;height:50px;border-radius:14px;flex-shrink:0;overflow:hidden}
 .avatar-sq svg{width:100%;height:100%;display:block}
-@media(max-width:380px){.tab-btn{font-size:8px;padding:6px 1px 5px}.header-title{font-size:24px}.avatar-lg{width:80px;height:80px;border-radius:18px}}
+.shimmer-line{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);background-size:200% 100%;animation:shimmer 3s linear infinite}
+@media(max-width:380px){.tab-btn{font-size:8px;padding:6px 1px 5px}.header-title{font-size:24px}.avatar-lg{width:76px;height:76px;border-radius:16px}}
 </style>
 </head>
 <body>
@@ -61,11 +57,9 @@ const TC={CSK:"#f9cd05",DC:"#4b8df8",GT:"#7bb8e0",KKR:"#7b5ea7",LSG:"#e03a76",MI
 function re(r){return r==="Bat"?"🏏":r==="Bowler"?"🎯":r==="AR"?"🏏🎯":r==="WK"?"🧤":r}
 function tb(t){return`<span style="color:${TC[t]||"#888"};font-weight:800">${t}</span>`}
 
-const M={"Mintu Raval":{c:"#FF004D",e:"👑",g:"linear-gradient(135deg,#FF004D,#CC0030)",tag:"IRON MAN"},"Kashish Khanuja":{c:"#FF6600",e:"🔥",g:"linear-gradient(135deg,#FF6600,#E04500)",tag:"BLACK WIDOW",gender:"f"},"Naman Kothari":{c:"#3B82F6",e:"⚡",g:"linear-gradient(135deg,#3B82F6,#2563EB)",tag:"CAPTAIN A"},"Viraj Patel":{c:"#A855F7",e:"🌟",g:"linear-gradient(135deg,#A855F7,#8B22E8)",tag:"THANOS"},"Kritik Khanuja":{c:"#FF2E97",e:"💎",g:"linear-gradient(135deg,#FF2E97,#E0007B)",tag:"SPIDER-MAN"}};
+const M={"Mintu Raval":{c:"#818cf8",e:"👑",g:"linear-gradient(135deg,#818cf8,#6366f1)",tag:"IRON MAN"},"Kashish Khanuja":{c:"#fb923c",e:"🔥",g:"linear-gradient(135deg,#fb923c,#f97316)",tag:"BLACK WIDOW",gender:"f"},"Naman Kothari":{c:"#38bdf8",e:"⚡",g:"linear-gradient(135deg,#38bdf8,#0ea5e9)",tag:"CAPTAIN A"},"Viraj Patel":{c:"#c084fc",e:"🌟",g:"linear-gradient(135deg,#c084fc,#a855f7)",tag:"THANOS"},"Kritik Khanuja":{c:"#f472b6",e:"💎",g:"linear-gradient(135deg,#f472b6,#ec4899)",tag:"SPIDER-MAN"}};
 
-// Avengers-inspired avatars — iconic helmet/mask designs
 const ROBOTS={
-// Mintu — IRON MAN — red/gold helmet
 "Mintu Raval":`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
 <rect width="120" height="120" rx="28" fill="#F5E6E8"/>
 <defs><linearGradient id="im1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF1744"/><stop offset="50%" stop-color="#D50000"/><stop offset="100%" stop-color="#B71C1C"/></linearGradient>
@@ -75,8 +69,6 @@ const ROBOTS={
 <path d="M38 56 L28 54 L26 70 Q28 78 38 80 Z" fill="url(#im2)"/>
 <path d="M82 56 L92 54 L94 70 Q92 78 82 80 Z" fill="url(#im2)"/>
 <rect x="42" y="54" width="36" height="6" rx="3" fill="url(#im2)" opacity=".8"/>
-<path d="M34 60 L28 58 L26 72 L36 74 Z" fill="#fff" opacity=".15"/>
-<path d="M86 60 L92 58 L94 72 L84 74 Z" fill="#fff" opacity=".15"/>
 <path d="M36 62 Q38 58 46 56" stroke="#FFD740" stroke-width="3" fill="none" stroke-linecap="round"/>
 <path d="M84 62 Q82 58 74 56" stroke="#FFD740" stroke-width="3" fill="none" stroke-linecap="round"/>
 <ellipse cx="42" cy="64" rx="8" ry="5" fill="#fff" opacity=".95"/>
@@ -89,13 +81,10 @@ const ROBOTS={
 <rect x="50" y="76" width="20" height="6" rx="3" fill="#B71C1C"/>
 <path d="M52 78 L56 78 M58 78 L62 78 M64 78 L68 78" stroke="#8B0000" stroke-width="1.5" stroke-linecap="round"/>
 <path d="M60 58 L60 74" stroke="#B71C1C" stroke-width="2"/>
-<ellipse cx="60" cy="92" rx="10" ry="5" fill="#FFD740" opacity=".15"/>
 <circle cx="60" cy="92" r="4" fill="#87CEFA" opacity=".6"/>
 <circle cx="60" cy="92" r="2" fill="#fff" opacity=".5"/>
-<text x="60" y="114" text-anchor="middle" font-size="8" fill="#FF004D" font-weight="900" font-family="system-ui" letter-spacing="1.5">IRON MAN</text>
+<text x="60" y="114" text-anchor="middle" font-size="8" fill="#D50000" font-weight="900" font-family="system-ui" letter-spacing="1.5">IRON MAN</text>
 </svg>`,
-
-// Kashish — BLACK WIDOW — red hair, sleek black mask
 "Kashish Khanuja":`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
 <rect width="120" height="120" rx="28" fill="#F5EDE0"/>
 <defs><linearGradient id="bw1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C62828"/><stop offset="100%" stop-color="#8B1A1A"/></linearGradient>
@@ -121,11 +110,8 @@ const ROBOTS={
 <ellipse cx="82" cy="64" rx="5" ry="3.5" fill="#FF9999" opacity=".3"/>
 <ellipse cx="60" cy="62" rx="2.5" ry="1.5" fill="#E8B090" opacity=".6"/>
 <path d="M52 72 Q60 78 68 72" stroke="#C05040" stroke-width="2" fill="#FF8888" opacity=".5"/>
-<path d="M54 84 L58 88 L62 84 L66 88" stroke="#1a1a1a" stroke-width="2" fill="none" opacity=".3"/>
-<text x="60" y="114" text-anchor="middle" font-size="7.5" fill="#FF6600" font-weight="900" font-family="system-ui" letter-spacing="1">BLACK WIDOW</text>
+<text x="60" y="114" text-anchor="middle" font-size="7.5" fill="#C62828" font-weight="900" font-family="system-ui" letter-spacing="1">BLACK WIDOW</text>
 </svg>`,
-
-// Naman — CAPTAIN AMERICA — blue helmet, white star, A on forehead
 "Naman Kothari":`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
 <rect width="120" height="120" rx="28" fill="#E0E8F5"/>
 <defs><linearGradient id="ca1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1565C0"/><stop offset="50%" stop-color="#0D47A1"/><stop offset="100%" stop-color="#0A3880"/></linearGradient>
@@ -135,7 +121,6 @@ const ROBOTS={
 <rect x="22" y="56" width="76" height="4" rx="2" fill="#fff"/>
 <rect x="22" y="48" width="76" height="4" rx="2" fill="#E53935"/>
 <polygon points="60,22 63,30 71,30 65,35 67,43 60,38 53,43 55,35 49,30 57,30" fill="#fff"/>
-<path d="M60 18 L56 26 L50 26 Q54 22 60 18Z" fill="#fff" opacity=".3"/>
 <text x="60" y="46" text-anchor="middle" font-size="12" fill="#fff" font-weight="900" font-family="system-ui" opacity=".6">A</text>
 <path d="M32 66 L32 92 Q42 100 60 102 Q78 100 88 92 L88 66" fill="url(#cas)"/>
 <ellipse cx="48" cy="76" rx="10" ry="10" fill="#fff" opacity=".95"/>
@@ -148,20 +133,14 @@ const ROBOTS={
 <path d="M64 69 Q72 65 80 68" stroke="#5D3A1A" stroke-width="2" fill="none" stroke-linecap="round"/>
 <ellipse cx="60" cy="82" rx="2.5" ry="1.5" fill="#D4A574"/>
 <path d="M52 90 Q60 96 68 90" stroke="#8B6040" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-<ellipse cx="40" cy="82" rx="5" ry="3" fill="#FF8888" opacity=".2"/>
-<ellipse cx="80" cy="82" rx="5" ry="3" fill="#FF8888" opacity=".2"/>
-<text x="60" y="114" text-anchor="middle" font-size="7.5" fill="#3B82F6" font-weight="900" font-family="system-ui" letter-spacing="1">CAPTAIN A</text>
+<text x="60" y="114" text-anchor="middle" font-size="7.5" fill="#1565C0" font-weight="900" font-family="system-ui" letter-spacing="1">CAPTAIN A</text>
 </svg>`,
-
-// Viraj — THANOS — purple chin, gold helmet, infinity gauntlet vibes
 "Viraj Patel":`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
 <rect width="120" height="120" rx="28" fill="#EDE0F8"/>
 <defs><linearGradient id="th1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFD700"/><stop offset="100%" stop-color="#DAA520"/></linearGradient>
 <radialGradient id="ths" cx=".4" cy=".3"><stop offset="0%" stop-color="#B380E0"/><stop offset="100%" stop-color="#7B48A8"/></radialGradient></defs>
 <path d="M60 12 Q26 14 20 55 L20 60 Q20 62 28 58 L34 54 Q38 18 60 16 Q82 18 86 54 L92 58 Q100 62 100 60 L100 55 Q94 14 60 12Z" fill="url(#th1)"/>
 <path d="M34 54 Q38 18 60 16 Q82 18 86 54 L86 96 Q78 104 60 106 Q42 104 34 96Z" fill="url(#ths)"/>
-<path d="M34 54 L28 58 Q20 62 20 60 L20 55" fill="url(#th1)" opacity=".5"/>
-<path d="M86 54 L92 58 Q100 62 100 60 L100 55" fill="url(#th1)" opacity=".5"/>
 <path d="M44 50 L48 42 L56 48" stroke="#DAA520" stroke-width="3" fill="none" stroke-linecap="round"/>
 <path d="M76 50 L72 42 L64 48" stroke="#DAA520" stroke-width="3" fill="none" stroke-linecap="round"/>
 <ellipse cx="48" cy="62" rx="9" ry="8" fill="#2a1050" opacity=".8"/>
@@ -176,11 +155,8 @@ const ROBOTS={
 <path d="M46 86 L54 82 L60 86 L66 82 L74 86" stroke="#5A2888" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".6"/>
 <circle cx="60" cy="40" r="4" fill="#FFD700" opacity=".5"/>
 <circle cx="60" cy="40" r="2" fill="#fff" opacity=".4"/>
-<ellipse cx="60" cy="70" rx="3" ry="2" fill="#8B58C0"/>
-<text x="60" y="114" text-anchor="middle" font-size="9" fill="#A855F7" font-weight="900" font-family="system-ui" letter-spacing="1.5">THANOS</text>
+<text x="60" y="114" text-anchor="middle" font-size="9" fill="#7B48A8" font-weight="900" font-family="system-ui" letter-spacing="1.5">THANOS</text>
 </svg>`,
-
-// Kritik — SPIDER-MAN — red/blue mask, web pattern, big white eyes
 "Kritik Khanuja":`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
 <rect width="120" height="120" rx="28" fill="#F0E0EA"/>
 <defs><linearGradient id="sp1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E53935"/><stop offset="60%" stop-color="#C62828"/><stop offset="100%" stop-color="#1565C0"/></linearGradient></defs>
@@ -192,18 +168,11 @@ const ROBOTS={
 <path d="M60 12 Q90 50 98 55" stroke="#1a1a1a" stroke-width="1" opacity=".12"/>
 <path d="M22 55 Q60 48 98 55" stroke="#1a1a1a" stroke-width="1" opacity=".12"/>
 <path d="M22 75 Q60 68 98 75" stroke="#1a1a1a" stroke-width="1" opacity=".12"/>
-<path d="M30 95 Q60 88 90 95" stroke="#1a1a1a" stroke-width="1" opacity=".1"/>
 <ellipse cx="44" cy="56" rx="14" ry="16" fill="#fff" opacity=".97"/>
 <ellipse cx="76" cy="56" rx="14" ry="16" fill="#fff" opacity=".97"/>
 <ellipse cx="44" cy="56" rx="14" ry="16" fill="none" stroke="#1a1a1a" stroke-width="2.5"/>
 <ellipse cx="76" cy="56" rx="14" ry="16" fill="none" stroke="#1a1a1a" stroke-width="2.5"/>
-<ellipse cx="44" cy="56" rx="10" ry="11" fill="none" stroke="#1a1a1a" stroke-width=".8" opacity=".2"/>
-<ellipse cx="76" cy="56" rx="10" ry="11" fill="none" stroke="#1a1a1a" stroke-width=".8" opacity=".2"/>
-<path d="M34 52 Q44 48 54 52" stroke="#1a1a1a" stroke-width=".5" opacity=".15" fill="none"/>
-<path d="M66 52 Q76 48 86 52" stroke="#1a1a1a" stroke-width=".5" opacity=".15" fill="none"/>
-<path d="M34 60 Q44 64 54 60" stroke="#1a1a1a" stroke-width=".5" opacity=".15" fill="none"/>
-<path d="M66 60 Q76 64 86 60" stroke="#1a1a1a" stroke-width=".5" opacity=".15" fill="none"/>
-<text x="60" y="114" text-anchor="middle" font-size="7" fill="#FF2E97" font-weight="900" font-family="system-ui" letter-spacing="1">SPIDER-MAN</text>
+<text x="60" y="114" text-anchor="middle" font-size="7" fill="#C62828" font-weight="900" font-family="system-ui" letter-spacing="1">SPIDER-MAN</text>
 </svg>`
 };
 
@@ -216,20 +185,17 @@ const R={
 };
 
 const P={r:1,w:25,c:5,ro:5};
-
 const MA=[
 {id:"M1",ti:"RCB vs SRH",dt:"Mar 28",rs:"RCB won by 6 wkts",t1:"RCB",t2:"SRH",b:{"Phil Salt":8,"Virat Kohli":69,"Rajat Patidar":31,"Abhishek Sharma":7,"Travis Head":11,"Ishan Kishan":80,"Nitish Kumar Reddy":4,"Aniket Verma":43,"Harshal Patel":2},w:{"Romario Shepherd":3},ct:{"Phil Salt":3,"Virat Kohli":1},ro:{}},
 {id:"M2",ti:"MI vs KKR",dt:"Mar 29",rs:"MI won by 6 wkts",t1:"MI",t2:"KKR",b:{"Finn Allen":37,"Ajinkya Rahane":67,"Cameron Green":18,"Angkrish Raghuvanshi":51,"Rinku Singh":33,"Ramandeep Singh":4,"Surya Kumar Yadav":16,"Hardik Pandya":18,"Tilak Varma":20},w:{"Hardik Pandya":1,"Sunil Narine":1},ct:{"Tilak Varma":2,"Hardik Pandya":1,"Rinku Singh":1},ro:{}},
 {id:"M3",ti:"RR vs CSK",dt:"Mar 30",rs:"RR won by 8 wkts",t1:"RR",t2:"CSK",b:{"Sanju Samson":6,"Ruturaj Gaikwad":6,"Shivam Dube":6,"Noor Ahmed":1,"Matthew Short":2,"Vaibhav Suryavanshi":52,"Yashasvi Jaiswal":38,"Dhruv Jurel":18,"Riyan Parag":14},w:{"Ravindra Jadeja":2,"Sandeep Sharma":1,"Ravi Bishnoi":1},ct:{"Dhruv Jurel":2,"Ravi Bishnoi":1},ro:{}},
 {id:"M4",ti:"PBKS vs GT",dt:"Mar 31",rs:"PBKS won by 3 wkts",t1:"PBKS",t2:"GT",b:{"Sai Sudarshan":13,"Shubman Gill":39,"Jos Buttler":38,"Washington Sundar":18,"Rashid Khan":0,"Priyansh Arya":7,"Prabhsimran Singh":37,"Shreyas Iyer":18,"Nehal Wadhera":3,"Marcus Stoinis":0,"Marco Jansen":9},w:{"Marco Jansen":1,"Yuzvendra Chahal":2,"Washington Sundar":1,"Rashid Khan":1},ct:{"Shubman Gill":2,"Shreyas Iyer":1,"Marco Jansen":1,"Arshdeep Singh":2},ro:{}}
 ];
-
 const PT=[
-{t:"RR",m:1,w:1,l:0,nr:0,nrr:"+3.490",pts:2},{t:"RCB",m:1,w:1,l:0,nr:0,nrr:"+0.525",pts:2},{t:"MI",m:1,w:1,l:0,nr:0,nrr:"+0.418",pts:2},{t:"PBKS",m:1,w:1,l:0,nr:0,nrr:"+0.156",pts:2},
-{t:"DC",m:0,w:0,l:0,nr:0,nrr:"0.000",pts:0},{t:"LSG",m:0,w:0,l:0,nr:0,nrr:"0.000",pts:0},
-{t:"GT",m:1,w:0,l:1,nr:0,nrr:"-0.156",pts:0},{t:"KKR",m:1,w:0,l:1,nr:0,nrr:"-0.418",pts:0},{t:"SRH",m:1,w:0,l:1,nr:0,nrr:"-0.525",pts:0},{t:"CSK",m:1,w:0,l:1,nr:0,nrr:"-3.490",pts:0}
+{t:"RR",m:1,w:1,l:0,nrr:"+3.490",pts:2},{t:"RCB",m:1,w:1,l:0,nrr:"+0.525",pts:2},{t:"MI",m:1,w:1,l:0,nrr:"+0.418",pts:2},{t:"PBKS",m:1,w:1,l:0,nrr:"+0.156",pts:2},
+{t:"DC",m:0,w:0,l:0,nrr:"0.000",pts:0},{t:"LSG",m:0,w:0,l:0,nrr:"0.000",pts:0},
+{t:"GT",m:1,w:0,l:1,nrr:"-0.156",pts:0},{t:"KKR",m:1,w:0,l:1,nrr:"-0.418",pts:0},{t:"SRH",m:1,w:0,l:1,nrr:"-0.525",pts:0},{t:"CSK",m:1,w:0,l:1,nrr:"-3.490",pts:0}
 ];
-
 const SCH=[
 {n:1,t1:"RCB",t2:"SRH",dt:"Mar 28",v:"Bengaluru",done:1},{n:2,t1:"MI",t2:"KKR",dt:"Mar 29",v:"Mumbai",done:1},{n:3,t1:"RR",t2:"CSK",dt:"Mar 30",v:"Guwahati",done:1},
 {n:4,t1:"PBKS",t2:"GT",dt:"Mar 31",v:"Chandigarh",done:1},{n:5,t1:"LSG",t2:"DC",dt:"Apr 1",v:"Lucknow"},{n:6,t1:"KKR",t2:"SRH",dt:"Apr 2",v:"Kolkata"},{n:7,t1:"CSK",t2:"PBKS",dt:"Apr 3",v:"Chennai"},
@@ -237,10 +203,7 @@ const SCH=[
 {n:12,t1:"KKR",t2:"PBKS",dt:"Apr 6",v:"Kolkata"},{n:13,t1:"RR",t2:"MI",dt:"Apr 6",v:"Jaipur",dh:1},{n:14,t1:"DC",t2:"GT",dt:"Apr 7",v:"Delhi"},{n:15,t1:"KKR",t2:"LSG",dt:"Apr 8",v:"Kolkata"},
 {n:16,t1:"RR",t2:"RCB",dt:"Apr 9",v:"Jaipur"},{n:17,t1:"PBKS",t2:"SRH",dt:"Apr 9",v:"Chandigarh",dh:1},{n:18,t1:"CSK",t2:"DC",dt:"Apr 10",v:"Chennai"},{n:19,t1:"LSG",t2:"GT",dt:"Apr 11",v:"Lucknow"},{n:20,t1:"MI",t2:"RCB",dt:"Apr 11",v:"Mumbai",dh:1}
 ];
-
-const TABS=[
-["board","🏆","Board"],["squads","👥","Squads"],["highlights","🎯","Highlights"],["players","👤","Players"],["next","🔮","Preview"],["table","📊","Table"],["schedule","📅","Schedule"]
-];
+const TABS=[["board","🏆","Board"],["squads","👥","Squads"],["highlights","🎯","Highlights"],["players","👤","Players"],["next","🔮","Preview"],["table","📊","Table"],["schedule","📅","Schedule"]];
 
 let st={tab:"board",exp:null,selM:MA.length-1,selT:"Mintu Raval"};
 
@@ -259,7 +222,6 @@ function calc(){
   });
   return{mg,so:Object.entries(mg).sort((a,b)=>b[1].tot-a[1].tot),tp:Object.values(ps).filter(x=>x.pt>0).sort((a,b)=>b.pt-a.pt).slice(0,20),ps};
 }
-
 function pb(p){let s=[];if(p.r>0)s.push(p.r+"R");if(p.w>0)s.push(p.w+"W");if(p.c>0)s.push(p.c+"C");if(p.ro>0)s.push(p.ro+"RO");return s.join(" · ")}
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
 function animNum(id,target){const el=document.getElementById(id);if(!el)return;let c=0;const step=Math.max(1,Math.floor(target/30));const iv=setInterval(()=>{c+=step;if(c>=target){c=target;clearInterval(iv)}el.textContent=c},18)}
@@ -272,48 +234,42 @@ function render(){
 
   let h=`<div style="text-align:center;padding:22px 0 16px">
     <div class="header-title float">🏏 Fantasy IPL 2026</div>
-    <div style="display:flex;justify-content:center;gap:16px;margin-top:10px;font-size:11px;color:#555">
+    <div style="display:flex;justify-content:center;gap:16px;margin-top:10px;font-size:11px;color:var(--text3)">
       <span>🏏 1R = 1pt</span><span>🎯 1W = 25pt</span><span>🧤 1C/RO = 5pt</span>
     </div>
   </div>`;
 
-  h+=`<div style="display:flex;align-items:center;justify-content:space-between;background:#0c0c20;border-radius:12px;padding:10px 16px;margin-bottom:16px;border:1px solid #1a1a3e;box-shadow:0 4px 24px rgba(0,0,0,.4)">
-    <div><span class="ld"></span><span style="color:#FF004D;font-weight:800;font-size:12px">${MA.length} Matches Played</span></div>
-    ${next?`<div style="font-size:11px;color:#555">Next: ${tb(next.t1)} vs ${tb(next.t2)} · ${next.dt}</div>`:""}
+  h+=`<div class="glass" style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;margin-bottom:16px">
+    <div><span class="ld"></span><span style="color:#818cf8;font-weight:800;font-size:12px">${MA.length} Matches Played</span></div>
+    ${next?`<div style="font-size:11px;color:var(--text3)">Next: ${tb(next.t1)} vs ${tb(next.t2)} · ${next.dt}</div>`:""}
   </div>`;
 
   // === LEADER CARD ===
-  h+=`<div class="leader-card ri" style="--bg1:${lc.c}55;--bg2:${lc.c}AA;border-color:${lc.c}44;background:#0c0c20">
-    <div class="leader-bg">
-      <div class="orb" style="width:140px;height:140px;background:${lc.c};top:-40px;right:-30px;animation-delay:0s"></div>
-      <div class="orb" style="width:100px;height:100px;background:${lc.c};bottom:-30px;left:10px;animation-delay:-3s"></div>
-      <div class="orb" style="width:70px;height:70px;background:#fff;top:40%;left:60%;animation-delay:-5s;opacity:.05"></div>
-    </div>
-    <div class="leader-shimmer" style="--bg2:${lc.c}"></div>
-    <div class="leader-inner">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
-        <span class="badge" style="background:${lc.c}20;color:${lc.c};border:1px solid ${lc.c}40;font-size:11px;letter-spacing:1.5px">🏆 #1 LEADER</span>
-        <span style="font-size:20px;animation:crownBob 2s ease-in-out infinite;display:inline-block">👑</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:14px">
-        <div class="avatar-lg" style="box-shadow:0 8px 40px ${lc.c}35,0 0 80px ${lc.c}10">${ROBOTS[ln]}</div>
+  h+=`<div class="glass-strong ri" style="position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,${lc.c}08,transparent 60%,${lc.c}05);pointer-events:none"></div>
+    <div style="position:absolute;top:0;left:0;right:0" class="shimmer-line"></div>
+    <div style="position:relative;z-index:1">
+      <div style="margin-bottom:14px"><span class="badge" style="background:${lc.c}18;color:${lc.c};border:1px solid ${lc.c}30">🏆 #1 LEADER</span></div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <div class="avatar-lg" style="box-shadow:0 8px 32px ${lc.c}20">${ROBOTS[ln]}</div>
         <div style="flex:1;min-width:0">
-          <div style="font-size:11px;color:${lc.c};font-weight:800;letter-spacing:2px;text-transform:uppercase;opacity:.7">${lc.tag}</div>
-          <div style="font-size:20px;font-weight:900;letter-spacing:-.5px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(ln)}</div>
-          <div id="lp" class="gl" style="font-size:40px;font-weight:900;color:${lc.c};line-height:1;--gc:${lc.c}40;letter-spacing:-1px;margin-top:8px">0</div>
-          <div class="pts-label" style="margin-top:4px;color:${lc.c}88">POINTS</div>
+          <div style="font-size:10px;color:${lc.c};font-weight:800;letter-spacing:2px;text-transform:uppercase;opacity:.7">${lc.tag}</div>
+          <div style="font-size:19px;font-weight:900;margin-top:2px">${esc(ln)}</div>
+          <div style="display:flex;gap:10px;margin-top:8px;font-size:11px;color:var(--text2)">
+            <span>🏏 <strong style="color:var(--text)">${lv.r}</strong>R</span>
+            <span>🎯 <strong style="color:var(--text)">${lv.w}</strong>W</span>
+            <span>🧤 <strong style="color:var(--text)">${lv.c}</strong>C</span>
+          </div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">
+          <div id="lp" class="gl" style="font-size:34px;font-weight:900;color:${lc.c};line-height:1;--gc:${lc.c}40">0</div>
+          <div class="pts-label" style="margin-top:4px">POINTS</div>
         </div>
       </div>
-      <div style="display:flex;gap:10px;margin-top:14px;font-size:11px;color:#999;flex-wrap:wrap">
-            <span>🏏 <strong style="color:#e8e8f0">${lv.r}</strong>R</span>
-            <span>🎯 <strong style="color:#e8e8f0">${lv.w}</strong>W</span>
-      <div style="margin-top:18px;display:flex;gap:6px">
-        ${lv.pl.sort((a,b)=>b.pt-a.pt).slice(0,3).map((p,i)=>`<div style="flex:1;background:rgba(255,255,255,.04);border:1px solid ${lc.c}22;border-radius:12px;padding:10px 10px;text-align:center">
-          <div style="font-size:9px;color:#666;font-weight:700">${i===0?"⭐ MVP":i===1?"2ND":"3RD"}</div>
-          <div style="font-size:13px;font-weight:800;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(p.n.split(" ").pop())}</div>
-          <div style="font-size:16px;font-weight:900;color:${lc.c};margin-top:2px">${p.pt}</div>
-        </div>`).join("")}
-      </div>
+      ${(()=>{const mvp=lv.pl.sort((a,b)=>b.pt-a.pt)[0];return mvp?`<div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px">⭐</span><div><div style="font-size:9px;color:var(--text3);font-weight:700;letter-spacing:1px">MVP</div><div style="font-size:13px;font-weight:800">${esc(mvp.n)}</div></div></div>
+        <div style="font-size:20px;font-weight:900;color:${lc.c}">${mvp.pt}<span style="font-size:9px;color:var(--text3);margin-left:3px">PTS</span></div>
+      </div>`:""})()}
     </div>
   </div>`;
 
@@ -323,28 +279,28 @@ function render(){
   if(st.tab==="board"){
     so.forEach(([n,d],i)=>{
       const c=M[n],isE=st.exp===n,bw=lv.tot>0?(d.tot/lv.tot)*100:0;
-      h+=`<div class="cd ri" style="cursor:pointer;animation-delay:${i*.07}s;${i===0?`box-shadow:0 0 24px ${c.c}08,0 4px 24px rgba(0,0,0,.4);border-color:${c.c}33`:""}" onclick="st.exp=st.exp==='${esc(n)}'?null:'${esc(n)}';render()">
+      h+=`<div class="glass ri" style="cursor:pointer;animation-delay:${i*.07}s;${i===0?`box-shadow:0 0 24px ${c.c}06,0 8px 32px rgba(0,0,0,.2);border-color:${c.c}25`:""}" onclick="st.exp=st.exp==='${esc(n)}'?null:'${esc(n)}';render()">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:14px">
-            <div class="avatar-sm" style="box-shadow:0 4px 16px ${c.c}20">${ROBOTS[n]}</div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="avatar-sm" style="box-shadow:0 4px 16px ${c.c}15">${ROBOTS[n]}</div>
             <div>
-              <div style="font-weight:800;font-size:15px">${c.e} ${esc(n)} ${i===0?'<span style="font-size:9px;background:'+c.c+'22;color:'+c.c+';padding:2px 6px;border-radius:4px;margin-left:4px;vertical-align:middle">LEADER</span>':''}</div>
-              <div style="font-size:11px;color:#555;margin-top:3px">${c.tag} · ${d.r}R · ${d.w}W · ${d.c}C · ${d.pl.length} scorers</div>
+              <div style="font-weight:800;font-size:14px">${c.e} ${esc(n)} ${i===0?'<span style="font-size:8px;background:'+c.c+'18;color:'+c.c+';padding:2px 6px;border-radius:5px;margin-left:4px;vertical-align:middle;border:1px solid '+c.c+'25">LEADER</span>':''}</div>
+              <div style="font-size:10px;color:var(--text3);margin-top:3px">${c.tag} · ${d.r}R · ${d.w}W · ${d.c}C</div>
             </div>
           </div>
-          <div style="text-align:right">
-            <div id="bp${i}" style="font-size:26px;font-weight:900;color:${c.c};text-shadow:0 0 10px ${c.c}25">0</div>
+          <div style="text-align:right;flex-shrink:0">
+            <div id="bp${i}" style="font-size:24px;font-weight:900;color:${c.c}">${d.tot}</div>
             <div class="pts-label">PTS</div>
           </div>
         </div>
-        <div class="bar"><div style="width:${bw}%;background:${c.g};box-shadow:0 0 8px ${c.c}30"></div></div>`;
+        <div class="bar"><div style="width:${bw}%;background:${c.g};box-shadow:0 0 8px ${c.c}20"></div></div>`;
       if(isE&&d.pl.length>0){
-        h+=`<div style="margin-top:14px;border-top:1px solid #1a1a3e;padding-top:12px">
+        h+=`<div style="margin-top:14px;border-top:1px solid rgba(255,255,255,.06);padding-top:12px">
           <div class="section-title">Scoring Players</div>`;
         d.pl.sort((a,b)=>b.pt-a.pt).forEach((p,j)=>{
-          h+=`<div class="ri" style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:${j<d.pl.length-1?"1px solid #111":"none"};animation-delay:${j*.04}s">
-            <div>${re(R[p.n]?.r||"")} <span style="font-weight:700;font-size:13px">${esc(p.n)}</span> <span style="font-size:10px;color:#555">${tb(p.t)} · ${p.mt}</span></div>
-            <div style="font-weight:800;color:${c.c};font-size:13px;text-shadow:0 0 6px ${c.c}25">${pb(p)} = ${p.pt}</div>
+          h+=`<div class="ri" style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:${j<d.pl.length-1?"1px solid rgba(255,255,255,.04)":"none"};animation-delay:${j*.04}s">
+            <div>${re(R[p.n]?.r||"")} <span style="font-weight:700;font-size:12px">${esc(p.n)}</span> <span style="font-size:10px;color:var(--text3)">${tb(p.t)} · ${p.mt}</span></div>
+            <div style="font-weight:800;color:${c.c};font-size:12px">${pb(p)} = ${p.pt}</div>
           </div>`;
         });
         h+=`</div>`;
@@ -356,30 +312,30 @@ function render(){
   // === SQUADS ===
   if(st.tab==="squads"){
     const tc=M[st.selT];const sqPl=Object.values(ps).filter(p=>p.mg===st.selT).sort((a,b)=>b.pt-a.pt);
-    h+=`<div style="display:flex;gap:5px;margin-bottom:14px;flex-wrap:wrap">${Object.keys(M).map(n=>`<div onclick="st.selT='${esc(n)}';render()" style="flex:1;min-width:56px;padding:8px 4px;border-radius:10px;cursor:pointer;font-weight:700;font-size:10px;text-align:center;border:1px solid ${st.selT===n?M[n].c+"55":"#1a1a3e"};background:${st.selT===n?M[n].c+"11":"#0c0c20"};color:${st.selT===n?M[n].c:"#555"};transition:all .2s">${M[n].e}<br>${n.split(" ")[0]}</div>`).join("")}</div>`;
-    h+=`<div class="cd" style="border-color:${tc.c}33">
+    h+=`<div style="display:flex;gap:5px;margin-bottom:14px;flex-wrap:wrap">${Object.keys(M).map(n=>`<div onclick="st.selT='${esc(n)}';render()" style="flex:1;min-width:56px;padding:8px 4px;border-radius:12px;cursor:pointer;font-weight:700;font-size:10px;text-align:center;border:1px solid ${st.selT===n?M[n].c+"35":"rgba(255,255,255,.08)"};background:${st.selT===n?M[n].c+"10":"var(--glass)"};color:${st.selT===n?M[n].c:"var(--text3)"};transition:all .2s;backdrop-filter:blur(10px)">${M[n].e}<br>${n.split(" ")[0]}</div>`).join("")}</div>`;
+    h+=`<div class="glass" style="border-color:${tc.c}20">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
         <div style="display:flex;align-items:center;gap:14px">
-          <div class="avatar-sq" style="box-shadow:0 4px 16px ${tc.c}25">${ROBOTS[st.selT]}</div>
+          <div class="avatar-sq" style="box-shadow:0 4px 16px ${tc.c}15">${ROBOTS[st.selT]}</div>
           <div>
-            <div style="font-size:11px;color:${tc.c};font-weight:800;letter-spacing:1.5px;text-transform:uppercase;opacity:.6">${tc.tag}</div>
-            <div style="font-size:20px;font-weight:900">${tc.e} ${esc(st.selT)}</div>
-            <div style="font-size:11px;color:#555;margin-top:3px">15 players</div>
+            <div style="font-size:10px;color:${tc.c};font-weight:800;letter-spacing:1.5px;text-transform:uppercase;opacity:.6">${tc.tag}</div>
+            <div style="font-size:18px;font-weight:900">${tc.e} ${esc(st.selT)}</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:2px">15 players</div>
           </div>
         </div>
-        <div id="sp" style="font-size:30px;font-weight:900;color:${tc.c};text-shadow:0 0 10px ${tc.c}25">0</div>
+        <div id="sp" style="font-size:28px;font-weight:900;color:${tc.c}">0</div>
       </div>`;
     h+=`<div class="grid-header" style="grid-template-columns:1fr 38px 28px 28px 50px"><div>PLAYER</div><div style="text-align:center">R</div><div style="text-align:center">W</div><div style="text-align:center">C</div><div style="text-align:right">PTS</div></div>`;
     sqPl.forEach((p,i)=>{
       h+=`<div class="ri grid-row" style="grid-template-columns:1fr 38px 28px 28px 50px;animation-delay:${i*.03}s">
         <div>
-          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:10px">${re(p.rl)}</span><span style="font-weight:700;font-size:12px;color:${p.pt>0?"#e8e8f0":"#333"}">${esc(p.n)}</span></div>
-          <div style="font-size:9px;color:#333;margin-left:18px">${tb(p.t)}</div>
+          <div style="display:flex;align-items:center;gap:4px"><span style="font-size:10px">${re(p.rl)}</span><span style="font-weight:700;font-size:12px;color:${p.pt>0?"var(--text)":"var(--text3)"}">${esc(p.n)}</span></div>
+          <div style="font-size:9px;color:var(--text3);margin-left:18px">${tb(p.t)}</div>
         </div>
-        <div style="text-align:center;color:${p.r>0?"#e8e8f0":"#222"};font-weight:700;font-size:11px">${p.r||"-"}</div>
-        <div style="text-align:center;color:${p.w>0?"#39FF14":"#222"};font-weight:700;font-size:11px">${p.w||"-"}</div>
-        <div style="text-align:center;color:${p.c>0?"#3B82F6":"#222"};font-weight:700;font-size:11px">${p.c||"-"}</div>
-        <div style="text-align:right;font-weight:900;font-size:13px;color:${p.pt>0?tc.c:"#181818"}">${p.pt||"0"}</div>
+        <div style="text-align:center;color:${p.r>0?"var(--text)":"rgba(255,255,255,.12)"};font-weight:700;font-size:11px">${p.r||"-"}</div>
+        <div style="text-align:center;color:${p.w>0?"#4ade80":"rgba(255,255,255,.12)"};font-weight:700;font-size:11px">${p.w||"-"}</div>
+        <div style="text-align:center;color:${p.c>0?"#38bdf8":"rgba(255,255,255,.12)"};font-weight:700;font-size:11px">${p.c||"-"}</div>
+        <div style="text-align:right;font-weight:900;font-size:13px;color:${p.pt>0?tc.c:"rgba(255,255,255,.08)"}">${p.pt||"0"}</div>
       </div>`;
     });
     h+=`</div>`;
@@ -387,29 +343,29 @@ function render(){
 
   // === HIGHLIGHTS ===
   if(st.tab==="highlights"){
-    h+=`<div style="display:flex;gap:6px;margin-bottom:14px">${MA.map((mt,i)=>`<div onclick="st.selM=${i};render()" style="flex:1;padding:10px 4px;border-radius:10px;cursor:pointer;text-align:center;border:1px solid ${st.selM===i?"#FF660055":"#1a1a3e"};background:${st.selM===i?"#FF660011":"#0c0c20"};transition:all .2s">
-      <div style="font-size:12px;font-weight:800;color:${st.selM===i?"#FF6600":"#555"}">${tb(mt.t1)} v ${tb(mt.t2)}</div>
-      <div style="font-size:9px;color:#444;margin-top:3px">${mt.dt}</div>
+    h+=`<div style="display:flex;gap:6px;margin-bottom:14px">${MA.map((mt,i)=>`<div onclick="st.selM=${i};render()" style="flex:1;padding:10px 4px;border-radius:12px;cursor:pointer;text-align:center;border:1px solid ${st.selM===i?"rgba(99,102,241,.3)":"rgba(255,255,255,.06)"};background:${st.selM===i?"rgba(99,102,241,.1)":"var(--glass)"};backdrop-filter:blur(10px);transition:all .2s">
+      <div style="font-size:11px;font-weight:800;color:${st.selM===i?"#818cf8":"var(--text3)"}">${tb(mt.t1)} v ${tb(mt.t2)}</div>
+      <div style="font-size:9px;color:var(--text3);margin-top:3px">${mt.dt}</div>
     </div>`).join("")}</div>`;
     const match=MA[st.selM],sc=[];
     Object.entries(R).forEach(([p,i])=>{let r=match.b?.[p]||0,w=match.w?.[p]||0,c=match.ct?.[p]||0,ro=match.ro?.[p]||0;if(r>0||w>0||c>0||ro>0)sc.push({n:p,r,w,c,ro,pt:r*P.r+w*P.w+c*P.c+ro*P.ro,mg:i.m,t:i.t,rl:i.r})});
     sc.sort((a,b)=>b.pt-a.pt);
-    h+=`<div class="cd">
+    h+=`<div class="glass">
       <div style="margin-bottom:14px">
-        <div style="font-size:18px;font-weight:800">${tb(match.t1)} <span style="color:#333;font-size:13px">vs</span> ${tb(match.t2)}</div>
-        <div style="font-size:11px;color:#555;margin-top:4px">${match.dt} · <span style="color:#FF004D">${match.rs}</span></div>
+        <div style="font-size:17px;font-weight:800">${tb(match.t1)} <span style="color:var(--text3);font-size:12px">vs</span> ${tb(match.t2)}</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:4px">${match.dt} · <span style="color:#818cf8">${match.rs}</span></div>
       </div>`;
     sc.forEach((s,i)=>{
       const mc=M[s.mg];
-      h+=`<div class="score-chip ri" style="animation-delay:${i*.05}s;${i===0?`border-color:${mc?.c}33;background:${mc?.c}08`:""};cursor:default">
-        <div style="width:30px;height:30px;border-radius:10px;background:${mc?.g};display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:800;flex-shrink:0">${i===0?"⭐":i+1}</div>
+      h+=`<div class="score-chip ri" style="animation-delay:${i*.05}s;${i===0?`border-color:${mc?.c}25;background:${mc?.c}08`:""};cursor:default">
+        <div style="width:28px;height:28px;border-radius:9px;background:${mc?.g};display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;font-weight:800;flex-shrink:0">${i===0?"⭐":i+1}</div>
         <div style="flex:1;min-width:0">
-          <div style="font-size:13px;font-weight:700">${re(s.rl)} ${esc(s.n)}</div>
-          <div style="font-size:9px;color:#555;margin-top:1px">${tb(s.t)} · ${mc?.e} ${s.mg.split(" ")[0]}</div>
+          <div style="font-size:12px;font-weight:700">${re(s.rl)} ${esc(s.n)}</div>
+          <div style="font-size:9px;color:var(--text3);margin-top:1px">${tb(s.t)} · ${mc?.e} ${s.mg.split(" ")[0]}</div>
         </div>
         <div style="text-align:right;flex-shrink:0">
-          <div style="font-weight:900;font-size:20px;color:${mc?.c};text-shadow:0 0 8px ${mc?.c}25">${s.pt}</div>
-          <div style="font-size:8px;color:#555">${pb(s)}</div>
+          <div style="font-weight:900;font-size:18px;color:${mc?.c}">${s.pt}</div>
+          <div style="font-size:8px;color:var(--text3)">${pb(s)}</div>
         </div>
       </div>`;
     });
@@ -418,20 +374,20 @@ function render(){
 
   // === PLAYERS ===
   if(st.tab==="players"){
-    h+=`<div class="cd">`;
+    h+=`<div class="glass">`;
     tp.forEach((p,i)=>{
       const mc=M[p.mg];
-      h+=`<div class="ri" style="display:flex;align-items:center;justify-content:space-between;padding:11px 0;${i<tp.length-1?"border-bottom:1px solid #111":""};animation-delay:${i*.04}s">
+      h+=`<div class="ri" style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;${i<tp.length-1?"border-bottom:1px solid rgba(255,255,255,.04)":""};animation-delay:${i*.04}s">
         <div style="display:flex;align-items:center;gap:10px">
-          <span style="font-weight:900;font-size:15px;width:28px;text-align:center;color:${i<3?"#FF004D":"#444"}">${i===0?"🥇":i===1?"🥈":i===2?"🥉":i+1}</span>
+          <span style="font-weight:900;font-size:14px;width:26px;text-align:center;color:${i<3?"#818cf8":"var(--text3)"}">${i===0?"🥇":i===1?"🥈":i===2?"🥉":i+1}</span>
           <div>
-            <div style="font-size:14px;font-weight:700">${re(p.rl)} ${esc(p.n)}</div>
-            <div style="font-size:10px;color:#555;margin-top:2px">${tb(p.t)} · <span style="color:${mc?.c}">${mc?.e} ${p.mg.split(" ")[0]}</span></div>
+            <div style="font-size:13px;font-weight:700">${re(p.rl)} ${esc(p.n)}</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:2px">${tb(p.t)} · <span style="color:${mc?.c}">${mc?.e} ${p.mg.split(" ")[0]}</span></div>
           </div>
         </div>
         <div style="text-align:right">
-          <div style="font-weight:900;font-size:20px;color:${mc?.c};text-shadow:0 0 8px ${mc?.c}25">${p.pt}</div>
-          <div style="font-size:8px;color:#555">${pb(p)}</div>
+          <div style="font-weight:900;font-size:18px;color:${mc?.c}">${p.pt}</div>
+          <div style="font-size:8px;color:var(--text3)">${pb(p)}</div>
         </div>
       </div>`;
     });
@@ -441,73 +397,72 @@ function render(){
   // === NEXT MATCH PREVIEW ===
   if(st.tab==="next"&&next){
     const p1=getPlayersForTeam(next.t1),p2=getPlayersForTeam(next.t2);
-    h+=`<div class="cd" style="border-color:#A855F733;text-align:center;padding:22px">
-      <div style="font-size:10px;color:#A855F7;font-weight:800;letter-spacing:2px;margin-bottom:10px">🔮 NEXT MATCH PREVIEW</div>
-      <div style="font-size:22px;font-weight:900">${tb(next.t1)} <span style="color:#333;font-size:15px;margin:0 8px">vs</span> ${tb(next.t2)}</div>
-      <div style="font-size:12px;color:#555;margin-top:8px">Match ${next.n} · ${next.dt} · ${next.v}</div>
+    h+=`<div class="glass-strong" style="text-align:center;padding:22px">
+      <div style="font-size:10px;color:#c084fc;font-weight:800;letter-spacing:2px;margin-bottom:10px">🔮 NEXT MATCH PREVIEW</div>
+      <div style="font-size:20px;font-weight:900">${tb(next.t1)} <span style="color:var(--text3);font-size:14px;margin:0 8px">vs</span> ${tb(next.t2)}</div>
+      <div style="font-size:12px;color:var(--text3);margin-top:8px">Match ${next.n} · ${next.dt} · ${next.v}</div>
     </div>`;
     [["t1",next.t1,p1],["t2",next.t2,p2]].forEach(([k,t,pls])=>{
       if(pls.length===0)return;
-      h+=`<div class="cd ri" style="animation-delay:.1s">
-        <div style="font-size:14px;font-weight:800;color:${TC[t]};margin-bottom:12px">${tb(t)} — Your Players (${pls.length})</div>`;
+      h+=`<div class="glass ri" style="animation-delay:.1s">
+        <div style="font-size:13px;font-weight:800;color:${TC[t]};margin-bottom:12px">${tb(t)} — Your Players (${pls.length})</div>`;
       pls.forEach((p,i)=>{
-        h+=`<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:${i<pls.length-1?"1px solid #111":"none"}">
-          <div>${re(p.r)} <span style="font-weight:700;font-size:13px">${esc(p.n)}</span></div>
-          <div style="display:flex;align-items:center;gap:6px"><span style="font-size:10px;color:#555">${p.r}</span><span style="color:${p.mc.c};font-weight:700;font-size:11px">${p.mc.e} ${p.m.split(" ")[0]}</span></div>
+        h+=`<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:${i<pls.length-1?"1px solid rgba(255,255,255,.04)":"none"}">
+          <div>${re(p.r)} <span style="font-weight:700;font-size:12px">${esc(p.n)}</span></div>
+          <div style="display:flex;align-items:center;gap:6px"><span style="font-size:10px;color:var(--text3)">${p.r}</span><span style="color:${p.mc.c};font-weight:700;font-size:10px">${p.mc.e} ${p.m.split(" ")[0]}</span></div>
         </div>`;
       });
       h+=`</div>`;
     });
-    if(p1.length===0&&p2.length===0)h+=`<div class="cd" style="text-align:center;color:#555;padding:24px">No fantasy players in this match</div>`;
+    if(p1.length===0&&p2.length===0)h+=`<div class="glass" style="text-align:center;color:var(--text3);padding:24px">No fantasy players in this match</div>`;
   }
 
   // === IPL TABLE ===
   if(st.tab==="table"){
-    h+=`<div class="cd">
-      <div style="font-size:15px;font-weight:800;color:#FF004D;margin-bottom:14px">📊 IPL 2026 Standings</div>`;
+    h+=`<div class="glass">
+      <div style="font-size:15px;font-weight:800;color:#818cf8;margin-bottom:14px">📊 IPL 2026 Standings</div>`;
     h+=`<div class="grid-header" style="grid-template-columns:28px 1fr 30px 30px 30px 55px 40px"><div>#</div><div>TEAM</div><div style="text-align:center">M</div><div style="text-align:center">W</div><div style="text-align:center">L</div><div style="text-align:right">NRR</div><div style="text-align:right">PTS</div></div>`;
     PT.forEach((t,i)=>{
       const tc=TC[t.t];
       h+=`<div class="ri grid-row" style="grid-template-columns:28px 1fr 30px 30px 30px 55px 40px;animation-delay:${i*.04}s">
-        <div style="font-weight:800;font-size:13px;color:${i<4?"#FF004D":"#444"}">${i+1}</div>
-        <div style="font-weight:800;font-size:14px;color:${tc}">${t.t}</div>
-        <div style="text-align:center;color:#888;font-weight:700;font-size:12px">${t.m}</div>
-        <div style="text-align:center;color:#39FF14;font-weight:700;font-size:12px">${t.w||"-"}</div>
-        <div style="text-align:center;color:${t.l>0?"#FF004D":"#222"};font-weight:700;font-size:12px">${t.l||"-"}</div>
-        <div style="text-align:right;color:${parseFloat(t.nrr)>0?"#39FF14":parseFloat(t.nrr)<0?"#FF004D":"#555"};font-weight:700;font-size:11px">${t.nrr}</div>
-        <div style="text-align:right;font-weight:900;font-size:15px;color:${t.pts>0?"#FF004D":"#333"}">${t.pts}</div>
+        <div style="font-weight:800;font-size:12px;color:${i<4?"#818cf8":"var(--text3)"}">${i+1}</div>
+        <div style="font-weight:800;font-size:13px;color:${tc}">${t.t}</div>
+        <div style="text-align:center;color:var(--text2);font-weight:700;font-size:11px">${t.m}</div>
+        <div style="text-align:center;color:#4ade80;font-weight:700;font-size:11px">${t.w||"-"}</div>
+        <div style="text-align:center;color:${t.l>0?"#f87171":"rgba(255,255,255,.12)"};font-weight:700;font-size:11px">${t.l||"-"}</div>
+        <div style="text-align:right;color:${parseFloat(t.nrr)>0?"#4ade80":parseFloat(t.nrr)<0?"#f87171":"var(--text3)"};font-weight:700;font-size:10px">${t.nrr}</div>
+        <div style="text-align:right;font-weight:900;font-size:14px;color:${t.pts>0?"#818cf8":"rgba(255,255,255,.12)"}">${t.pts}</div>
       </div>`;
     });
-    h+=`<div style="margin-top:12px;padding-top:8px;border-top:1px solid #1a1a3e;font-size:10px;color:#444">Top 4 qualify for playoffs · 2pts per win · NRR breaks ties</div></div>`;
+    h+=`<div style="margin-top:12px;padding-top:8px;border-top:1px solid rgba(255,255,255,.06);font-size:10px;color:var(--text3)">Top 4 qualify for playoffs · 2pts per win · NRR breaks ties</div></div>`;
   }
 
   // === SCHEDULE ===
   if(st.tab==="schedule"){
-    h+=`<div style="font-size:15px;font-weight:800;color:#FF004D;margin-bottom:14px">📅 IPL 2026 Schedule</div>`;
+    h+=`<div style="font-size:15px;font-weight:800;color:#818cf8;margin-bottom:14px">📅 IPL 2026 Schedule</div>`;
     let prevDt="";
     SCH.forEach((s,i)=>{
       if(s.dh&&s.dt!==prevDt){h+=`<div class="dh">🔥 DOUBLE HEADER · ${s.dt}</div>`}
       prevDt=s.dt;
-      h+=`<div class="cd ri" style="padding:12px 14px;animation-delay:${i*.03}s;${s.done?"opacity:.55":""}">
+      h+=`<div class="glass ri" style="padding:12px 14px;animation-delay:${i*.03}s;${s.done?"opacity:.45":""}">
         <div style="display:flex;align-items:center;justify-content:space-between">
           <div>
-            <div style="font-size:14px;font-weight:800">${tb(s.t1)} <span style="color:#333;font-size:11px">vs</span> ${tb(s.t2)}</div>
-            <div style="font-size:10px;color:#555;margin-top:4px">#${s.n} · ${s.dt} · ${s.v}</div>
+            <div style="font-size:13px;font-weight:800">${tb(s.t1)} <span style="color:var(--text3);font-size:10px">vs</span> ${tb(s.t2)}</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px">#${s.n} · ${s.dt} · ${s.v}</div>
           </div>
-          <div>${s.done?`<span class="badge" style="background:#39FF1415;color:#39FF14">✓ Done</span>`:`<span class="badge" style="background:#3B82F615;color:#3B82F6">Upcoming</span>`}</div>
+          <div>${s.done?`<span class="badge" style="background:rgba(74,222,128,.1);color:#4ade80;border:1px solid rgba(74,222,128,.2)">✓ Done</span>`:`<span class="badge" style="background:rgba(129,140,248,.1);color:#818cf8;border:1px solid rgba(129,140,248,.2)">Upcoming</span>`}</div>
         </div>
       </div>`;
     });
-    h+=`<div style="text-align:center;color:#444;font-size:10px;padding:14px 0">Showing first 20 matches · Full schedule updates coming</div>`;
+    h+=`<div style="text-align:center;color:var(--text3);font-size:10px;padding:14px 0">Showing first 20 matches</div>`;
   }
 
-  h+=`<div style="text-align:center;margin-top:24px;padding:16px 0;border-top:1px solid #1a1a3e">
-    <div style="font-size:9px;color:#444;font-weight:700;letter-spacing:1.5px">FANTASY IPL 2026 · 5 MANAGERS · 75 PLAYERS · ${MA.length} MATCHES</div>
+  h+=`<div style="text-align:center;margin-top:24px;padding:16px 0;border-top:1px solid rgba(255,255,255,.06)">
+    <div style="font-size:9px;color:var(--text3);font-weight:700;letter-spacing:1.5px">FANTASY IPL 2026 · 5 MANAGERS · 75 PLAYERS · ${MA.length} MATCHES</div>
   </div>`;
 
   document.getElementById("app").innerHTML=h;
   animNum("lp",lv.tot);
-  if(st.tab==="board")so.forEach(([_,d],i)=>animNum("bp"+i,d.tot));
   if(st.tab==="squads")animNum("sp",mg[st.selT].tot);
 }
 render();
