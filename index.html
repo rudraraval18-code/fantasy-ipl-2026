@@ -9,7 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏏</text></svg>">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#050510;color:#e8e8f0;min-height:100vh}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#050510;color:#e8e8f0;min-height:100vh;overflow-x:hidden}
 .w{max-width:640px;margin:0 auto;padding:16px 16px 50px}
 .cd{background:#0c0c20;border-radius:16px;padding:16px;margin-bottom:12px;border:1px solid #1a1a3e;backdrop-filter:blur(10px);box-shadow:0 4px 24px rgba(0,0,0,.4);transition:border-color .3s,box-shadow .3s}
 .cd:hover{border-color:#2a2a5e}
@@ -24,6 +24,10 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#05051
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 @keyframes glow{0%,100%{text-shadow:0 0 8px var(--gc)}50%{text-shadow:0 0 20px var(--gc),0 0 40px var(--gc)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes orb{0%{transform:translate(0,0) scale(1)}25%{transform:translate(30px,-20px) scale(1.1)}50%{transform:translate(-10px,15px) scale(.95)}75%{transform:translate(-25px,-10px) scale(1.05)}100%{transform:translate(0,0) scale(1)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes crownBob{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-6px) rotate(5deg)}}
+@keyframes borderGlow{0%,100%{border-color:var(--bg1)}50%{border-color:var(--bg2)}}
 .ld{display:inline-block;width:7px;height:7px;border-radius:50%;background:#FF004D;animation:pulse 1.5s infinite;margin-right:5px;vertical-align:middle}
 .gl{animation:glow 2.5s ease-in-out infinite}
 .dh{background:linear-gradient(90deg,#FF004D22,transparent);border-left:3px solid #FF004D;padding:5px 12px;border-radius:0 8px 8px 0;font-size:10px;font-weight:800;color:#FF004D;margin-bottom:8px;letter-spacing:1px}
@@ -36,7 +40,18 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#05051
 .score-chip{display:flex;align-items:center;gap:10px;padding:10px 12px;margin-bottom:6px;border-radius:12px;border:1px solid #1a1a3e;transition:all .25s;background:rgba(255,255,255,.02)}
 .score-chip:hover{border-color:#2a2a5e;transform:translateX(2px)}
 .float{animation:float 3s ease-in-out infinite}
-@media(max-width:380px){.tab-btn{font-size:8px;padding:6px 1px 5px}.header-title{font-size:24px}}
+.leader-card{position:relative;overflow:hidden;border-radius:24px;padding:0;margin-bottom:16px;border:2px solid;animation:borderGlow 3s ease-in-out infinite}
+.leader-inner{position:relative;z-index:2;padding:26px 22px 22px}
+.leader-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.leader-bg .orb{position:absolute;border-radius:50%;filter:blur(40px);opacity:.15;animation:orb 8s ease-in-out infinite}
+.leader-shimmer{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--bg2),transparent);background-size:200% 100%;animation:shimmer 3s linear infinite}
+.avatar-lg{width:100px;height:100px;border-radius:24px;flex-shrink:0;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.avatar-lg svg{width:100%;height:100%;display:block}
+.avatar-sm{width:52px;height:52px;border-radius:14px;flex-shrink:0;overflow:hidden}
+.avatar-sm svg{width:100%;height:100%;display:block}
+.avatar-sq{width:54px;height:54px;border-radius:14px;flex-shrink:0;overflow:hidden}
+.avatar-sq svg{width:100%;height:100%;display:block}
+@media(max-width:380px){.tab-btn{font-size:8px;padding:6px 1px 5px}.header-title{font-size:24px}.avatar-lg{width:80px;height:80px;border-radius:18px}}
 </style>
 </head>
 <body>
@@ -46,7 +61,151 @@ const TC={CSK:"#f9cd05",DC:"#4b8df8",GT:"#7bb8e0",KKR:"#7b5ea7",LSG:"#e03a76",MI
 function re(r){return r==="Bat"?"🏏":r==="Bowler"?"🎯":r==="AR"?"🏏🎯":r==="WK"?"🧤":r}
 function tb(t){return`<span style="color:${TC[t]||"#888"};font-weight:800">${t}</span>`}
 
-const M={"Mintu Raval":{c:"#FF004D",e:"👑",g:"linear-gradient(135deg,#FF004D,#CC0030)"},"Kashish Khanuja":{c:"#FF6600",e:"🔥",g:"linear-gradient(135deg,#FF6600,#E04500)"},"Naman Kothari":{c:"#3B82F6",e:"⚡",g:"linear-gradient(135deg,#3B82F6,#2563EB)"},"Viraj Patel":{c:"#A855F7",e:"🌟",g:"linear-gradient(135deg,#A855F7,#8B22E8)"},"Kritik Khanuja":{c:"#FF2E97",e:"💎",g:"linear-gradient(135deg,#FF2E97,#E0007B)"}};
+const M={"Mintu Raval":{c:"#FF004D",e:"👑",g:"linear-gradient(135deg,#FF004D,#CC0030)",tag:"IRON MAN"},"Kashish Khanuja":{c:"#FF6600",e:"🔥",g:"linear-gradient(135deg,#FF6600,#E04500)",tag:"BLACK WIDOW",gender:"f"},"Naman Kothari":{c:"#3B82F6",e:"⚡",g:"linear-gradient(135deg,#3B82F6,#2563EB)",tag:"CAPTAIN A"},"Viraj Patel":{c:"#A855F7",e:"🌟",g:"linear-gradient(135deg,#A855F7,#8B22E8)",tag:"THANOS"},"Kritik Khanuja":{c:"#FF2E97",e:"💎",g:"linear-gradient(135deg,#FF2E97,#E0007B)",tag:"SPIDER-MAN"}};
+
+// Avengers-inspired avatars — iconic helmet/mask designs
+const ROBOTS={
+// Mintu — IRON MAN — red/gold helmet
+"Mintu Raval":`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<rect width="120" height="120" rx="28" fill="#F5E6E8"/>
+<defs><linearGradient id="im1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF1744"/><stop offset="50%" stop-color="#D50000"/><stop offset="100%" stop-color="#B71C1C"/></linearGradient>
+<linearGradient id="im2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFD740"/><stop offset="100%" stop-color="#FFC400"/></linearGradient></defs>
+<path d="M60 14 Q30 14 24 50 L24 72 Q24 90 40 96 L60 100 L80 96 Q96 90 96 72 L96 50 Q90 14 60 14Z" fill="url(#im1)"/>
+<path d="M60 18 Q34 18 28 50 L28 54 L60 58 L92 54 L92 50 Q86 18 60 18Z" fill="url(#im1)" opacity=".9"/>
+<path d="M38 56 L28 54 L26 70 Q28 78 38 80 Z" fill="url(#im2)"/>
+<path d="M82 56 L92 54 L94 70 Q92 78 82 80 Z" fill="url(#im2)"/>
+<rect x="42" y="54" width="36" height="6" rx="3" fill="url(#im2)" opacity=".8"/>
+<path d="M34 60 L28 58 L26 72 L36 74 Z" fill="#fff" opacity=".15"/>
+<path d="M86 60 L92 58 L94 72 L84 74 Z" fill="#fff" opacity=".15"/>
+<path d="M36 62 Q38 58 46 56" stroke="#FFD740" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M84 62 Q82 58 74 56" stroke="#FFD740" stroke-width="3" fill="none" stroke-linecap="round"/>
+<ellipse cx="42" cy="64" rx="8" ry="5" fill="#fff" opacity=".95"/>
+<ellipse cx="78" cy="64" rx="8" ry="5" fill="#fff" opacity=".95"/>
+<ellipse cx="42" cy="64" rx="6" ry="3.5" fill="#87CEFA"/>
+<ellipse cx="78" cy="64" rx="6" ry="3.5" fill="#87CEFA"/>
+<ellipse cx="42" cy="63" rx="2.5" ry="1.5" fill="#fff" opacity=".7"/>
+<ellipse cx="78" cy="63" rx="2.5" ry="1.5" fill="#fff" opacity=".7"/>
+<path d="M48 56 L60 52 L72 56" stroke="#FFD740" stroke-width="1.5" fill="none"/>
+<rect x="50" y="76" width="20" height="6" rx="3" fill="#B71C1C"/>
+<path d="M52 78 L56 78 M58 78 L62 78 M64 78 L68 78" stroke="#8B0000" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M60 58 L60 74" stroke="#B71C1C" stroke-width="2"/>
+<ellipse cx="60" cy="92" rx="10" ry="5" fill="#FFD740" opacity=".15"/>
+<circle cx="60" cy="92" r="4" fill="#87CEFA" opacity=".6"/>
+<circle cx="60" cy="92" r="2" fill="#fff" opacity=".5"/>
+<text x="60" y="114" text-anchor="middle" font-size="8" fill="#FF004D" font-weight="900" font-family="system-ui" letter-spacing="1.5">IRON MAN</text>
+</svg>`,
+
+// Kashish — BLACK WIDOW — red hair, sleek black mask
+"Kashish Khanuja":`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<rect width="120" height="120" rx="28" fill="#F5EDE0"/>
+<defs><linearGradient id="bw1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C62828"/><stop offset="100%" stop-color="#8B1A1A"/></linearGradient>
+<radialGradient id="bws" cx=".4" cy=".3"><stop offset="0%" stop-color="#FFE0C8"/><stop offset="100%" stop-color="#F0C8A0"/></radialGradient></defs>
+<path d="M26 48 Q24 70 28 90 L22 95 Q20 80 22 50Z" fill="url(#bw1)" opacity=".8"/>
+<path d="M94 48 Q96 70 92 90 L98 95 Q100 80 98 50Z" fill="url(#bw1)" opacity=".8"/>
+<path d="M30 52 Q28 75 32 100" stroke="url(#bw1)" stroke-width="5" fill="none" stroke-linecap="round" opacity=".5"/>
+<path d="M90 52 Q92 75 88 100" stroke="url(#bw1)" stroke-width="5" fill="none" stroke-linecap="round" opacity=".5"/>
+<path d="M34 44 Q30 70 35 98" stroke="url(#bw1)" stroke-width="4" fill="none" opacity=".4"/>
+<path d="M86 44 Q90 70 85 98" stroke="url(#bw1)" stroke-width="4" fill="none" opacity=".4"/>
+<ellipse cx="60" cy="60" rx="28" ry="30" fill="url(#bws)"/>
+<path d="M32 48 Q36 22 60 18 Q84 22 88 48 Q84 34 60 30 Q36 34 32 48Z" fill="url(#bw1)"/>
+<path d="M36 42 Q44 36 60 34 Q76 36 84 42" fill="url(#bw1)" opacity=".6"/>
+<ellipse cx="47" cy="56" rx="10" ry="10" fill="#fff" opacity=".95"/>
+<ellipse cx="73" cy="56" rx="10" ry="10" fill="#fff" opacity=".95"/>
+<circle cx="46" cy="55.5" r="5" fill="#2E7D32"/>
+<circle cx="72" cy="55.5" r="5" fill="#2E7D32"/>
+<circle cx="44.5" cy="54" r="2" fill="#fff" opacity=".7"/>
+<circle cx="70.5" cy="54" r="2" fill="#fff" opacity=".7"/>
+<path d="M40 46 Q47 43 54 47" stroke="#5D3A1A" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M66 47 Q73 43 80 46" stroke="#5D3A1A" stroke-width="2" fill="none" stroke-linecap="round"/>
+<ellipse cx="38" cy="64" rx="5" ry="3.5" fill="#FF9999" opacity=".3"/>
+<ellipse cx="82" cy="64" rx="5" ry="3.5" fill="#FF9999" opacity=".3"/>
+<ellipse cx="60" cy="62" rx="2.5" ry="1.5" fill="#E8B090" opacity=".6"/>
+<path d="M52 72 Q60 78 68 72" stroke="#C05040" stroke-width="2" fill="#FF8888" opacity=".5"/>
+<path d="M54 84 L58 88 L62 84 L66 88" stroke="#1a1a1a" stroke-width="2" fill="none" opacity=".3"/>
+<text x="60" y="114" text-anchor="middle" font-size="7.5" fill="#FF6600" font-weight="900" font-family="system-ui" letter-spacing="1">BLACK WIDOW</text>
+</svg>`,
+
+// Naman — CAPTAIN AMERICA — blue helmet, white star, A on forehead
+"Naman Kothari":`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<rect width="120" height="120" rx="28" fill="#E0E8F5"/>
+<defs><linearGradient id="ca1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1565C0"/><stop offset="50%" stop-color="#0D47A1"/><stop offset="100%" stop-color="#0A3880"/></linearGradient>
+<radialGradient id="cas" cx=".4" cy=".3"><stop offset="0%" stop-color="#FFD5B8"/><stop offset="100%" stop-color="#E8A96A"/></radialGradient></defs>
+<path d="M60 14 Q28 16 22 52 L22 62 Q22 66 32 66 L32 58 Q36 20 60 18 Q84 20 88 58 L88 66 Q98 66 98 62 L98 52 Q92 16 60 14Z" fill="url(#ca1)"/>
+<path d="M32 66 L32 58 Q36 20 60 18 Q84 20 88 58 L88 66" fill="url(#ca1)"/>
+<rect x="22" y="56" width="76" height="4" rx="2" fill="#fff"/>
+<rect x="22" y="48" width="76" height="4" rx="2" fill="#E53935"/>
+<polygon points="60,22 63,30 71,30 65,35 67,43 60,38 53,43 55,35 49,30 57,30" fill="#fff"/>
+<path d="M60 18 L56 26 L50 26 Q54 22 60 18Z" fill="#fff" opacity=".3"/>
+<text x="60" y="46" text-anchor="middle" font-size="12" fill="#fff" font-weight="900" font-family="system-ui" opacity=".6">A</text>
+<path d="M32 66 L32 92 Q42 100 60 102 Q78 100 88 92 L88 66" fill="url(#cas)"/>
+<ellipse cx="48" cy="76" rx="10" ry="10" fill="#fff" opacity=".95"/>
+<ellipse cx="72" cy="76" rx="10" ry="10" fill="#fff" opacity=".95"/>
+<circle cx="47" cy="75.5" r="5" fill="#1565C0"/>
+<circle cx="71" cy="75.5" r="5" fill="#1565C0"/>
+<circle cx="45.5" cy="74" r="2" fill="#fff" opacity=".7"/>
+<circle cx="69.5" cy="74" r="2" fill="#fff" opacity=".7"/>
+<path d="M40 68 Q48 65 56 69" stroke="#5D3A1A" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path d="M64 69 Q72 65 80 68" stroke="#5D3A1A" stroke-width="2" fill="none" stroke-linecap="round"/>
+<ellipse cx="60" cy="82" rx="2.5" ry="1.5" fill="#D4A574"/>
+<path d="M52 90 Q60 96 68 90" stroke="#8B6040" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<ellipse cx="40" cy="82" rx="5" ry="3" fill="#FF8888" opacity=".2"/>
+<ellipse cx="80" cy="82" rx="5" ry="3" fill="#FF8888" opacity=".2"/>
+<text x="60" y="114" text-anchor="middle" font-size="7.5" fill="#3B82F6" font-weight="900" font-family="system-ui" letter-spacing="1">CAPTAIN A</text>
+</svg>`,
+
+// Viraj — THANOS — purple chin, gold helmet, infinity gauntlet vibes
+"Viraj Patel":`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<rect width="120" height="120" rx="28" fill="#EDE0F8"/>
+<defs><linearGradient id="th1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFD700"/><stop offset="100%" stop-color="#DAA520"/></linearGradient>
+<radialGradient id="ths" cx=".4" cy=".3"><stop offset="0%" stop-color="#B380E0"/><stop offset="100%" stop-color="#7B48A8"/></radialGradient></defs>
+<path d="M60 12 Q26 14 20 55 L20 60 Q20 62 28 58 L34 54 Q38 18 60 16 Q82 18 86 54 L92 58 Q100 62 100 60 L100 55 Q94 14 60 12Z" fill="url(#th1)"/>
+<path d="M34 54 Q38 18 60 16 Q82 18 86 54 L86 96 Q78 104 60 106 Q42 104 34 96Z" fill="url(#ths)"/>
+<path d="M34 54 L28 58 Q20 62 20 60 L20 55" fill="url(#th1)" opacity=".5"/>
+<path d="M86 54 L92 58 Q100 62 100 60 L100 55" fill="url(#th1)" opacity=".5"/>
+<path d="M44 50 L48 42 L56 48" stroke="#DAA520" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M76 50 L72 42 L64 48" stroke="#DAA520" stroke-width="3" fill="none" stroke-linecap="round"/>
+<ellipse cx="48" cy="62" rx="9" ry="8" fill="#2a1050" opacity=".8"/>
+<ellipse cx="72" cy="62" rx="9" ry="8" fill="#2a1050" opacity=".8"/>
+<ellipse cx="48" cy="62" rx="7" ry="6" fill="#D0A0FF" opacity=".9"/>
+<ellipse cx="72" cy="62" rx="7" ry="6" fill="#D0A0FF" opacity=".9"/>
+<circle cx="47" cy="61" r="3.5" fill="#4A0080"/>
+<circle cx="71" cy="61" r="3.5" fill="#4A0080"/>
+<circle cx="45.5" cy="59.5" r="1.5" fill="#fff" opacity=".6"/>
+<circle cx="69.5" cy="59.5" r="1.5" fill="#fff" opacity=".6"/>
+<path d="M42 76 L50 80 L60 76 L70 80 L78 76" stroke="#5A2888" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M46 86 L54 82 L60 86 L66 82 L74 86" stroke="#5A2888" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".6"/>
+<circle cx="60" cy="40" r="4" fill="#FFD700" opacity=".5"/>
+<circle cx="60" cy="40" r="2" fill="#fff" opacity=".4"/>
+<ellipse cx="60" cy="70" rx="3" ry="2" fill="#8B58C0"/>
+<text x="60" y="114" text-anchor="middle" font-size="9" fill="#A855F7" font-weight="900" font-family="system-ui" letter-spacing="1.5">THANOS</text>
+</svg>`,
+
+// Kritik — SPIDER-MAN — red/blue mask, web pattern, big white eyes
+"Kritik Khanuja":`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<rect width="120" height="120" rx="28" fill="#F0E0EA"/>
+<defs><linearGradient id="sp1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E53935"/><stop offset="60%" stop-color="#C62828"/><stop offset="100%" stop-color="#1565C0"/></linearGradient></defs>
+<path d="M60 12 Q28 14 22 55 L22 75 Q22 98 42 104 L60 108 L78 104 Q98 98 98 75 L98 55 Q92 14 60 12Z" fill="url(#sp1)"/>
+<path d="M60 12 L60 108" stroke="#1a1a1a" stroke-width="1" opacity=".15"/>
+<path d="M60 12 Q40 40 22 75" stroke="#1a1a1a" stroke-width="1" opacity=".15"/>
+<path d="M60 12 Q80 40 98 75" stroke="#1a1a1a" stroke-width="1" opacity=".15"/>
+<path d="M60 12 Q30 50 22 55" stroke="#1a1a1a" stroke-width="1" opacity=".12"/>
+<path d="M60 12 Q90 50 98 55" stroke="#1a1a1a" stroke-width="1" opacity=".12"/>
+<path d="M22 55 Q60 48 98 55" stroke="#1a1a1a" stroke-width="1" opacity=".12"/>
+<path d="M22 75 Q60 68 98 75" stroke="#1a1a1a" stroke-width="1" opacity=".12"/>
+<path d="M30 95 Q60 88 90 95" stroke="#1a1a1a" stroke-width="1" opacity=".1"/>
+<ellipse cx="44" cy="56" rx="14" ry="16" fill="#fff" opacity=".97"/>
+<ellipse cx="76" cy="56" rx="14" ry="16" fill="#fff" opacity=".97"/>
+<ellipse cx="44" cy="56" rx="14" ry="16" fill="none" stroke="#1a1a1a" stroke-width="2.5"/>
+<ellipse cx="76" cy="56" rx="14" ry="16" fill="none" stroke="#1a1a1a" stroke-width="2.5"/>
+<ellipse cx="44" cy="56" rx="10" ry="11" fill="none" stroke="#1a1a1a" stroke-width=".8" opacity=".2"/>
+<ellipse cx="76" cy="56" rx="10" ry="11" fill="none" stroke="#1a1a1a" stroke-width=".8" opacity=".2"/>
+<path d="M34 52 Q44 48 54 52" stroke="#1a1a1a" stroke-width=".5" opacity=".15" fill="none"/>
+<path d="M66 52 Q76 48 86 52" stroke="#1a1a1a" stroke-width=".5" opacity=".15" fill="none"/>
+<path d="M34 60 Q44 64 54 60" stroke="#1a1a1a" stroke-width=".5" opacity=".15" fill="none"/>
+<path d="M66 60 Q76 64 86 60" stroke="#1a1a1a" stroke-width=".5" opacity=".15" fill="none"/>
+<text x="60" y="114" text-anchor="middle" font-size="7" fill="#FF2E97" font-weight="900" font-family="system-ui" letter-spacing="1">SPIDER-MAN</text>
+</svg>`
+};
 
 const R={
 "KL Rahul":{m:"Mintu Raval",r:"WK",t:"DC"},"Mitchell Starc":{m:"Mintu Raval",r:"Bowler",t:"DC"},"Marco Jansen":{m:"Mintu Raval",r:"AR",t:"PBKS"},"Jasprit Bumrah":{m:"Mintu Raval",r:"Bowler",t:"MI"},"Phil Salt":{m:"Mintu Raval",r:"WK",t:"RCB"},"Varun Chakravarthy":{m:"Mintu Raval",r:"Bowler",t:"KKR"},"Dewald Brevis":{m:"Mintu Raval",r:"Bat",t:"CSK"},"Riyan Parag":{m:"Mintu Raval",r:"Bat",t:"RR"},"Ishan Kishan":{m:"Mintu Raval",r:"WK",t:"SRH"},"Shivam Dube":{m:"Mintu Raval",r:"AR",t:"CSK"},"Hardik Pandya":{m:"Mintu Raval",r:"AR",t:"MI"},"Dhruv Jurel":{m:"Mintu Raval",r:"WK",t:"RR"},"Angkrish Raghuvanshi":{m:"Mintu Raval",r:"Bat",t:"KKR"},"Vipraj Nigam":{m:"Mintu Raval",r:"AR",t:"DC"},"Rovman Powell":{m:"Mintu Raval",r:"Bat",t:"KKR"},
@@ -123,22 +282,44 @@ function render(){
     ${next?`<div style="font-size:11px;color:#555">Next: ${tb(next.t1)} vs ${tb(next.t2)} · ${next.dt}</div>`:""}
   </div>`;
 
-  h+=`<div class="cd" style="border-color:${lc.c}33;position:relative;overflow:hidden;box-shadow:0 0 30px ${lc.c}08,0 4px 24px rgba(0,0,0,.4)">
-    <div style="position:absolute;right:-15px;top:-15px;font-size:90px;opacity:.04">🏆</div>
-    <div style="margin-bottom:12px"><span class="badge" style="background:${lc.c}15;color:${lc.c};border:1px solid ${lc.c}30">🏆 #1 LEADER</span></div>
-    <div style="display:flex;justify-content:space-between;align-items:center">
-      <div>
-        <div style="font-size:22px;font-weight:900">${lc.e} ${esc(ln)}</div>
-        <div style="display:flex;gap:14px;margin-top:8px;font-size:11px;color:#888">
-          <span>🏏 ${lv.r}r</span><span>🎯 ${lv.w}w</span><span>🧤 ${lv.c}c</span>
+  // === LEADER CARD ===
+  h+=`<div class="leader-card ri" style="--bg1:${lc.c}55;--bg2:${lc.c}AA;border-color:${lc.c}44;background:#0c0c20">
+    <div class="leader-bg">
+      <div class="orb" style="width:140px;height:140px;background:${lc.c};top:-40px;right:-30px;animation-delay:0s"></div>
+      <div class="orb" style="width:100px;height:100px;background:${lc.c};bottom:-30px;left:10px;animation-delay:-3s"></div>
+      <div class="orb" style="width:70px;height:70px;background:#fff;top:40%;left:60%;animation-delay:-5s;opacity:.05"></div>
+    </div>
+    <div class="leader-shimmer" style="--bg2:${lc.c}"></div>
+    <div class="leader-inner">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+        <span class="badge" style="background:${lc.c}20;color:${lc.c};border:1px solid ${lc.c}40;font-size:11px;letter-spacing:1.5px">🏆 #1 LEADER</span>
+        <span style="font-size:20px;animation:crownBob 2s ease-in-out infinite;display:inline-block">👑</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:20px">
+        <div class="avatar-lg" style="box-shadow:0 8px 40px ${lc.c}35,0 0 80px ${lc.c}10">${ROBOTS[ln]}</div>
+        <div style="flex:1">
+          <div style="font-size:13px;color:${lc.c};font-weight:800;letter-spacing:2px;text-transform:uppercase;opacity:.7">${lc.tag}</div>
+          <div style="font-size:26px;font-weight:900;letter-spacing:-.5px;margin-top:2px">${esc(ln)}</div>
+          <div style="display:flex;gap:14px;margin-top:12px;font-size:12px;color:#999">
+            <span style="display:flex;align-items:center;gap:3px">🏏 <strong style="color:#e8e8f0">${lv.r}</strong>r</span>
+            <span style="display:flex;align-items:center;gap:3px">🎯 <strong style="color:#e8e8f0">${lv.w}</strong>w</span>
+            <span style="display:flex;align-items:center;gap:3px">🧤 <strong style="color:#e8e8f0">${lv.c}</strong>c</span>
+          </div>
+          <div style="margin-top:10px;font-size:12px;color:${lc.c};font-weight:700">${so.length>1?`▲ ${lv.tot-so[1][1].tot} pts ahead of ${so[1][0]}`:""}</div>
+        </div>
+        <div style="text-align:right">
+          <div id="lp" class="gl" style="font-size:52px;font-weight:900;color:${lc.c};line-height:1;--gc:${lc.c}40;letter-spacing:-2px">0</div>
+          <div class="pts-label" style="margin-top:6px;color:${lc.c}88">POINTS</div>
         </div>
       </div>
-      <div style="text-align:right">
-        <div id="lp" class="gl" style="font-size:44px;font-weight:900;color:${lc.c};line-height:1;--gc:${lc.c}40">0</div>
-        <div class="pts-label" style="margin-top:4px">POINTS</div>
+      <div style="margin-top:18px;display:flex;gap:6px">
+        ${lv.pl.sort((a,b)=>b.pt-a.pt).slice(0,3).map((p,i)=>`<div style="flex:1;background:rgba(255,255,255,.04);border:1px solid ${lc.c}22;border-radius:12px;padding:10px 10px;text-align:center">
+          <div style="font-size:9px;color:#666;font-weight:700">${i===0?"⭐ MVP":i===1?"2ND":"3RD"}</div>
+          <div style="font-size:13px;font-weight:800;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(p.n.split(" ").pop())}</div>
+          <div style="font-size:16px;font-weight:900;color:${lc.c};margin-top:2px">${p.pt}</div>
+        </div>`).join("")}
       </div>
     </div>
-    ${so.length>1?`<div style="margin-top:12px;padding-top:10px;border-top:1px solid #1a1a3e;font-size:12px;color:${lc.c}">▲ ${lv.tot-so[1][1].tot} ahead of ${so[1][0]}</div>`:""}
   </div>`;
 
   h+=`<div class="tab-bar">${TABS.map(([k,ic,label])=>`<div class="tab-btn ${st.tab===k?"on":""}" onclick="st.tab='${k}';render()"><span class="tab-icon">${ic}</span>${label}</div>`).join("")}</div>`;
@@ -150,10 +331,10 @@ function render(){
       h+=`<div class="cd ri" style="cursor:pointer;animation-delay:${i*.07}s;${i===0?`box-shadow:0 0 24px ${c.c}08,0 4px 24px rgba(0,0,0,.4);border-color:${c.c}33`:""}" onclick="st.exp=st.exp==='${esc(n)}'?null:'${esc(n)}';render()">
         <div style="display:flex;align-items:center;justify-content:space-between">
           <div style="display:flex;align-items:center;gap:14px">
-            <div style="width:42px;height:42px;border-radius:12px;background:${c.g};display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:16px;box-shadow:0 4px 12px ${c.c}25;flex-shrink:0">${i===0?"👑":i+1}</div>
+            <div class="avatar-sm" style="box-shadow:0 4px 16px ${c.c}20">${ROBOTS[n]}</div>
             <div>
-              <div style="font-weight:800;font-size:15px">${c.e} ${esc(n)}</div>
-              <div style="font-size:11px;color:#555;margin-top:3px">${d.r}r · ${d.w}w · ${d.c}c · ${d.pl.length} scorers</div>
+              <div style="font-weight:800;font-size:15px">${c.e} ${esc(n)} ${i===0?'<span style="font-size:9px;background:'+c.c+'22;color:'+c.c+';padding:2px 6px;border-radius:4px;margin-left:4px;vertical-align:middle">LEADER</span>':''}</div>
+              <div style="font-size:11px;color:#555;margin-top:3px">${c.tag} · ${d.r}r · ${d.w}w · ${d.c}c · ${d.pl.length} scorers</div>
             </div>
           </div>
           <div style="text-align:right">
@@ -183,9 +364,13 @@ function render(){
     h+=`<div style="display:flex;gap:5px;margin-bottom:14px;flex-wrap:wrap">${Object.keys(M).map(n=>`<div onclick="st.selT='${esc(n)}';render()" style="flex:1;min-width:56px;padding:8px 4px;border-radius:10px;cursor:pointer;font-weight:700;font-size:10px;text-align:center;border:1px solid ${st.selT===n?M[n].c+"55":"#1a1a3e"};background:${st.selT===n?M[n].c+"11":"#0c0c20"};color:${st.selT===n?M[n].c:"#555"};transition:all .2s">${M[n].e}<br>${n.split(" ")[0]}</div>`).join("")}</div>`;
     h+=`<div class="cd" style="border-color:${tc.c}33">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-        <div>
-          <div style="font-size:20px;font-weight:900">${tc.e} ${esc(st.selT)}</div>
-          <div style="font-size:11px;color:#555;margin-top:3px">15 players</div>
+        <div style="display:flex;align-items:center;gap:14px">
+          <div class="avatar-sq" style="box-shadow:0 4px 16px ${tc.c}25">${ROBOTS[st.selT]}</div>
+          <div>
+            <div style="font-size:11px;color:${tc.c};font-weight:800;letter-spacing:1.5px;text-transform:uppercase;opacity:.6">${tc.tag}</div>
+            <div style="font-size:20px;font-weight:900">${tc.e} ${esc(st.selT)}</div>
+            <div style="font-size:11px;color:#555;margin-top:3px">15 players</div>
+          </div>
         </div>
         <div id="sp" style="font-size:30px;font-weight:900;color:${tc.c};text-shadow:0 0 10px ${tc.c}25">0</div>
       </div>`;
