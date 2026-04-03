@@ -279,6 +279,8 @@ function render(){
 
   // === BOARD ===
   if(st.tab==="board"){
+    const isDesk=window.innerWidth>=768;
+    if(isDesk)h+=`<div class="desk-grid">`;
     so.forEach(([n,d],i)=>{
       const c=M[n],isE=st.exp===n,bw=lv.tot>0?(d.tot/lv.tot)*100:0;
       h+=`<div class="gc ri" style="cursor:pointer;animation-delay:${i*.06}s;${i===0?`border-color:${c.c}20`:""}" onclick="st.exp=st.exp==='${esc(n)}'?null:'${esc(n)}';render()">
@@ -309,6 +311,7 @@ function render(){
       }
       h+=`</div>`;
     });
+    if(window.innerWidth>=768)h+=`</div>`;
   }
 
   // === SQUADS ===
