@@ -211,17 +211,20 @@ let st={tab:"board",exp:null,selM:MA.length-1,selT:"Mintu Raval",prevDay:0};
 
 function calc(){
   let mg={},ps={};
-  Object.keys(M).forEach(k=>{mg[k]={r:0,w:0,c:0,ro:0,tot:0,pl:[]}});
+  Object.keys(M).forEach(k=>{mg[k]={r:0,w:0,c:0,ro:0,tot:0,pl:{}}});
   Object.entries(R).forEach(([p,i])=>{ps[p]={n:p,r:0,w:0,c:0,ro:0,pt:0,mg:i.m,rl:i.r,t:i.t}});
   MA.forEach(match=>{
     Object.entries(R).forEach(([p,i])=>{
       let r=match.b?.[p]||0,w=match.w?.[p]||0,c=match.ct?.[p]||0,ro=match.ro?.[p]||0;
       if(r>0||w>0||c>0||ro>0){let pt=r*P.r+w*P.w+c*P.c+ro*P.ro;
       mg[i.m].r+=r;mg[i.m].w+=w;mg[i.m].c+=c;mg[i.m].ro+=ro;mg[i.m].tot+=pt;
-      mg[i.m].pl.push({n:p,r,w,c,ro,pt,t:i.t,mt:match.ti});
+      if(!mg[i.m].pl[p])mg[i.m].pl[p]={n:p,r:0,w:0,c:0,ro:0,pt:0,t:i.t,matches:0};
+      mg[i.m].pl[p].r+=r;mg[i.m].pl[p].w+=w;mg[i.m].pl[p].c+=c;mg[i.m].pl[p].ro+=ro;mg[i.m].pl[p].pt+=pt;mg[i.m].pl[p].matches++;
       ps[p].r+=r;ps[p].w+=w;ps[p].c+=c;ps[p].ro+=ro;ps[p].pt+=pt}
     });
   });
+  // Convert pl from object to sorted array
+  Object.keys(mg).forEach(k=>{mg[k].pl=Object.values(mg[k].pl).sort((a,b)=>b.pt-a.pt)});
   return{mg,so:Object.entries(mg).sort((a,b)=>b[1].tot-a[1].tot),tp:Object.values(ps).filter(x=>x.pt>0).sort((a,b)=>b.pt-a.pt).slice(0,20),ps};
 }
 function pb(p){let s=[];if(p.r>0)s.push(p.r+"R");if(p.w>0)s.push(p.w+"W");if(p.c>0)s.push(p.c+"C");if(p.ro>0)s.push(p.ro+"RO");return s.join(" · ")}
@@ -231,7 +234,7 @@ function getNext(){return SCH.find(s=>!s.done)}
 function getUpcoming(){return SCH.filter(s=>!s.done)}
 function groupByDate(matches){const g={};matches.forEach(m=>{if(!g[m.dt])g[m.dt]=[];g[m.dt].push(m)});return g}
 function getPlayersForTeam(t){return Object.entries(R).filter(([_,i])=>i.t===t).map(([n,i])=>({n,m:i.m,r:i.r,mc:M[i.m]}))}
-function getPlayersForTeams(teams){const seen=new Set();const pls=[];teams.forEach(t=>{Object.entries(R).filter(([_,i])=>i.t===t).forEach(([n,i])=>{if(!seen.has(n)){seen.add(n);pls.push({n,m:i.m,r:i.r,t:i.t,mc:M[i.m]})}})});return pls}
+
 function render(){
   const{mg,so,tp,ps}=calc();const ld=so[0],ln=ld[0],lv=ld[1],lc=M[ln];
   const next=getNext();
@@ -317,9 +320,9 @@ function render(){
       if(isE&&d.pl.length>0){
         h+=`<div style="margin-top:12px;border-top:1px solid rgba(100,140,255,.06);padding-top:10px">
           <div class="section-title">Scoring Players</div>`;
-        d.pl.sort((a,b)=>b.pt-a.pt).forEach((p,j)=>{
+        d.pl.forEach((p,j)=>{
           h+=`<div class="ri" style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:${j<d.pl.length-1?"1px solid rgba(100,140,255,.04)":"none"};animation-delay:${j*.03}s">
-            <div>${re(R[p.n]?.r||"")} <span style="font-weight:700;font-size:11px">${esc(p.n)}</span> <span style="font-size:9px;color:#4a5580">${tb(p.t)} · ${p.mt}</span></div>
+            <div>${re(R[p.n]?.r||"")} <span style="font-weight:700;font-size:11px">${esc(p.n)}</span> <span style="font-size:9px;color:#4a5580">${tb(p.t)}${p.matches>1?" · "+p.matches+"m":""}</span></div>
             <div style="font-weight:800;color:${c.c};font-size:11px">${pb(p)} = ${p.pt}</div>
           </div>`;
         });
@@ -368,8 +371,6 @@ function render(){
     if(st.selM>=MA.length)st.selM=MA.length-1;
     if(st.selM<0)st.selM=0;
     const match=MA[st.selM];
-
-    // Navigation header with arrows + team names
     h+=`<div class="gc-lead" style="padding:14px 16px">
       <div style="display:flex;align-items:center;justify-content:space-between">
         <div onclick="if(st.selM>0){st.selM--;render()}" style="width:36px;height:36px;border-radius:50%;background:${st.selM>0?"rgba(56,189,248,.12)":"rgba(100,140,255,.04)"};display:flex;align-items:center;justify-content:center;cursor:${st.selM>0?"pointer":"default"};border:1px solid ${st.selM>0?"rgba(56,189,248,.2)":"rgba(100,140,255,.06)"};transition:all .2s">
@@ -385,13 +386,9 @@ function render(){
         </div>
       </div>
     </div>`;
-
-    // Result card
     h+=`<div class="gc" style="text-align:center;padding:10px 14px;margin-bottom:10px">
       <div style="font-size:12px;font-weight:800;color:#4ade80">✅ ${match.rs}</div>
     </div>`;
-
-    // Manager breakdown
     const mgrPts={};
     Object.entries(R).forEach(([p,i])=>{
       let r=match.b?.[p]||0,w=match.w?.[p]||0,c=match.ct?.[p]||0,ro=match.ro?.[p]||0;
@@ -456,7 +453,7 @@ function render(){
     h+=`</div>`;
   }
 
-  // === NEXT (PREVIEW) — Day by Day ===
+  // === NEXT (PREVIEW) — Day by Day with arrows ===
   if(st.tab==="next"){
     const upcoming=getUpcoming();
     if(upcoming.length===0){
@@ -469,8 +466,6 @@ function render(){
       const dt=dates[st.prevDay];
       const dayMatches=grouped[dt];
       const isDH=dayMatches.length>1;
-
-      // Navigation header
       h+=`<div class="gc-lead" style="padding:14px 16px">
         <div style="display:flex;align-items:center;justify-content:space-between">
           <div onclick="if(st.prevDay>0){st.prevDay--;render()}" style="width:36px;height:36px;border-radius:50%;background:${st.prevDay>0?"rgba(56,189,248,.12)":"rgba(100,140,255,.04)"};display:flex;align-items:center;justify-content:center;cursor:${st.prevDay>0?"pointer":"default"};border:1px solid ${st.prevDay>0?"rgba(56,189,248,.2)":"rgba(100,140,255,.06)"};transition:all .2s">
@@ -486,13 +481,7 @@ function render(){
           </div>
         </div>
       </div>`;
-
-      // Double header banner
-      if(isDH){
-        h+=`<div class="dh">🔥 DOUBLE HEADER · ${dt}</div>`;
-      }
-
-      // Match card(s)
+      if(isDH){h+=`<div class="dh">🔥 DOUBLE HEADER · ${dt}</div>`}
       dayMatches.forEach((m,mi)=>{
         h+=`<div class="gc ri" style="animation-delay:${mi*.06}s;${isDH?"border-left:2px solid #ec4899":""}">
           <div style="display:flex;align-items:center;justify-content:space-between">
@@ -504,8 +493,6 @@ function render(){
           </div>
         </div>`;
       });
-
-      // Fantasy players grouped by manager
       const allTeams=[];
       dayMatches.forEach(m=>{allTeams.push(m.t1);allTeams.push(m.t2)});
       const mgrPlayers={};
