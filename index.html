@@ -4,71 +4,68 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#0b1023">
+<meta name="theme-color" content="#f0f2f8">
 <title>Fantasy IPL 2026</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏏</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;background:#0b1023;color:#e4e8f7;min-height:100vh;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;background:
-  radial-gradient(ellipse 80% 60% at 20% 10%,rgba(56,189,248,.1) 0%,transparent 60%),
-  radial-gradient(ellipse 60% 50% at 80% 90%,rgba(139,92,246,.1) 0%,transparent 60%),
-  radial-gradient(ellipse 50% 40% at 50% 50%,rgba(236,72,153,.06) 0%,transparent 60%);
-  z-index:0;pointer-events:none}
-.w{max-width:640px;margin:0 auto;padding:14px 14px 50px;position:relative;z-index:1}
+body{font-family:'Outfit',system-ui,sans-serif;background:#f0f2f8;color:#1a1a2e;min-height:100vh;overflow-x:hidden;padding-bottom:72px}
+.w{max-width:640px;margin:0 auto;padding:12px 14px 20px;position:relative}
+@media(min-width:768px){.w{max-width:1100px;padding:16px 24px 24px}}
 
-/* Glass cards */
-.gc{background:linear-gradient(135deg,rgba(15,23,60,.7),rgba(20,30,70,.5));backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);border:1px solid rgba(100,140,255,.12);border-radius:16px;padding:14px;margin-bottom:10px;transition:all .3s;box-shadow:0 4px 24px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.06)}
-.gc:hover{border-color:rgba(100,140,255,.22);box-shadow:0 8px 32px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.08)}
+/* Cards */
+.cd{background:#fff;border-radius:20px;padding:16px;margin-bottom:10px;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:all .25s;border:1.5px solid transparent}
+.cd:hover{box-shadow:0 4px 20px rgba(0,0,0,.1)}
+.cd-hero{background:linear-gradient(135deg,#1a1a2e,#2d1b69);border-radius:24px;padding:20px;margin-bottom:12px;color:#fff;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(26,26,46,.25)}
+.cd-hero::before{content:'';position:absolute;top:-50%;right:-30%;width:200px;height:200px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);border-radius:50%}
+.cd-hero::after{content:'';position:absolute;bottom:-30%;left:-20%;width:160px;height:160px;background:radial-gradient(circle,rgba(139,92,246,.15) 0%,transparent 70%);border-radius:50%}
 
-/* Leader glass — stronger */
-.gc-lead{background:linear-gradient(135deg,rgba(15,25,65,.8),rgba(25,35,80,.6));backdrop-filter:blur(50px) saturate(200%);-webkit-backdrop-filter:blur(50px) saturate(200%);border:1px solid rgba(100,160,255,.18);border-radius:20px;padding:18px;margin-bottom:12px;box-shadow:0 8px 40px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.08),inset 0 -1px 0 rgba(255,255,255,.03);position:relative;overflow:hidden}
-.gc-lead::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(100,180,255,.3),transparent)}
-
-/* Tabs */
-.tab-bar{display:flex;gap:4px;margin-bottom:14px;position:sticky;top:0;z-index:10;padding:8px 0 6px;background:linear-gradient(180deg,#0b1023 70%,transparent)}
-.tb{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 2px 5px;border-radius:12px;cursor:pointer;font-weight:600;font-size:9px;text-align:center;background:rgba(15,23,55,.6);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);color:#4a5580;border:1px solid rgba(100,140,255,.06);transition:all .25s;letter-spacing:.3px;user-select:none}
-.tb .ti{font-size:13px;line-height:1}
-.tb.on{background:linear-gradient(135deg,rgba(56,189,248,.15),rgba(139,92,246,.1));color:#7dd3fc;border-color:rgba(56,189,248,.25);box-shadow:0 0 16px rgba(56,189,248,.08)}
-
-/* Stat pills */
-.stat-pill{display:flex;align-items:center;gap:6px;background:linear-gradient(135deg,rgba(15,23,60,.8),rgba(20,30,70,.5));border:1px solid rgba(100,140,255,.1);border-radius:12px;padding:10px 14px;flex:1;min-width:0}
-.stat-pill .sp-val{font-size:20px;font-weight:800;line-height:1}
-.stat-pill .sp-lbl{font-size:9px;color:#4a5580;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+/* Bottom Nav */
+.bnav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e8e8f0;display:flex;z-index:100;padding:4px 0 env(safe-area-inset-bottom,4px);box-shadow:0 -2px 20px rgba(0,0,0,.06)}
+.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 2px 4px;cursor:pointer;font-weight:700;font-size:9px;color:#9ca3af;transition:all .2s;user-select:none;position:relative}
+.bnav-item .bi{font-size:18px;line-height:1;transition:transform .2s}
+.bnav-item.on{color:#6c3ce0}
+.bnav-item.on .bi{transform:scale(1.15)}
+.bnav-item.on::before{content:'';position:absolute;top:-1px;left:25%;right:25%;height:3px;background:linear-gradient(90deg,#6c3ce0,#a855f7);border-radius:0 0 4px 4px}
 
 /* Progress bar */
-.bar{height:4px;background:rgba(100,140,255,.08);border-radius:4px;margin-top:10px;overflow:hidden}
-.bar div{height:100%;border-radius:4px;transition:width .8s cubic-bezier(.22,1,.36,1)}
+.bar{height:6px;background:#f0f2f8;border-radius:6px;margin-top:10px;overflow:hidden}
+.bar div{height:100%;border-radius:6px;transition:width .8s cubic-bezier(.22,1,.36,1)}
 
 /* Animations */
-.ri{animation:ri .5s cubic-bezier(.22,1,.36,1) both}
-@keyframes ri{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-@keyframes glow{0%,100%{text-shadow:0 0 6px var(--gc)}50%{text-shadow:0 0 16px var(--gc),0 0 32px var(--gc)}}
+.ri{animation:ri .45s cubic-bezier(.22,1,.36,1) both}
+@keyframes ri{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
-.gl{animation:glow 2.5s ease-in-out infinite}
 .float{animation:float 3s ease-in-out infinite}
-.ld-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#38bdf8;animation:pulse 1.5s infinite;margin-right:5px;vertical-align:middle}
 
-.dh{background:linear-gradient(90deg,rgba(236,72,153,.12),transparent);border-left:3px solid #ec4899;padding:5px 12px;border-radius:0 10px 10px 0;font-size:10px;font-weight:800;color:#ec4899;margin-bottom:8px;letter-spacing:1px}
-.header-title{font-size:26px;font-weight:900;background:linear-gradient(135deg,#38bdf8,#818cf8,#c084fc,#e879f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.pts-label{font-size:8px;color:#4a5580;font-weight:700;letter-spacing:1px;text-transform:uppercase}
-.grid-header{display:grid;font-size:9px;font-weight:700;color:#4a5580;padding-bottom:8px;border-bottom:1px solid rgba(100,140,255,.06);letter-spacing:.5px;margin-bottom:2px}
-.grid-row{display:grid;padding:8px 0;border-bottom:1px solid rgba(100,140,255,.04);align-items:center}
-.section-title{font-size:9px;font-weight:800;color:#4a5580;letter-spacing:1.5px;margin-bottom:8px;text-transform:uppercase}
-.badge{padding:3px 9px;border-radius:8px;font-weight:700;font-size:9px;letter-spacing:.5px;display:inline-block}
-.score-chip{display:flex;align-items:center;gap:10px;padding:9px 12px;margin-bottom:5px;border-radius:14px;border:1px solid rgba(100,140,255,.08);transition:all .25s;background:rgba(15,23,55,.4)}
-.score-chip:hover{background:rgba(15,23,55,.7);transform:translateX(2px)}
+.dh{background:linear-gradient(90deg,#fce7f3,#fff);border-left:3px solid #ec4899;padding:6px 12px;border-radius:0 12px 12px 0;font-size:10px;font-weight:800;color:#ec4899;margin-bottom:8px;letter-spacing:.5px}
+.header-title{font-size:28px;font-weight:900;background:linear-gradient(135deg,#6c3ce0,#a855f7,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.pts-label{font-size:8px;color:#9ca3af;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.section-title{font-size:10px;font-weight:800;color:#9ca3af;letter-spacing:1.5px;margin-bottom:8px;text-transform:uppercase}
+.badge{padding:4px 10px;border-radius:20px;font-weight:700;font-size:9px;letter-spacing:.3px;display:inline-block}
+.grid-header{display:grid;font-size:9px;font-weight:700;color:#9ca3af;padding-bottom:8px;border-bottom:1.5px solid #f0f2f8;letter-spacing:.5px;margin-bottom:2px}
+.grid-row{display:grid;padding:8px 0;border-bottom:1px solid #f8f8fc;align-items:center}
 
-.avatar-lg{width:86px;height:86px;border-radius:20px;flex-shrink:0;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+/* Nav arrow buttons */
+.nav-btn{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .2s;border:none;cursor:pointer}
+.nav-btn-on{background:#f0f2f8;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.nav-btn-on:active{background:#e4e6ee;transform:scale(.95)}
+.nav-btn-off{background:#f8f8fc;cursor:default}
+
+.avatar-lg{width:80px;height:80px;border-radius:20px;flex-shrink:0;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.12)}
 .avatar-lg svg{width:100%;height:100%;display:block}
-.avatar-sm{width:44px;height:44px;border-radius:12px;flex-shrink:0;overflow:hidden}
+.avatar-sm{width:44px;height:44px;border-radius:13px;flex-shrink:0;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)}
 .avatar-sm svg{width:100%;height:100%;display:block}
-.avatar-sq{width:48px;height:48px;border-radius:13px;flex-shrink:0;overflow:hidden}
+.avatar-sq{width:48px;height:48px;border-radius:14px;flex-shrink:0;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)}
 .avatar-sq svg{width:100%;height:100%;display:block}
 
-@media(max-width:380px){.tb{font-size:8px;padding:6px 1px 4px}.header-title{font-size:22px}.avatar-lg{width:72px;height:72px;border-radius:16px}.stat-pill .sp-val{font-size:16px}}
+/* Stat chips */
+.stat-chip{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;background:#f8f8fc}
+
+@media(max-width:380px){.header-title{font-size:24px}.avatar-lg{width:68px;height:68px;border-radius:16px}}
+@media(min-width:768px){.desk-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}}
 </style>
 </head>
 <body>
@@ -78,7 +75,7 @@ const TC={CSK:"#f9cd05",DC:"#4b8df8",GT:"#7bb8e0",KKR:"#7b5ea7",LSG:"#e03a76",MI
 function re(r){return r==="Bat"?"🏏":r==="Bowler"?"🎯":r==="AR"?"🏏🎯":r==="WK"?"🧤":r}
 function tb(t){return`<span style="color:${TC[t]||"#888"};font-weight:800">${t}</span>`}
 
-const M={"Mintu Raval":{c:"#ff4d6a",e:"👑",g:"linear-gradient(135deg,#ff4d6a,#e6234a)",tag:"IRON MAN"},"Kashish Khanuja":{c:"#ff8c42",e:"🔥",g:"linear-gradient(135deg,#ff8c42,#ff6b1a)",tag:"BLACK WIDOW",gender:"f"},"Naman Kothari":{c:"#38bdf8",e:"⚡",g:"linear-gradient(135deg,#38bdf8,#0ea5e9)",tag:"CAPTAIN A"},"Viraj Patel":{c:"#bf5af2",e:"🌟",g:"linear-gradient(135deg,#bf5af2,#a033e0)",tag:"THANOS"},"Kritik Khanuja":{c:"#e84393",e:"💎",g:"linear-gradient(135deg,#e84393,#6c5ce7)",tag:"SPIDER-MAN"}};
+const M={"Mintu Raval":{c:"#ff4d6a",e:"👑",g:"linear-gradient(135deg,#ff4d6a,#e6234a)",bg:"#fff0f3",tag:"IRON MAN"},"Kashish Khanuja":{c:"#ff8c42",e:"🔥",g:"linear-gradient(135deg,#ff8c42,#ff6b1a)",bg:"#fff5ed",tag:"BLACK WIDOW",gender:"f"},"Naman Kothari":{c:"#2d7dd2",e:"⚡",g:"linear-gradient(135deg,#38bdf8,#0ea5e9)",bg:"#eef6ff",tag:"CAPTAIN A"},"Viraj Patel":{c:"#8b5cf6",e:"🌟",g:"linear-gradient(135deg,#a855f7,#7c3aed)",bg:"#f3eeff",tag:"THANOS"},"Kritik Khanuja":{c:"#e84393",e:"💎",g:"linear-gradient(135deg,#e84393,#6c5ce7)",bg:"#fde8f3",tag:"SPIDER-MAN"}};
 
 const ROBOTS={
 "Mintu Raval":`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
@@ -179,7 +176,10 @@ const MA=[
 {id:"M1",ti:"RCB vs SRH",dt:"Mar 28",rs:"RCB won by 6 wkts",t1:"RCB",t2:"SRH",b:{"Phil Salt":8,"Virat Kohli":69,"Rajat Patidar":31,"Abhishek Sharma":7,"Travis Head":11,"Ishan Kishan":80,"Nitish Kumar Reddy":4,"Aniket Verma":43,"Harshal Patel":2},w:{"Romario Shepherd":3},ct:{"Phil Salt":3,"Virat Kohli":1},ro:{}},
 {id:"M2",ti:"MI vs KKR",dt:"Mar 29",rs:"MI won by 6 wkts",t1:"MI",t2:"KKR",b:{"Finn Allen":37,"Ajinkya Rahane":67,"Cameron Green":18,"Angkrish Raghuvanshi":51,"Rinku Singh":33,"Ramandeep Singh":4,"Surya Kumar Yadav":16,"Hardik Pandya":18,"Tilak Varma":20},w:{"Hardik Pandya":1,"Sunil Narine":1},ct:{"Tilak Varma":2,"Hardik Pandya":1,"Rinku Singh":1},ro:{}},
 {id:"M3",ti:"RR vs CSK",dt:"Mar 30",rs:"RR won by 8 wkts",t1:"RR",t2:"CSK",b:{"Sanju Samson":6,"Ruturaj Gaikwad":6,"Shivam Dube":6,"Noor Ahmed":1,"Matthew Short":2,"Vaibhav Suryavanshi":52,"Yashasvi Jaiswal":38,"Dhruv Jurel":18,"Riyan Parag":14},w:{"Ravindra Jadeja":2,"Sandeep Sharma":1,"Ravi Bishnoi":1},ct:{"Dhruv Jurel":2,"Ravi Bishnoi":1},ro:{}},
-{id:"M4",ti:"PBKS vs GT",dt:"Mar 31",rs:"PBKS won by 3 wkts",t1:"PBKS",t2:"GT",b:{"Sai Sudarshan":13,"Shubman Gill":39,"Jos Buttler":38,"Washington Sundar":18,"Rashid Khan":0,"Priyansh Arya":7,"Prabhsimran Singh":37,"Shreyas Iyer":18,"Nehal Wadhera":3,"Marcus Stoinis":0,"Marco Jansen":9},w:{"Marco Jansen":1,"Yuzvendra Chahal":2,"Washington Sundar":1,"Rashid Khan":1},ct:{"Shubman Gill":2,"Jos Buttler":1,"Rashid Khan":1,"Washington Sundar":1,"Arshdeep Singh":2,"Shreyas Iyer":1,"Marco Jansen":1},ro:{}},{id:"M5",ti:"LSG vs DC",dt:"Apr 1",rs:"DC won by 6 wkts",t1:"LSG",t2:"DC",b:{"Mitchell Marsh":35,"Rishabh Pant":7,"Aiden Markram":11,"Nicholas Pooran":8,"Mohammad Shami":1,"KL Rahul":0,"Tristan Stubbs":39,"Axar Patel":0},w:{"Kuldeep Yadav":2,"Axar Patel":1,"Mohammad Shami":1},ct:{"KL Rahul":1,"Tristan Stubbs":2,"Kuldeep Yadav":2,"Rishabh Pant":1},ro:{}},{id:"M6",ti:"KKR vs SRH",dt:"Apr 2",rs:"SRH won by 65 runs",t1:"KKR",t2:"SRH",b:{"Travis Head":46,"Abhishek Sharma":48,"Ishan Kishan":14,"Aniket Verma":1,"Nitish Kumar Reddy":39,"Ajinkya Rahane":8,"Finn Allen":28,"Angkrish Raghuvanshi":52,"Cameron Green":2,"Rinku Singh":35,"Ramandeep Singh":10,"Sunil Narine":12,"Varun Chakravarthy":0},w:{"Nitish Kumar Reddy":2},ct:{"Cameron Green":1,"Varun Chakravarthy":2,"Rinku Singh":2,"Ramandeep Singh":1,"Ajinkya Rahane":1,"Ishan Kishan":2,"Aniket Verma":1},ro:{}},{id:"M7",ti:"CSK vs PBKS",dt:"Apr 3",rs:"PBKS won by 5 wkts",t1:"CSK",t2:"PBKS",b:{"Sanju Samson":7,"Ruturaj Gaikwad":28,"Shivam Dube":45,"Priyansh Arya":39,"Prabhsimran Singh":43,"Shreyas Iyer":50,"Nehal Wadhera":10,"Marcus Stoinis":9},w:{"Marco Jansen":1,"Yuzvendra Chahal":1},ct:{"Prabhsimran Singh":1,"Nehal Wadhera":2,"Yuzvendra Chahal":1,"Noor Ahmed":1},ro:{"Ruturaj Gaikwad":1}}
+{id:"M4",ti:"PBKS vs GT",dt:"Mar 31",rs:"PBKS won by 3 wkts",t1:"PBKS",t2:"GT",b:{"Sai Sudarshan":13,"Shubman Gill":39,"Jos Buttler":38,"Washington Sundar":18,"Rashid Khan":0,"Priyansh Arya":7,"Prabhsimran Singh":37,"Shreyas Iyer":18,"Nehal Wadhera":3,"Marcus Stoinis":0,"Marco Jansen":9},w:{"Marco Jansen":1,"Yuzvendra Chahal":2,"Washington Sundar":1,"Rashid Khan":1},ct:{"Shubman Gill":2,"Jos Buttler":1,"Rashid Khan":1,"Washington Sundar":1,"Arshdeep Singh":2,"Shreyas Iyer":1,"Marco Jansen":1},ro:{}},
+{id:"M5",ti:"LSG vs DC",dt:"Apr 1",rs:"DC won by 6 wkts",t1:"LSG",t2:"DC",b:{"Mitchell Marsh":35,"Rishabh Pant":7,"Aiden Markram":11,"Nicholas Pooran":8,"Mohammad Shami":1,"KL Rahul":0,"Tristan Stubbs":39,"Axar Patel":0},w:{"Kuldeep Yadav":2,"Axar Patel":1,"Mohammad Shami":1},ct:{"KL Rahul":1,"Tristan Stubbs":2,"Kuldeep Yadav":2,"Rishabh Pant":1},ro:{}},
+{id:"M6",ti:"KKR vs SRH",dt:"Apr 2",rs:"SRH won by 65 runs",t1:"KKR",t2:"SRH",b:{"Travis Head":46,"Abhishek Sharma":48,"Ishan Kishan":14,"Aniket Verma":1,"Nitish Kumar Reddy":39,"Ajinkya Rahane":8,"Finn Allen":28,"Angkrish Raghuvanshi":52,"Cameron Green":2,"Rinku Singh":35,"Ramandeep Singh":10,"Sunil Narine":12,"Varun Chakravarthy":0},w:{"Nitish Kumar Reddy":2},ct:{"Cameron Green":1,"Varun Chakravarthy":2,"Rinku Singh":2,"Ramandeep Singh":1,"Ajinkya Rahane":1,"Ishan Kishan":2,"Aniket Verma":1},ro:{}},
+{id:"M7",ti:"CSK vs PBKS",dt:"Apr 3",rs:"PBKS won by 5 wkts",t1:"CSK",t2:"PBKS",b:{"Sanju Samson":7,"Ruturaj Gaikwad":28,"Shivam Dube":45,"Priyansh Arya":39,"Prabhsimran Singh":43,"Shreyas Iyer":50,"Nehal Wadhera":10,"Marcus Stoinis":9},w:{"Marco Jansen":1,"Yuzvendra Chahal":1},ct:{"Prabhsimran Singh":1,"Nehal Wadhera":2,"Yuzvendra Chahal":1,"Noor Ahmed":1},ro:{"Ruturaj Gaikwad":1}}
 ];
 const PT=[
 {t:"PBKS",m:2,w:2,l:0,nrr:"+1.095",pts:4},
@@ -206,7 +206,7 @@ const SCH=[
 {n:63,t1:"CSK",t2:"SRH",dt:"May 18",v:"Chennai"},{n:64,t1:"RR",t2:"LSG",dt:"May 19",v:"Jaipur"},{n:65,t1:"KKR",t2:"MI",dt:"May 20",v:"Kolkata"},{n:66,t1:"CSK",t2:"GT",dt:"May 21",v:"Chennai"},
 {n:67,t1:"SRH",t2:"RCB",dt:"May 22",v:"Hyderabad"},{n:68,t1:"LSG",t2:"PBKS",dt:"May 23",v:"Lucknow"},{n:69,t1:"MI",t2:"RR",dt:"May 24",v:"Mumbai"},{n:70,t1:"KKR",t2:"DC",dt:"May 24",v:"Kolkata",dh:1}
 ];
-const TABS=[["board","🏆","Board"],["squads","👥","Squads"],["highlights","🎯","Highlights"],["players","👤","Players"],["next","🔮","Preview"],["table","📊","Table"],["schedule","📅","Schedule"]];
+const NAVTABS=[["board","🏆","Board"],["squads","👥","Squads"],["highlights","🎯","Highlights"],["players","👤","Players"],["next","🔮","Preview"],["table","📊","Table"],["schedule","📅","Schedule"]];
 let st={tab:"board",exp:null,selM:MA.length-1,selT:"Mintu Raval",prevDay:0};
 
 function calc(){
@@ -223,13 +223,11 @@ function calc(){
       ps[p].r+=r;ps[p].w+=w;ps[p].c+=c;ps[p].ro+=ro;ps[p].pt+=pt}
     });
   });
-  // Convert pl from object to sorted array
   Object.keys(mg).forEach(k=>{mg[k].pl=Object.values(mg[k].pl).sort((a,b)=>b.pt-a.pt)});
   return{mg,so:Object.entries(mg).sort((a,b)=>b[1].tot-a[1].tot),tp:Object.values(ps).filter(x=>x.pt>0).sort((a,b)=>b.pt-a.pt).slice(0,20),ps};
 }
 function pb(p){let s=[];if(p.r>0)s.push(p.r+"R");if(p.w>0)s.push(p.w+"W");if(p.c>0)s.push(p.c+"C");if(p.ro>0)s.push(p.ro+"RO");return s.join(" · ")}
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
-function animNum(id,target){const el=document.getElementById(id);if(!el)return;let c=0;const step=Math.max(1,Math.floor(target/30));const iv=setInterval(()=>{c+=step;if(c>=target){c=target;clearInterval(iv)}el.textContent=c},18)}
 function getNext(){return SCH.find(s=>!s.done)}
 function getUpcoming(){return SCH.filter(s=>!s.done)}
 function groupByDate(matches){const g={};matches.forEach(m=>{if(!g[m.dt])g[m.dt]=[];g[m.dt].push(m)});return g}
@@ -239,62 +237,45 @@ function render(){
   const{mg,so,tp,ps}=calc();const ld=so[0],ln=ld[0],lv=ld[1],lc=M[ln];
   const next=getNext();
 
-  let h=`<div style="text-align:center;padding:20px 0 14px">
+  let h=`<div style="text-align:center;padding:16px 0 10px">
     <div class="header-title float">🏏 Fantasy IPL 2026</div>
-    <div style="display:flex;justify-content:center;gap:14px;margin-top:8px;font-size:10px;color:#4a5580">
-      <span>🏏 1R = 1pt</span><span>🎯 1W = 25pt</span><span>🧤 1C/RO = 5pt</span>
+    <div style="display:flex;justify-content:center;gap:12px;margin-top:6px;font-size:11px;color:#9ca3af;font-weight:600">
+      <span class="stat-chip">🏏 1R = 1pt</span><span class="stat-chip">🎯 1W = 25pt</span><span class="stat-chip">🧤 1C/RO = 5pt</span>
     </div>
   </div>`;
 
-  // Status bar
-  h+=`<div class="gc" style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;margin-bottom:14px">
-    <div><span class="ld-dot"></span><span style="color:#38bdf8;font-weight:700;font-size:11px">${MA.length} Matches</span></div>
-    ${next?`<div style="font-size:10px;color:#4a5580">Next: ${tb(next.t1)} vs ${tb(next.t2)} · ${next.dt}</div>`:""}
+  // Status pill
+  h+=`<div class="cd" style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px">
+    <div style="display:flex;align-items:center;gap:8px">
+      <span style="width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block;animation:pulse 1.5s infinite"></span>
+      <span style="font-weight:700;font-size:12px;color:#6c3ce0">${MA.length} Matches Tracked</span>
+    </div>
+    ${next?`<div style="font-size:10px;color:#9ca3af;font-weight:600">Next: ${tb(next.t1)} vs ${tb(next.t2)}</div>`:""}
   </div>`;
 
   // === LEADER CARD ===
-  h+=`<div class="gc-lead ri" style="position:relative;overflow:hidden">
-    <svg viewBox="0 0 200 220" style="position:absolute;right:-10px;top:50%;transform:translateY(-50%);width:160px;opacity:.04;pointer-events:none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M100 10 L160 40 Q180 50 180 75 L180 120 Q180 170 100 210 Q20 170 20 120 L20 75 Q20 50 40 40 Z" fill="#fff"/>
-      <path d="M100 30 L148 54 Q162 62 162 80 L162 118 Q162 158 100 192 Q38 158 38 118 L38 80 Q38 62 52 54 Z" fill="none" stroke="#fff" stroke-width="2" opacity=".5"/>
-      <line x1="85" y1="70" x2="85" y2="170" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".6"/>
-      <line x1="85" y1="70" x2="75" y2="60" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".6"/>
-      <circle cx="125" cy="110" r="14" fill="none" stroke="#fff" stroke-width="3" opacity=".5"/>
-      <line x1="125" y1="96" x2="125" y2="124" stroke="#fff" stroke-width="1.5" opacity=".3"/>
-      <path d="M111 110 Q125 100 139 110" stroke="#fff" stroke-width="1.5" fill="none" opacity=".3"/>
-      <path d="M111 110 Q125 120 139 110" stroke="#fff" stroke-width="1.5" fill="none" opacity=".3"/>
-      <text x="100" y="55" text-anchor="middle" font-size="16" fill="#fff" font-weight="900" font-family="system-ui" letter-spacing="3" opacity=".6">2026</text>
-    </svg>
-    <div style="display:flex;align-items:center;gap:14px">
-      <div class="avatar-lg" style="box-shadow:0 6px 24px ${lc.c}20">${ROBOTS[ln]}</div>
+  h+=`<div class="cd-hero ri">
+    <div style="display:flex;align-items:center;gap:14px;position:relative;z-index:1">
+      <div class="avatar-lg">${ROBOTS[ln]}</div>
       <div style="flex:1;min-width:0">
-        <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
-          <span class="badge" style="background:${lc.c}15;color:${lc.c};border:1px solid ${lc.c}30;font-size:8px">🏆 LEADER</span>
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span class="badge" style="background:rgba(255,255,255,.15);color:#fbbf24;font-size:9px">🏆 LEADER</span>
+          <span style="font-size:9px;opacity:.6;font-weight:700;letter-spacing:1px">${lc.tag}</span>
         </div>
-        <div style="font-size:10px;color:${lc.c};font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:.7">${lc.tag}</div>
-        <div style="font-size:18px;font-weight:900;margin-top:1px">${esc(ln)}</div>
-        <div style="display:flex;gap:8px;margin-top:6px;font-size:10px;color:#6b7aaa">
-          <span>🏏<strong style="color:#e4e8f7;margin:0 2px">${lv.r}</strong>R</span>
-          <span>🎯<strong style="color:#e4e8f7;margin:0 2px">${lv.w}</strong>W</span>
-          <span>🧤<strong style="color:#e4e8f7;margin:0 2px">${lv.c}</strong>C</span>
+        <div style="font-size:20px;font-weight:900">${esc(ln)}</div>
+        <div style="display:flex;gap:8px;margin-top:6px;font-size:11px;opacity:.75">
+          <span>🏏 <strong>${lv.r}</strong>R</span>
+          <span>🎯 <strong>${lv.w}</strong>W</span>
+          <span>🧤 <strong>${lv.c}</strong>C</span>
         </div>
-        ${so.length>1?`<div style="margin-top:5px;font-size:10px;color:${lc.c};font-weight:700">▲ ${lv.tot-so[1][1].tot} pts ahead</div>`:""}
+        ${so.length>1?`<div style="margin-top:4px;font-size:10px;color:#4ade80;font-weight:700">▲ ${lv.tot-so[1][1].tot} pts ahead</div>`:""}
       </div>
       <div style="text-align:right;flex-shrink:0">
-        <div id="lp" class="gl" style="font-size:34px;font-weight:900;color:${lc.c};line-height:1;--gc:${lc.c}40">0</div>
-        <div class="pts-label" style="margin-top:3px">POINTS</div>
+        <div style="font-size:38px;font-weight:900;line-height:1">${lv.tot}</div>
+        <div class="pts-label" style="color:rgba(255,255,255,.5)">POINTS</div>
       </div>
     </div>
-    ${(()=>{const mvp=lv.pl.sort((a,b)=>b.pt-a.pt)[0];return mvp?`<div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(100,140,255,.08);display:flex;align-items:center;justify-content:space-between">
-      <div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px">⭐</span><div><div style="font-size:8px;color:#4a5580;font-weight:700;letter-spacing:1px">MVP</div><div style="font-size:12px;font-weight:800">${esc(mvp.n)}</div></div></div>
-      <div style="font-size:18px;font-weight:900;color:${lc.c}">${mvp.pt}<span style="font-size:8px;color:#4a5580;margin-left:2px">PTS</span></div>
-    </div>`:""})()}
   </div>`;
-
-  // Stat pills removed
-
-  // Tabs
-  h+=`<div class="tab-bar">${TABS.map(([k,ic,label])=>`<div class="tb ${st.tab===k?"on":""}" onclick="st.tab='${k}';render()"><span class="ti">${ic}</span>${label}</div>`).join("")}</div>`;
 
   // === BOARD ===
   if(st.tab==="board"){
@@ -302,62 +283,62 @@ function render(){
     if(isDesk)h+=`<div class="desk-grid">`;
     so.forEach(([n,d],i)=>{
       const c=M[n],isE=st.exp===n,bw=lv.tot>0?(d.tot/lv.tot)*100:0;
-      h+=`<div class="gc ri" style="cursor:pointer;animation-delay:${i*.06}s;${i===0?`border-color:${c.c}20`:""}" onclick="st.exp=st.exp==='${esc(n)}'?null:'${esc(n)}';render()">
+      h+=`<div class="cd ri" style="cursor:pointer;animation-delay:${i*.06}s;border-color:${isE?c.c+"40":"transparent"};background:${isE?c.bg:"#fff"}" onclick="st.exp=st.exp==='${esc(n)}'?null:'${esc(n)}';render()">
         <div style="display:flex;align-items:center;justify-content:space-between">
           <div style="display:flex;align-items:center;gap:12px">
-            <div class="avatar-sm" style="box-shadow:0 3px 12px ${c.c}12">${ROBOTS[n]}</div>
+            <div class="avatar-sm">${ROBOTS[n]}</div>
             <div>
-              <div style="font-weight:800;font-size:13px">${c.e} ${esc(n)} ${i===0?'<span style="font-size:7px;background:'+c.c+'15;color:'+c.c+';padding:2px 5px;border-radius:4px;margin-left:3px;border:1px solid '+c.c+'25;vertical-align:middle">LEADER</span>':''}</div>
-              <div style="font-size:10px;color:#4a5580;margin-top:2px">${c.tag} · ${d.r}R · ${d.w}W · ${d.c}C</div>
+              <div style="font-weight:800;font-size:14px;color:#1a1a2e">${c.e} ${esc(n)} ${i===0?'<span style="font-size:8px;background:'+c.c+';color:#fff;padding:2px 8px;border-radius:10px;margin-left:4px;vertical-align:middle">LEADER</span>':''}</div>
+              <div style="font-size:10px;color:#9ca3af;margin-top:2px;font-weight:600">${c.tag} · ${d.r}R · ${d.w}W · ${d.c}C</div>
             </div>
           </div>
           <div style="text-align:right;flex-shrink:0">
-            <div style="font-size:22px;font-weight:900;color:${c.c}">${d.tot}</div>
+            <div style="font-size:24px;font-weight:900;color:${c.c}">${d.tot}</div>
             <div class="pts-label">PTS</div>
           </div>
         </div>
-        <div class="bar"><div style="width:${bw}%;background:${c.g};box-shadow:0 0 6px ${c.c}18"></div></div>`;
+        <div class="bar"><div style="width:${bw}%;background:${c.g}"></div></div>`;
       if(isE&&d.pl.length>0){
-        h+=`<div style="margin-top:12px;border-top:1px solid rgba(100,140,255,.06);padding-top:10px">
+        h+=`<div style="margin-top:12px;border-top:1.5px solid #f0f2f8;padding-top:10px">
           <div class="section-title">Scoring Players</div>`;
         d.pl.forEach((p,j)=>{
-          h+=`<div class="ri" style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:${j<d.pl.length-1?"1px solid rgba(100,140,255,.04)":"none"};animation-delay:${j*.03}s">
-            <div>${re(R[p.n]?.r||"")} <span style="font-weight:700;font-size:11px">${esc(p.n)}</span> <span style="font-size:9px;color:#4a5580">${tb(p.t)}${p.matches>1?" · "+p.matches+"m":""}</span></div>
-            <div style="font-weight:800;color:${c.c};font-size:11px">${pb(p)} = ${p.pt}</div>
+          h+=`<div class="ri" style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:${j<d.pl.length-1?"1px solid #f8f8fc":"none"};animation-delay:${j*.03}s">
+            <div>${re(R[p.n]?.r||"")} <span style="font-weight:700;font-size:12px">${esc(p.n)}</span> <span style="font-size:9px;color:#9ca3af">${tb(p.t)}${p.matches>1?" · "+p.matches+"m":""}</span></div>
+            <div style="font-weight:800;color:${c.c};font-size:12px">${pb(p)} = ${p.pt}</div>
           </div>`;
         });
         h+=`</div>`;
       }
       h+=`</div>`;
     });
-    if(window.innerWidth>=768)h+=`</div>`;
+    if(isDesk)h+=`</div>`;
   }
 
   // === SQUADS ===
   if(st.tab==="squads"){
     const tc=M[st.selT];const sqPl=Object.values(ps).filter(p=>p.mg===st.selT).sort((a,b)=>b.pt-a.pt);
-    h+=`<div style="display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap">${Object.keys(M).map(n=>`<div onclick="st.selT='${esc(n)}';render()" style="flex:1;min-width:54px;padding:7px 3px;border-radius:11px;cursor:pointer;font-weight:700;font-size:9px;text-align:center;border:1px solid ${st.selT===n?M[n].c+"30":"rgba(100,140,255,.08)"};background:${st.selT===n?"linear-gradient(135deg,"+M[n].c+"12,"+M[n].c+"06)":"rgba(15,23,55,.5)"};color:${st.selT===n?M[n].c:"#4a5580"};transition:all .2s">${M[n].e}<br>${n.split(" ")[0]}</div>`).join("")}</div>`;
-    h+=`<div class="gc" style="border-color:${tc.c}15">
+    h+=`<div style="display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;padding-bottom:4px">${Object.keys(M).map(n=>`<div onclick="st.selT='${esc(n)}';render()" style="min-width:64px;padding:8px 6px;border-radius:14px;cursor:pointer;font-weight:700;font-size:9px;text-align:center;border:2px solid ${st.selT===n?M[n].c:"transparent"};background:${st.selT===n?M[n].bg:"#fff"};color:${st.selT===n?M[n].c:"#9ca3af"};transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.04)">${M[n].e}<br>${n.split(" ")[0]}</div>`).join("")}</div>`;
+    h+=`<div class="cd" style="border-color:${tc.c}20;background:${tc.bg}">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
         <div style="display:flex;align-items:center;gap:12px">
-          <div class="avatar-sq" style="box-shadow:0 4px 14px ${tc.c}12">${ROBOTS[st.selT]}</div>
+          <div class="avatar-sq">${ROBOTS[st.selT]}</div>
           <div>
-            <div style="font-size:9px;color:${tc.c};font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:.6">${tc.tag}</div>
-            <div style="font-size:17px;font-weight:900">${tc.e} ${esc(st.selT)}</div>
-            <div style="font-size:9px;color:#4a5580;margin-top:2px">15 players</div>
+            <div style="font-size:9px;color:${tc.c};font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:.7">${tc.tag}</div>
+            <div style="font-size:18px;font-weight:900;color:#1a1a2e">${tc.e} ${esc(st.selT)}</div>
+            <div style="font-size:9px;color:#9ca3af;margin-top:2px;font-weight:600">15 players</div>
           </div>
         </div>
-        <div id="sp" style="font-size:26px;font-weight:900;color:${tc.c}">0</div>
+        <div style="font-size:28px;font-weight:900;color:${tc.c}">${mg[st.selT].tot}</div>
       </div>`;
     h+=`<div class="grid-header" style="grid-template-columns:1fr 36px 26px 26px 46px"><div>PLAYER</div><div style="text-align:center">R</div><div style="text-align:center">W</div><div style="text-align:center">C</div><div style="text-align:right">PTS</div></div>`;
     sqPl.forEach((p,i)=>{
       h+=`<div class="ri grid-row" style="grid-template-columns:1fr 36px 26px 26px 46px;animation-delay:${i*.03}s">
-        <div><div style="display:flex;align-items:center;gap:3px"><span style="font-size:9px">${re(p.rl)}</span><span style="font-weight:700;font-size:11px;color:${p.pt>0?"#e4e8f7":"#2a3050"}">${esc(p.n)}</span></div>
-        <div style="font-size:8px;color:#2a3050;margin-left:16px">${tb(p.t)}</div></div>
-        <div style="text-align:center;color:${p.r>0?"#e4e8f7":"#1a2040"};font-weight:700;font-size:10px">${p.r||"-"}</div>
-        <div style="text-align:center;color:${p.w>0?"#4ade80":"#1a2040"};font-weight:700;font-size:10px">${p.w||"-"}</div>
-        <div style="text-align:center;color:${p.c>0?"#38bdf8":"#1a2040"};font-weight:700;font-size:10px">${p.c||"-"}</div>
-        <div style="text-align:right;font-weight:900;font-size:12px;color:${p.pt>0?tc.c:"#111828"}">${p.pt||"0"}</div>
+        <div><div style="display:flex;align-items:center;gap:3px"><span style="font-size:9px">${re(p.rl)}</span><span style="font-weight:700;font-size:11px;color:${p.pt>0?"#1a1a2e":"#ccc"}">${esc(p.n)}</span></div>
+        <div style="font-size:8px;color:#bbb;margin-left:16px">${tb(p.t)}</div></div>
+        <div style="text-align:center;color:${p.r>0?"#1a1a2e":"#ddd"};font-weight:700;font-size:10px">${p.r||"-"}</div>
+        <div style="text-align:center;color:${p.w>0?"#22c55e":"#ddd"};font-weight:700;font-size:10px">${p.w||"-"}</div>
+        <div style="text-align:center;color:${p.c>0?"#6c3ce0":"#ddd"};font-weight:700;font-size:10px">${p.c||"-"}</div>
+        <div style="text-align:right;font-weight:900;font-size:12px;color:${p.pt>0?tc.c:"#ddd"}">${p.pt||"0"}</div>
       </div>`;
     });
     h+=`</div>`;
@@ -365,161 +346,120 @@ function render(){
 
   // === HIGHLIGHTS ===
   if(st.tab==="highlights"){
-    if(MA.length===0){
-      h+=`<div class="gc" style="text-align:center;padding:30px"><div style="font-size:28px;margin-bottom:8px">📭</div><div style="font-size:14px;font-weight:800;color:#38bdf8">No matches played yet</div></div>`;
+    if(MA.length===0){h+=`<div class="cd" style="text-align:center;padding:30px"><div style="font-size:28px;margin-bottom:8px">📭</div><div style="font-size:14px;font-weight:800;color:#6c3ce0">No matches played yet</div></div>`;
     } else {
     if(st.selM>=MA.length)st.selM=MA.length-1;
-    if(st.selM<0)st.selM=0;
     const match=MA[st.selM];
-    h+=`<div class="gc-lead" style="padding:14px 16px">
+    h+=`<div class="cd" style="padding:14px 16px">
       <div style="display:flex;align-items:center;justify-content:space-between">
-        <div onclick="if(st.selM>0){st.selM--;render()}" style="width:36px;height:36px;border-radius:50%;background:${st.selM>0?"rgba(56,189,248,.12)":"rgba(100,140,255,.04)"};display:flex;align-items:center;justify-content:center;cursor:${st.selM>0?"pointer":"default"};border:1px solid ${st.selM>0?"rgba(56,189,248,.2)":"rgba(100,140,255,.06)"};transition:all .2s">
-          <span style="color:${st.selM>0?"#7dd3fc":"#2a3050"};font-size:16px;font-weight:900">‹</span>
+        <div onclick="if(st.selM>0){st.selM--;render()}" class="nav-btn ${st.selM>0?"nav-btn-on":"nav-btn-off"}">
+          <span style="color:${st.selM>0?"#6c3ce0":"#ddd"};font-size:18px;font-weight:900">‹</span>
         </div>
-        <div style="text-align:center;flex:1;min-width:0">
-          <div style="font-size:9px;color:#c084fc;font-weight:800;letter-spacing:2px;margin-bottom:4px">🎯 MATCH HIGHLIGHTS</div>
-          <div style="font-size:17px;font-weight:900">${tb(match.t1)} <span style="color:#3a4570;font-size:11px;margin:0 3px">vs</span> ${tb(match.t2)}</div>
-          <div style="font-size:10px;color:#4a5580;margin-top:4px">Match ${st.selM+1} of ${MA.length} · ${match.dt}</div>
+        <div style="text-align:center;flex:1">
+          <div style="font-size:9px;color:#a855f7;font-weight:800;letter-spacing:2px;margin-bottom:4px">🎯 MATCH HIGHLIGHTS</div>
+          <div style="font-size:18px;font-weight:900">${tb(match.t1)} <span style="color:#ccc;font-size:11px;margin:0 3px">vs</span> ${tb(match.t2)}</div>
+          <div style="font-size:10px;color:#9ca3af;margin-top:4px;font-weight:600">Match ${st.selM+1} of ${MA.length} · ${match.dt}</div>
         </div>
-        <div onclick="if(st.selM<${MA.length-1}){st.selM++;render()}" style="width:36px;height:36px;border-radius:50%;background:${st.selM<MA.length-1?"rgba(56,189,248,.12)":"rgba(100,140,255,.04)"};display:flex;align-items:center;justify-content:center;cursor:${st.selM<MA.length-1?"pointer":"default"};border:1px solid ${st.selM<MA.length-1?"rgba(56,189,248,.2)":"rgba(100,140,255,.06)"};transition:all .2s">
-          <span style="color:${st.selM<MA.length-1?"#7dd3fc":"#2a3050"};font-size:16px;font-weight:900">›</span>
+        <div onclick="if(st.selM<${MA.length-1}){st.selM++;render()}" class="nav-btn ${st.selM<MA.length-1?"nav-btn-on":"nav-btn-off"}">
+          <span style="color:${st.selM<MA.length-1?"#6c3ce0":"#ddd"};font-size:18px;font-weight:900">›</span>
         </div>
       </div>
     </div>`;
-    h+=`<div class="gc" style="text-align:center;padding:10px 14px;margin-bottom:10px">
-      <div style="font-size:12px;font-weight:800;color:#4ade80">✅ ${match.rs}</div>
-    </div>`;
+    h+=`<div class="cd" style="text-align:center;padding:8px 14px;background:#ecfdf5"><div style="font-size:12px;font-weight:800;color:#16a34a">✅ ${match.rs}</div></div>`;
     const mgrPts={};
-    Object.entries(R).forEach(([p,i])=>{
-      let r=match.b?.[p]||0,w=match.w?.[p]||0,c=match.ct?.[p]||0,ro=match.ro?.[p]||0;
-      if(r>0||w>0||c>0||ro>0){
-        let pt=r*P.r+w*P.w+c*P.c+ro*P.ro;
-        if(!mgrPts[i.m])mgrPts[i.m]={tot:0,pls:[]};
-        mgrPts[i.m].tot+=pt;
-        mgrPts[i.m].pls.push({n:p,r,w,c,ro,pt,t:i.t,rl:i.r});
-      }
-    });
+    Object.entries(R).forEach(([p,i])=>{let r=match.b?.[p]||0,w=match.w?.[p]||0,c=match.ct?.[p]||0,ro=match.ro?.[p]||0;if(r>0||w>0||c>0||ro>0){let pt=r*P.r+w*P.w+c*P.c+ro*P.ro;if(!mgrPts[i.m])mgrPts[i.m]={tot:0,pls:[]};mgrPts[i.m].tot+=pt;mgrPts[i.m].pls.push({n:p,r,w,c,ro,pt,t:i.t,rl:i.r})}});
     const mgrSorted=Object.entries(mgrPts).sort((a,b)=>b[1].tot-a[1].tot);
     mgrSorted.forEach(([mgr,data],mi)=>{
       const mc=M[mgr];
-      h+=`<div class="gc ri" style="animation-delay:${mi*.06}s;${mi===0?`border-color:${mc.c}20`:""};margin-bottom:10px">
+      h+=`<div class="cd ri" style="animation-delay:${mi*.06}s;border-color:${mi===0?mc.c+"30":"transparent"};background:${mi===0?mc.bg:"#fff"}">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
           <div style="display:flex;align-items:center;gap:10px">
-            <div style="width:28px;height:28px;border-radius:8px;background:${mc.g};display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:800;flex-shrink:0">${mi===0?"🏆":mi+1}</div>
-            <div>
-              <div style="font-size:13px;font-weight:800">${mc.e} ${mgr}</div>
-              <div style="font-size:9px;color:#4a5580">${mc.tag} · ${data.pls.length} scorers</div>
-            </div>
+            <div style="width:30px;height:30px;border-radius:10px;background:${mc.g};display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;font-weight:800;flex-shrink:0">${mi===0?"🏆":mi+1}</div>
+            <div><div style="font-size:13px;font-weight:800">${mc.e} ${mgr}</div><div style="font-size:9px;color:#9ca3af;font-weight:600">${mc.tag} · ${data.pls.length} scorers</div></div>
           </div>
-          <div style="font-size:22px;font-weight:900;color:${mc.c}">${data.tot}<span style="font-size:8px;color:#4a5580;margin-left:2px">PTS</span></div>
+          <div style="font-size:24px;font-weight:900;color:${mc.c}">${data.tot}<span style="font-size:8px;color:#9ca3af;margin-left:2px">PTS</span></div>
         </div>`;
       data.pls.sort((a,b)=>b.pt-a.pt).forEach((p,j)=>{
-        h+=`<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-top:1px solid rgba(100,140,255,.04)">
-          <div style="display:flex;align-items:center;gap:6px">
-            <span style="font-size:9px">${re(p.rl)}</span>
-            <span style="font-weight:700;font-size:11px">${esc(p.n)}</span>
-            <span style="font-size:8px;color:#3a4570">${tb(p.t)}</span>
-          </div>
+        h+=`<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-top:1px solid #f8f8fc">
+          <div style="display:flex;align-items:center;gap:6px"><span style="font-size:9px">${re(p.rl)}</span><span style="font-weight:700;font-size:11px">${esc(p.n)}</span><span style="font-size:8px;color:#bbb">${tb(p.t)}</span></div>
           <div style="font-weight:800;color:${mc.c};font-size:11px">${pb(p)} = ${p.pt}</div>
         </div>`;
       });
       h+=`</div>`;
     });
-    if(mgrSorted.length===0){
-      h+=`<div class="gc" style="text-align:center;padding:20px;color:#4a5580;font-size:12px">No fantasy players scored in this match</div>`;
-    }
     }
   }
 
   // === PLAYERS ===
   if(st.tab==="players"){
-    h+=`<div class="gc">`;
+    h+=`<div class="cd">`;
     tp.forEach((p,i)=>{
       const mc=M[p.mg];
-      h+=`<div class="ri" style="display:flex;align-items:center;justify-content:space-between;padding:9px 0;${i<tp.length-1?"border-bottom:1px solid rgba(100,140,255,.04)":""};animation-delay:${i*.03}s">
-        <div style="display:flex;align-items:center;gap:9px">
-          <span style="font-weight:900;font-size:13px;width:24px;text-align:center;color:${i<3?"#38bdf8":"#3a4570"}">${i===0?"🥇":i===1?"🥈":i===2?"🥉":i+1}</span>
+      h+=`<div class="ri" style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;${i<tp.length-1?"border-bottom:1px solid #f8f8fc":""};animation-delay:${i*.03}s">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-weight:900;font-size:14px;width:26px;text-align:center;color:${i<3?"#6c3ce0":"#ccc"}">${i===0?"🥇":i===1?"🥈":i===2?"🥉":i+1}</span>
           <div>
             <div style="font-size:12px;font-weight:700">${re(p.rl)} ${esc(p.n)}</div>
-            <div style="font-size:9px;color:#4a5580;margin-top:1px">${tb(p.t)} · <span style="color:${mc?.c}">${mc?.e} ${p.mg.split(" ")[0]}</span></div>
+            <div style="font-size:9px;color:#9ca3af;margin-top:1px;font-weight:600">${tb(p.t)} · <span style="color:${mc?.c}">${mc?.e} ${p.mg.split(" ")[0]}</span></div>
           </div>
         </div>
         <div style="text-align:right">
-          <div style="font-weight:900;font-size:16px;color:${mc?.c}">${p.pt}</div>
-          <div style="font-size:7px;color:#4a5580">${pb(p)}</div>
+          <div style="font-weight:900;font-size:18px;color:${mc?.c}">${p.pt}</div>
+          <div style="font-size:8px;color:#bbb;font-weight:600">${pb(p)}</div>
         </div>
       </div>`;
     });
     h+=`</div>`;
   }
 
-  // === NEXT (PREVIEW) — Day by Day with arrows ===
+  // === PREVIEW ===
   if(st.tab==="next"){
     const upcoming=getUpcoming();
-    if(upcoming.length===0){
-      h+=`<div class="gc" style="text-align:center;padding:30px"><div style="font-size:28px;margin-bottom:8px">🏆</div><div style="font-size:14px;font-weight:800;color:#38bdf8">All matches completed!</div></div>`;
+    if(upcoming.length===0){h+=`<div class="cd" style="text-align:center;padding:30px"><div style="font-size:28px;margin-bottom:8px">🏆</div><div style="font-size:14px;font-weight:800;color:#6c3ce0">All matches completed!</div></div>`;
     } else {
-      const grouped=groupByDate(upcoming);
-      const dates=Object.keys(grouped);
+      const grouped=groupByDate(upcoming);const dates=Object.keys(grouped);
       if(st.prevDay>=dates.length)st.prevDay=dates.length-1;
-      if(st.prevDay<0)st.prevDay=0;
-      const dt=dates[st.prevDay];
-      const dayMatches=grouped[dt];
-      const isDH=dayMatches.length>1;
-      h+=`<div class="gc-lead" style="padding:14px 16px">
+      const dt=dates[st.prevDay],dayMatches=grouped[dt],isDH=dayMatches.length>1;
+      h+=`<div class="cd" style="padding:14px 16px">
         <div style="display:flex;align-items:center;justify-content:space-between">
-          <div onclick="if(st.prevDay>0){st.prevDay--;render()}" style="width:36px;height:36px;border-radius:50%;background:${st.prevDay>0?"rgba(56,189,248,.12)":"rgba(100,140,255,.04)"};display:flex;align-items:center;justify-content:center;cursor:${st.prevDay>0?"pointer":"default"};border:1px solid ${st.prevDay>0?"rgba(56,189,248,.2)":"rgba(100,140,255,.06)"};transition:all .2s">
-            <span style="color:${st.prevDay>0?"#7dd3fc":"#2a3050"};font-size:16px;font-weight:900">‹</span>
+          <div onclick="if(st.prevDay>0){st.prevDay--;render()}" class="nav-btn ${st.prevDay>0?"nav-btn-on":"nav-btn-off"}">
+            <span style="color:${st.prevDay>0?"#6c3ce0":"#ddd"};font-size:18px;font-weight:900">‹</span>
           </div>
           <div style="text-align:center">
-            <div style="font-size:9px;color:#c084fc;font-weight:800;letter-spacing:2px;margin-bottom:4px">🔮 MATCH DAY PREVIEW</div>
-            <div style="font-size:16px;font-weight:900">${dt}</div>
-            <div style="font-size:10px;color:#4a5580;margin-top:3px">${isDH?"🔥 Double Header":"Single Match"} · Day ${st.prevDay+1} of ${dates.length}</div>
+            <div style="font-size:9px;color:#a855f7;font-weight:800;letter-spacing:2px;margin-bottom:4px">🔮 MATCH DAY PREVIEW</div>
+            <div style="font-size:18px;font-weight:900">${dt}</div>
+            <div style="font-size:10px;color:#9ca3af;margin-top:3px;font-weight:600">${isDH?"🔥 Double Header":"Single Match"} · Day ${st.prevDay+1} of ${dates.length}</div>
           </div>
-          <div onclick="if(st.prevDay<${dates.length-1}){st.prevDay++;render()}" style="width:36px;height:36px;border-radius:50%;background:${st.prevDay<dates.length-1?"rgba(56,189,248,.12)":"rgba(100,140,255,.04)"};display:flex;align-items:center;justify-content:center;cursor:${st.prevDay<dates.length-1?"pointer":"default"};border:1px solid ${st.prevDay<dates.length-1?"rgba(56,189,248,.2)":"rgba(100,140,255,.06)"};transition:all .2s">
-            <span style="color:${st.prevDay<dates.length-1?"#7dd3fc":"#2a3050"};font-size:16px;font-weight:900">›</span>
+          <div onclick="if(st.prevDay<${dates.length-1}){st.prevDay++;render()}" class="nav-btn ${st.prevDay<dates.length-1?"nav-btn-on":"nav-btn-off"}">
+            <span style="color:${st.prevDay<dates.length-1?"#6c3ce0":"#ddd"};font-size:18px;font-weight:900">›</span>
           </div>
         </div>
       </div>`;
-      if(isDH){h+=`<div class="dh">🔥 DOUBLE HEADER · ${dt}</div>`}
+      if(isDH)h+=`<div class="dh">🔥 DOUBLE HEADER · ${dt}</div>`;
       dayMatches.forEach((m,mi)=>{
-        h+=`<div class="gc ri" style="animation-delay:${mi*.06}s;${isDH?"border-left:2px solid #ec4899":""}">
+        h+=`<div class="cd ri" style="animation-delay:${mi*.06}s;${isDH?"border-left:3px solid #ec4899":""}">
           <div style="display:flex;align-items:center;justify-content:space-between">
-            <div>
-              <div style="font-size:16px;font-weight:900">${tb(m.t1)} <span style="color:#3a4570;font-size:11px;margin:0 4px">vs</span> ${tb(m.t2)}</div>
-              <div style="font-size:10px;color:#4a5580;margin-top:4px">Match #${m.n} · ${m.v}</div>
-            </div>
-            <span class="badge" style="background:rgba(56,189,248,.08);color:#38bdf8;border:1px solid rgba(56,189,248,.15)">Upcoming</span>
+            <div><div style="font-size:16px;font-weight:900">${tb(m.t1)} <span style="color:#ccc;font-size:11px;margin:0 4px">vs</span> ${tb(m.t2)}</div>
+            <div style="font-size:10px;color:#9ca3af;margin-top:4px;font-weight:600">Match #${m.n} · ${m.v}</div></div>
+            <span class="badge" style="background:#eef6ff;color:#2d7dd2;font-size:9px">Upcoming</span>
           </div>
         </div>`;
       });
-      const allTeams=[];
-      dayMatches.forEach(m=>{allTeams.push(m.t1);allTeams.push(m.t2)});
-      const mgrPlayers={};
-      Object.keys(M).forEach(mgr=>{mgrPlayers[mgr]=[]});
-      allTeams.forEach(t=>{
-        Object.entries(R).filter(([_,i])=>i.t===t).forEach(([n,i])=>{
-          mgrPlayers[i.m].push({n,r:i.r,t});
-        });
-      });
+      const allTeams=[];dayMatches.forEach(m=>{allTeams.push(m.t1);allTeams.push(m.t2)});
+      const mgrPlayers={};Object.keys(M).forEach(mgr=>{mgrPlayers[mgr]=[]});
+      allTeams.forEach(t=>{Object.entries(R).filter(([_,i])=>i.t===t).forEach(([n,i])=>{mgrPlayers[i.m].push({n,r:i.r,t})})});
       const activeMgrs=Object.entries(mgrPlayers).filter(([_,pls])=>pls.length>0).sort((a,b)=>b[1].length-a[1].length);
       if(activeMgrs.length>0){
-        h+=`<div class="gc ri" style="animation-delay:.12s">
-          <div style="font-size:9px;font-weight:800;color:#c084fc;letter-spacing:1.5px;margin-bottom:10px;text-transform:uppercase">${isDH?"🔥 Fantasy Players — Both Matches":"⚡ Fantasy Players In Action"}</div>`;
+        h+=`<div class="cd ri" style="animation-delay:.12s">
+          <div class="section-title">${isDH?"🔥 Fantasy Players — Both Matches":"⚡ Fantasy Players In Action"}</div>`;
         activeMgrs.forEach(([mgr,pls])=>{
           const mc=M[mgr];
-          h+=`<div style="margin-bottom:10px">
-            <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
-              <span style="font-size:11px">${mc.e}</span>
-              <span style="font-weight:800;font-size:11px;color:${mc.c}">${mgr}</span>
-              <span style="font-size:9px;color:#3a4570;font-weight:700">${mc.tag} · ${pls.length} in action</span>
-            </div>`;
+          h+=`<div style="margin-bottom:10px"><div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+            <span style="font-size:11px">${mc.e}</span><span style="font-weight:800;font-size:11px;color:${mc.c}">${mgr}</span>
+            <span style="font-size:9px;color:#9ca3af;font-weight:700">${mc.tag} · ${pls.length} in action</span></div>`;
           pls.forEach((p,pi)=>{
-            h+=`<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:${pi<pls.length-1?"1px solid rgba(100,140,255,.04)":"none"}">
-              <div style="display:flex;align-items:center;gap:5px">
-                <span style="font-size:9px">${re(p.r)}</span>
-                <span style="font-weight:600;font-size:11px">${esc(p.n)}</span>
-              </div>
+            h+=`<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:${pi<pls.length-1?"1px solid #f8f8fc":"none"}">
+              <div style="display:flex;align-items:center;gap:5px"><span style="font-size:9px">${re(p.r)}</span><span style="font-weight:600;font-size:11px">${esc(p.n)}</span></div>
               <span style="color:${TC[p.t]};font-weight:700;font-size:9px">${p.t}</span>
             </div>`;
           });
@@ -532,49 +472,52 @@ function render(){
 
   // === TABLE ===
   if(st.tab==="table"){
-    h+=`<div class="gc">
-      <div style="font-size:14px;font-weight:800;color:#38bdf8;margin-bottom:12px">📊 IPL 2026 Standings</div>`;
+    h+=`<div class="cd">
+      <div style="font-size:16px;font-weight:800;color:#1a1a2e;margin-bottom:12px">📊 IPL 2026 Standings</div>`;
     h+=`<div class="grid-header" style="grid-template-columns:24px 1fr 28px 28px 28px 50px 36px"><div>#</div><div>TEAM</div><div style="text-align:center">M</div><div style="text-align:center">W</div><div style="text-align:center">L</div><div style="text-align:right">NRR</div><div style="text-align:right">PTS</div></div>`;
     PT.forEach((t,i)=>{
-      h+=`<div class="ri grid-row" style="grid-template-columns:24px 1fr 28px 28px 28px 50px 36px;animation-delay:${i*.03}s">
-        <div style="font-weight:800;font-size:11px;color:${i<4?"#38bdf8":"#3a4570"}">${i+1}</div>
+      h+=`<div class="ri grid-row" style="grid-template-columns:24px 1fr 28px 28px 28px 50px 36px;animation-delay:${i*.03}s;${i<4?"background:#f8f8fc;border-radius:8px;margin:2px 0":""}">
+        <div style="font-weight:800;font-size:11px;color:${i<4?"#6c3ce0":"#ccc"}">${i+1}</div>
         <div style="font-weight:800;font-size:12px;color:${TC[t.t]}">${t.t}</div>
-        <div style="text-align:center;color:#6b7aaa;font-weight:700;font-size:10px">${t.m}</div>
-        <div style="text-align:center;color:#4ade80;font-weight:700;font-size:10px">${t.w||"-"}</div>
-        <div style="text-align:center;color:${t.l>0?"#f87171":"#1a2040"};font-weight:700;font-size:10px">${t.l||"-"}</div>
-        <div style="text-align:right;color:${parseFloat(t.nrr)>0?"#4ade80":parseFloat(t.nrr)<0?"#f87171":"#3a4570"};font-weight:700;font-size:9px">${t.nrr}</div>
-        <div style="text-align:right;font-weight:900;font-size:13px;color:${t.pts>0?"#38bdf8":"#111828"}">${t.pts}</div>
+        <div style="text-align:center;color:#888;font-weight:700;font-size:10px">${t.m}</div>
+        <div style="text-align:center;color:#22c55e;font-weight:700;font-size:10px">${t.w||"-"}</div>
+        <div style="text-align:center;color:${t.l>0?"#ef4444":"#eee"};font-weight:700;font-size:10px">${t.l||"-"}</div>
+        <div style="text-align:right;color:${parseFloat(t.nrr)>0?"#22c55e":parseFloat(t.nrr)<0?"#ef4444":"#999"};font-weight:700;font-size:9px">${t.nrr}</div>
+        <div style="text-align:right;font-weight:900;font-size:13px;color:${t.pts>0?"#6c3ce0":"#ddd"}">${t.pts}</div>
       </div>`;
     });
-    h+=`<div style="margin-top:10px;padding-top:8px;border-top:1px solid rgba(100,140,255,.06);font-size:9px;color:#3a4570">Top 4 qualify for playoffs · 2pts per win</div></div>`;
+    h+=`<div style="margin-top:10px;padding-top:8px;border-top:1.5px solid #f0f2f8;font-size:9px;color:#bbb;font-weight:600">Top 4 qualify for playoffs · 2pts per win</div></div>`;
   }
 
   // === SCHEDULE ===
   if(st.tab==="schedule"){
-    h+=`<div style="font-size:14px;font-weight:800;color:#38bdf8;margin-bottom:12px">📅 IPL 2026 Schedule</div>`;
+    h+=`<div style="font-size:16px;font-weight:800;color:#1a1a2e;margin-bottom:12px">📅 IPL 2026 Schedule</div>`;
     let prevDt="";
     SCH.forEach((s,i)=>{
       if(s.dh&&s.dt!==prevDt){h+=`<div class="dh">🔥 DOUBLE HEADER · ${s.dt}</div>`}
       prevDt=s.dt;
-      h+=`<div class="gc ri" style="padding:10px 13px;animation-delay:${i*.03}s;${s.done?"opacity:.4":""}">
+      h+=`<div class="cd ri" style="padding:10px 14px;animation-delay:${i*.02}s;${s.done?"opacity:.45":""}">
         <div style="display:flex;align-items:center;justify-content:space-between">
           <div>
-            <div style="font-size:12px;font-weight:800">${tb(s.t1)} <span style="color:#3a4570;font-size:9px">vs</span> ${tb(s.t2)}</div>
-            <div style="font-size:9px;color:#3a4570;margin-top:3px">#${s.n} · ${s.dt} · ${s.v}</div>
+            <div style="font-size:12px;font-weight:800">${tb(s.t1)} <span style="color:#ccc;font-size:9px">vs</span> ${tb(s.t2)}</div>
+            <div style="font-size:9px;color:#bbb;margin-top:3px;font-weight:600">#${s.n} · ${s.dt} · ${s.v}</div>
           </div>
-          <div>${s.done?`<span class="badge" style="background:rgba(74,222,128,.08);color:#4ade80;border:1px solid rgba(74,222,128,.15)">✓ Done</span>`:`<span class="badge" style="background:rgba(56,189,248,.08);color:#38bdf8;border:1px solid rgba(56,189,248,.15)">Upcoming</span>`}</div>
+          <div>${s.done?`<span class="badge" style="background:#ecfdf5;color:#16a34a">✓ Done</span>`:`<span class="badge" style="background:#eef6ff;color:#2d7dd2">Upcoming</span>`}</div>
         </div>
       </div>`;
     });
   }
 
-  h+=`<div style="text-align:center;margin-top:20px;padding:14px 0;border-top:1px solid rgba(100,140,255,.06)">
-    <div style="font-size:8px;color:#3a4570;font-weight:700;letter-spacing:1.5px">FANTASY IPL 2026 · 5 MANAGERS · 75 PLAYERS · ${MA.length} MATCHES</div>
+  h+=`<div style="text-align:center;margin-top:16px;padding:12px 0">
+    <div style="font-size:9px;color:#bbb;font-weight:700;letter-spacing:1.5px">FANTASY IPL 2026 · 5 MANAGERS · 75 PLAYERS · ${MA.length} MATCHES</div>
   </div>`;
 
   document.getElementById("app").innerHTML=h;
-  animNum("lp",lv.tot);
-  if(st.tab==="squads")animNum("sp",mg[st.selT].tot);
+
+  // Bottom Nav
+  let nav=document.getElementById("bnav");
+  if(!nav){nav=document.createElement("div");nav.id="bnav";nav.className="bnav";document.body.appendChild(nav)}
+  nav.innerHTML=NAVTABS.map(([k,ic,label])=>`<div class="bnav-item ${st.tab===k?"on":""}" onclick="st.tab='${k}';render()"><span class="bi">${ic}</span>${label}</div>`).join("");
 }
 render();
 </script>
