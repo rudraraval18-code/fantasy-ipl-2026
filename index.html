@@ -275,7 +275,7 @@ function render(){
         ${so.length>1?`<div style="margin-top:4px;font-size:10px;color:#4ade80;font-weight:700">▲ ${lv.tot-so[1][1].tot} pts ahead</div>`:""}
       </div>
       <div style="text-align:right;flex-shrink:0">
-        <div style="font-size:38px;font-weight:900;line-height:1">${lv.tot}</div>
+        <div style="font-size:38px;font-weight:900;line-height:1;color:${lc.c}">${lv.tot}</div>
         <div class="pts-label" style="color:rgba(255,255,255,.5)">POINTS</div>
       </div>
     </div>
@@ -287,7 +287,7 @@ function render(){
     if(isDesk)h+=`<div class="desk-grid">`;
     so.forEach(([n,d],i)=>{
       const c=M[n],isE=st.exp===n,bw=lv.tot>0?(d.tot/lv.tot)*100:0;
-      h+=`<div class="cd ri" style="cursor:pointer;animation-delay:${i*.06}s;border-color:${isE?c.c+"40":"transparent"};background:${isE?c.bg:"#fff"}" onclick="st.exp=st.exp==='${esc(n)}'?null:'${esc(n)}';render()">
+      h+=`<div class="cd ri" style="cursor:pointer;animation-delay:${i*.06}s;background:${c.bg};border-left:4px solid ${c.c};border-color:${c.c}${isE?"60":"25"}" onclick="st.exp=st.exp==='${esc(n)}'?null:'${esc(n)}';render()">
         <div style="display:flex;align-items:center;justify-content:space-between">
           <div style="display:flex;align-items:center;gap:12px">
             <div class="avatar-sm">${ROBOTS[n]}</div>
