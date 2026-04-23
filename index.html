@@ -10,157 +10,65 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:'Outfit',system-ui,sans-serif;background:#f0f2f8;color:#1a1a2e;min-height:100vh;overflow-x:hidden;padding-bottom:72px}
+body{font-family:'Outfit',system-ui,sans-serif;background:radial-gradient(circle at top right, rgba(168,85,247,.18), transparent 28%),radial-gradient(circle at top left, rgba(236,72,153,.10), transparent 25%),linear-gradient(180deg,#eef2ff 0%,#f7f7fb 45%,#edf1f7 100%);color:#17172b;min-height:100vh;overflow-x:hidden;padding-bottom:92px}
 .w{max-width:640px;margin:0 auto;padding:12px 14px 20px;position:relative}
-@media(min-width:768px){.w{max-width:1100px;padding:16px 24px 24px}}
-
-/* Cards */
-.cd{background:#fff;border-radius:20px;padding:16px;margin-bottom:10px;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:all .25s;border:1.5px solid transparent}
-.cd:hover{box-shadow:0 4px 20px rgba(0,0,0,.1)}
-.cd-hero{background:linear-gradient(135deg,#1a1a2e,#2d1b69);border-radius:24px;padding:20px;margin-bottom:12px;color:#fff;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(26,26,46,.25)}
-.cd-hero::before{content:'';position:absolute;top:-50%;right:-30%;width:200px;height:200px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);border-radius:50%}
-.cd-hero::after{content:'';position:absolute;bottom:-30%;left:-20%;width:160px;height:160px;background:radial-gradient(circle,rgba(139,92,246,.15) 0%,transparent 70%);border-radius:50%}
-
-/* Bottom Nav */
-.bnav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e8e8f0;display:flex;z-index:100;padding:4px 0 env(safe-area-inset-bottom,4px);box-shadow:0 -2px 20px rgba(0,0,0,.06)}
-.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 2px 4px;cursor:pointer;font-weight:700;font-size:9px;color:#9ca3af;transition:all .2s;user-select:none;position:relative}
+@media(min-width:768px){.w{max-width:1200px;padding:18px 24px 28px}}
+.cd{background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-radius:24px;padding:18px;margin-bottom:12px;box-shadow:0 16px 32px rgba(39,44,63,.08);transition:all .25s;border:1px solid rgba(124,58,237,.06)}
+.cd:hover{box-shadow:0 22px 38px rgba(39,44,63,.11);transform:translateY(-3px)}
+.cd-hero{background:linear-gradient(145deg,#18182d 0%,#251c4f 45%,#321b5f 100%);border-radius:30px;padding:24px;margin-bottom:14px;color:#fff;position:relative;overflow:hidden;box-shadow:0 24px 50px rgba(38,23,77,.22)}
+.cd-hero::before{content:'';position:absolute;top:-38%;right:-12%;width:280px;height:280px;background:radial-gradient(circle,rgba(255,255,255,.16) 0%,transparent 65%);border-radius:50%}
+.cd-hero::after{content:'';position:absolute;bottom:-38%;left:-12%;width:230px;height:230px;background:radial-gradient(circle,rgba(236,72,153,.18) 0%,transparent 65%);border-radius:50%}
+.bnav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);width:min(880px,calc(100% - 24px));background:rgba(255,255,255,.88);backdrop-filter:blur(12px);border:1px solid rgba(124,58,237,.08);display:flex;z-index:100;padding:8px;box-shadow:0 20px 42px rgba(40,43,62,.14);border-radius:24px}
+.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 6px;cursor:pointer;font-weight:800;font-size:10px;color:#8b93a7;transition:all .2s;user-select:none;position:relative;border-radius:18px}
 .bnav-item .bi{font-size:18px;line-height:1;transition:transform .2s}
-.bnav-item.on{color:#6c3ce0}
-.bnav-item.on .bi{transform:scale(1.15)}
-.bnav-item.on::before{content:'';position:absolute;top:-1px;left:25%;right:25%;height:3px;background:linear-gradient(90deg,#6c3ce0,#a855f7);border-radius:0 0 4px 4px}
-
-/* Progress bar */
-.bar{height:6px;background:#f0f2f8;border-radius:6px;margin-top:10px;overflow:hidden}
-.bar div{height:100%;border-radius:6px;transition:width .8s cubic-bezier(.22,1,.36,1)}
-
-/* Animations */
+.bnav-item.on{color:#fff;background:linear-gradient(135deg,#6d28d9,#a855f7);box-shadow:0 10px 22px rgba(124,58,237,.22)}
+.bnav-item.on .bi{transform:scale(1.08)}
+.bar{height:10px;background:#edf0f6;border-radius:999px;margin-top:12px;overflow:hidden}
+.bar div{height:100%;border-radius:999px;transition:width .8s cubic-bezier(.22,1,.36,1);background:linear-gradient(90deg,#7c3aed,#a855f7 58%,#ec4899 100%)}
 .ri{animation:ri .45s cubic-bezier(.22,1,.36,1) both}
 @keyframes ri{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
 .float{animation:float 3s ease-in-out infinite}
-
 .dh{background:linear-gradient(90deg,#fce7f3,#fff);border-left:3px solid #ec4899;padding:6px 12px;border-radius:0 12px 12px 0;font-size:10px;font-weight:800;color:#ec4899;margin-bottom:8px;letter-spacing:.5px}
-.header-title{font-size:28px;font-weight:900;background:linear-gradient(135deg,#6c3ce0,#a855f7,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.header-title{font-size:32px;font-weight:900;background:linear-gradient(135deg,#5b21b6,#7c3aed 45%,#ec4899 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .pts-label{font-size:8px;color:#9ca3af;font-weight:700;letter-spacing:1px;text-transform:uppercase}
 .section-title{font-size:10px;font-weight:800;color:#9ca3af;letter-spacing:1.5px;margin-bottom:8px;text-transform:uppercase}
 .badge{padding:4px 10px;border-radius:20px;font-weight:700;font-size:9px;letter-spacing:.3px;display:inline-block}
 .grid-header{display:grid;font-size:9px;font-weight:700;color:#9ca3af;padding-bottom:8px;border-bottom:1.5px solid #f0f2f8;letter-spacing:.5px;margin-bottom:2px}
 .grid-row{display:grid;padding:8px 0;border-bottom:1px solid #f8f8fc;align-items:center}
-
-/* Nav arrow buttons */
 .nav-btn{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .2s;border:none;cursor:pointer}
 .nav-btn-on{background:#f0f2f8;box-shadow:0 2px 8px rgba(0,0,0,.08)}
 .nav-btn-on:active{background:#e4e6ee;transform:scale(.95)}
 .nav-btn-off{background:#f8f8fc;cursor:default}
-
 .avatar-lg{width:80px;height:80px;border-radius:20px;flex-shrink:0;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.12)}
 .avatar-lg svg{width:100%;height:100%;display:block}
 .avatar-sm{width:44px;height:44px;border-radius:13px;flex-shrink:0;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)}
 .avatar-sm svg{width:100%;height:100%;display:block}
 .avatar-sq{width:48px;height:48px;border-radius:14px;flex-shrink:0;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)}
 .avatar-sq svg{width:100%;height:100%;display:block}
-
-/* Stat chips */
-.stat-chip{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;background:#f8f8fc}
-
+.stat-chip{display:inline-flex;align-items:center;gap:6px;padding:10px 14px;border-radius:999px;font-size:12px;font-weight:800;background:rgba(255,255,255,.85);border:1px solid rgba(124,58,237,.08);box-shadow:0 8px 24px rgba(34,35,58,.06)}
+.hero-mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px;position:relative;z-index:1}.hero-mini{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:14px}.hero-mini .label{color:rgba(255,255,255,.58);font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin-bottom:8px}.hero-mini .value{font-size:24px;font-weight:900}.topstrip{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}.match-pill{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.82);border:1px solid rgba(124,58,237,.08);box-shadow:0 8px 24px rgba(34,35,58,.06);font-size:12px;font-weight:800;color:#4b5563}.board-wrap{display:grid;grid-template-columns:1.25fr .95fr;gap:14px}.board-side .cd{position:sticky;top:12px}.preview-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}.next-hero{display:grid;gap:14px}.mini-list{display:grid;gap:10px}.mini-row{display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid #f1f3f8}.mini-row:first-child{border-top:0;padding-top:0}
+@media(max-width:920px){.board-wrap,.preview-grid{grid-template-columns:1fr}.board-side .cd{position:static}}
+@media(max-width:640px){body{padding-bottom:116px}.hero-mini-grid{grid-template-columns:1fr}.bnav{bottom:12px;width:calc(100% - 16px);border-radius:22px;flex-wrap:wrap}.bnav-item{min-width:25%}.topstrip{align-items:flex-start}.header-title{font-size:28px}.avatar-lg{width:72px;height:72px;border-radius:18px}.preview-grid{gap:10px}}
 @media(max-width:380px){.header-title{font-size:24px}.avatar-lg{width:68px;height:68px;border-radius:16px}}
-@media(min-width:768px){.desk-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}}
 </style>
 </head>
 <body>
 <div class="w" id="app"></div>
 <script>
-const TC={CSK:"#f9cd05",DC:"#4b8df8",GT:"#7bb8e0",KKR:"#7b5ea7",LSG:"#e03a76",MI:"#2d7dd2",PBKS:"#ed1c24",RR:"#e73895",RCB:"#e04f29",SRH:"#f47620"};
+const TC={CSK:"#f9cd05",DC:"#4b8df8",GT:"#7bb8e0",KKR:"#7b5ea7",LSG:"#00a8e8",MI:"#2d7dd2",PBKS:"#ed1c24",RR:"#e73895",RCB:"#e04f29",SRH:"#f47620"};
 function re(r){return r==="Bat"?"🏏":r==="Bowler"?"🎯":r==="AR"?"🏏🎯":r==="WK"?"🧤":r}
 function tb(t){return`<span style="color:${TC[t]||"#888"};font-weight:800">${t}</span>`}
 
 const M={"Mintu Raval":{c:"#ff4d6a",e:"👑",g:"linear-gradient(135deg,#ff4d6a,#e6234a)",bg:"#fff0f3",tag:"IRON MAN"},"Kashish Khanuja":{c:"#ff8c42",e:"🔥",g:"linear-gradient(135deg,#ff8c42,#ff6b1a)",bg:"#fff5ed",tag:"BLACK WIDOW",gender:"f"},"Naman Kothari":{c:"#2d7dd2",e:"⚡",g:"linear-gradient(135deg,#38bdf8,#0ea5e9)",bg:"#eef6ff",tag:"CAPTAIN A"},"Viraj Patel":{c:"#8b5cf6",e:"🌟",g:"linear-gradient(135deg,#a855f7,#7c3aed)",bg:"#f3eeff",tag:"THANOS"},"Kritik Khanuja":{c:"#e84393",e:"💎",g:"linear-gradient(135deg,#e84393,#6c5ce7)",bg:"#fde8f3",tag:"SPIDER-MAN"}};
 
 const ROBOTS={
-"Mintu Raval":`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-<rect width="120" height="120" rx="28" fill="#F5E6E8"/>
-<defs><linearGradient id="im1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF1744"/><stop offset="50%" stop-color="#D50000"/><stop offset="100%" stop-color="#B71C1C"/></linearGradient>
-<linearGradient id="im2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFD740"/><stop offset="100%" stop-color="#FFC400"/></linearGradient></defs>
-<path d="M60 14 Q30 14 24 50 L24 72 Q24 90 40 96 L60 100 L80 96 Q96 90 96 72 L96 50 Q90 14 60 14Z" fill="url(#im1)"/>
-<path d="M60 18 Q34 18 28 50 L28 54 L60 58 L92 54 L92 50 Q86 18 60 18Z" fill="url(#im1)" opacity=".9"/>
-<path d="M38 56 L28 54 L26 70 Q28 78 38 80 Z" fill="url(#im2)"/>
-<path d="M82 56 L92 54 L94 70 Q92 78 82 80 Z" fill="url(#im2)"/>
-<rect x="42" y="54" width="36" height="6" rx="3" fill="url(#im2)" opacity=".8"/>
-<path d="M36 62 Q38 58 46 56" stroke="#FFD740" stroke-width="3" fill="none" stroke-linecap="round"/>
-<path d="M84 62 Q82 58 74 56" stroke="#FFD740" stroke-width="3" fill="none" stroke-linecap="round"/>
-<ellipse cx="42" cy="64" rx="8" ry="5" fill="#fff" opacity=".95"/><ellipse cx="78" cy="64" rx="8" ry="5" fill="#fff" opacity=".95"/>
-<ellipse cx="42" cy="64" rx="6" ry="3.5" fill="#87CEFA"/><ellipse cx="78" cy="64" rx="6" ry="3.5" fill="#87CEFA"/>
-<ellipse cx="42" cy="63" rx="2.5" ry="1.5" fill="#fff" opacity=".7"/><ellipse cx="78" cy="63" rx="2.5" ry="1.5" fill="#fff" opacity=".7"/>
-<path d="M48 56 L60 52 L72 56" stroke="#FFD740" stroke-width="1.5" fill="none"/>
-<rect x="50" y="76" width="20" height="6" rx="3" fill="#B71C1C"/>
-<path d="M60 58 L60 74" stroke="#B71C1C" stroke-width="2"/>
-<circle cx="60" cy="92" r="4" fill="#87CEFA" opacity=".6"/><circle cx="60" cy="92" r="2" fill="#fff" opacity=".5"/>
-<text x="60" y="114" text-anchor="middle" font-size="8" fill="#D50000" font-weight="900" font-family="system-ui" letter-spacing="1.5">IRON MAN</text></svg>`,
-
-"Kashish Khanuja":`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-<rect width="120" height="120" rx="28" fill="#F5EDE0"/>
-<defs><linearGradient id="bw1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C62828"/><stop offset="100%" stop-color="#8B1A1A"/></linearGradient>
-<radialGradient id="bws" cx=".4" cy=".3"><stop offset="0%" stop-color="#FFE0C8"/><stop offset="100%" stop-color="#F0C8A0"/></radialGradient></defs>
-<path d="M26 48 Q24 70 28 90 L22 95 Q20 80 22 50Z" fill="url(#bw1)" opacity=".8"/>
-<path d="M94 48 Q96 70 92 90 L98 95 Q100 80 98 50Z" fill="url(#bw1)" opacity=".8"/>
-<path d="M30 52 Q28 75 32 100" stroke="url(#bw1)" stroke-width="5" fill="none" stroke-linecap="round" opacity=".5"/>
-<path d="M90 52 Q92 75 88 100" stroke="url(#bw1)" stroke-width="5" fill="none" stroke-linecap="round" opacity=".5"/>
-<ellipse cx="60" cy="60" rx="28" ry="30" fill="url(#bws)"/>
-<path d="M32 48 Q36 22 60 18 Q84 22 88 48 Q84 34 60 30 Q36 34 32 48Z" fill="url(#bw1)"/>
-<ellipse cx="47" cy="56" rx="10" ry="10" fill="#fff" opacity=".95"/><ellipse cx="73" cy="56" rx="10" ry="10" fill="#fff" opacity=".95"/>
-<circle cx="46" cy="55.5" r="5" fill="#2E7D32"/><circle cx="72" cy="55.5" r="5" fill="#2E7D32"/>
-<circle cx="44.5" cy="54" r="2" fill="#fff" opacity=".7"/><circle cx="70.5" cy="54" r="2" fill="#fff" opacity=".7"/>
-<path d="M40 46 Q47 43 54 47" stroke="#5D3A1A" stroke-width="2" fill="none" stroke-linecap="round"/>
-<path d="M66 47 Q73 43 80 46" stroke="#5D3A1A" stroke-width="2" fill="none" stroke-linecap="round"/>
-<ellipse cx="38" cy="64" rx="5" ry="3.5" fill="#FF9999" opacity=".3"/><ellipse cx="82" cy="64" rx="5" ry="3.5" fill="#FF9999" opacity=".3"/>
-<path d="M52 72 Q60 78 68 72" stroke="#C05040" stroke-width="2" fill="#FF8888" opacity=".5"/>
-<text x="60" y="114" text-anchor="middle" font-size="7.5" fill="#C62828" font-weight="900" font-family="system-ui" letter-spacing="1">BLACK WIDOW</text></svg>`,
-
-"Naman Kothari":`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-<rect width="120" height="120" rx="28" fill="#E0E8F5"/>
-<defs><linearGradient id="ca1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1565C0"/><stop offset="50%" stop-color="#0D47A1"/><stop offset="100%" stop-color="#0A3880"/></linearGradient>
-<radialGradient id="cas" cx=".4" cy=".3"><stop offset="0%" stop-color="#FFD5B8"/><stop offset="100%" stop-color="#E8A96A"/></radialGradient></defs>
-<path d="M60 14 Q28 16 22 52 L22 62 Q22 66 32 66 L32 58 Q36 20 60 18 Q84 20 88 58 L88 66 Q98 66 98 62 L98 52 Q92 16 60 14Z" fill="url(#ca1)"/>
-<path d="M32 66 L32 58 Q36 20 60 18 Q84 20 88 58 L88 66" fill="url(#ca1)"/>
-<rect x="22" y="56" width="76" height="4" rx="2" fill="#fff"/><rect x="22" y="48" width="76" height="4" rx="2" fill="#E53935"/>
-<polygon points="60,22 63,30 71,30 65,35 67,43 60,38 53,43 55,35 49,30 57,30" fill="#fff"/>
-<text x="60" y="46" text-anchor="middle" font-size="12" fill="#fff" font-weight="900" opacity=".6">A</text>
-<path d="M32 66 L32 92 Q42 100 60 102 Q78 100 88 92 L88 66" fill="url(#cas)"/>
-<ellipse cx="48" cy="76" rx="10" ry="10" fill="#fff" opacity=".95"/><ellipse cx="72" cy="76" rx="10" ry="10" fill="#fff" opacity=".95"/>
-<circle cx="47" cy="75.5" r="5" fill="#1565C0"/><circle cx="71" cy="75.5" r="5" fill="#1565C0"/>
-<circle cx="45.5" cy="74" r="2" fill="#fff" opacity=".7"/><circle cx="69.5" cy="74" r="2" fill="#fff" opacity=".7"/>
-<path d="M52 90 Q60 96 68 90" stroke="#8B6040" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-<text x="60" y="114" text-anchor="middle" font-size="7.5" fill="#1565C0" font-weight="900" font-family="system-ui" letter-spacing="1">CAPTAIN A</text></svg>`,
-
-"Viraj Patel":`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-<rect width="120" height="120" rx="28" fill="#EDE0F8"/>
-<defs><linearGradient id="th1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFD700"/><stop offset="100%" stop-color="#DAA520"/></linearGradient>
-<radialGradient id="ths" cx=".4" cy=".3"><stop offset="0%" stop-color="#B380E0"/><stop offset="100%" stop-color="#7B48A8"/></radialGradient></defs>
-<path d="M60 12 Q26 14 20 55 L20 60 Q20 62 28 58 L34 54 Q38 18 60 16 Q82 18 86 54 L92 58 Q100 62 100 60 L100 55 Q94 14 60 12Z" fill="url(#th1)"/>
-<path d="M34 54 Q38 18 60 16 Q82 18 86 54 L86 96 Q78 104 60 106 Q42 104 34 96Z" fill="url(#ths)"/>
-<path d="M44 50 L48 42 L56 48" stroke="#DAA520" stroke-width="3" fill="none" stroke-linecap="round"/>
-<path d="M76 50 L72 42 L64 48" stroke="#DAA520" stroke-width="3" fill="none" stroke-linecap="round"/>
-<ellipse cx="48" cy="62" rx="7" ry="6" fill="#D0A0FF" opacity=".9"/><ellipse cx="72" cy="62" rx="7" ry="6" fill="#D0A0FF" opacity=".9"/>
-<circle cx="47" cy="61" r="3.5" fill="#4A0080"/><circle cx="71" cy="61" r="3.5" fill="#4A0080"/>
-<circle cx="45.5" cy="59.5" r="1.5" fill="#fff" opacity=".6"/><circle cx="69.5" cy="59.5" r="1.5" fill="#fff" opacity=".6"/>
-<path d="M42 76 L50 80 L60 76 L70 80 L78 76" stroke="#5A2888" stroke-width="3" fill="none" stroke-linecap="round"/>
-<circle cx="60" cy="40" r="4" fill="#FFD700" opacity=".5"/><circle cx="60" cy="40" r="2" fill="#fff" opacity=".4"/>
-<text x="60" y="114" text-anchor="middle" font-size="9" fill="#7B48A8" font-weight="900" font-family="system-ui" letter-spacing="1.5">THANOS</text></svg>`,
-
-"Kritik Khanuja":`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-<rect width="120" height="120" rx="28" fill="#F0E0EA"/>
-<defs><linearGradient id="sp1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E53935"/><stop offset="60%" stop-color="#C62828"/><stop offset="100%" stop-color="#1565C0"/></linearGradient></defs>
-<path d="M60 12 Q28 14 22 55 L22 75 Q22 98 42 104 L60 108 L78 104 Q98 98 98 75 L98 55 Q92 14 60 12Z" fill="url(#sp1)"/>
-<path d="M60 12 L60 108" stroke="#1a1a1a" stroke-width="1" opacity=".15"/>
-<path d="M60 12 Q40 40 22 75" stroke="#1a1a1a" stroke-width="1" opacity=".15"/>
-<path d="M60 12 Q80 40 98 75" stroke="#1a1a1a" stroke-width="1" opacity=".15"/>
-<path d="M22 55 Q60 48 98 55" stroke="#1a1a1a" stroke-width="1" opacity=".12"/>
-<path d="M22 75 Q60 68 98 75" stroke="#1a1a1a" stroke-width="1" opacity=".12"/>
-<ellipse cx="44" cy="56" rx="14" ry="16" fill="#fff" opacity=".97"/><ellipse cx="76" cy="56" rx="14" ry="16" fill="#fff" opacity=".97"/>
-<ellipse cx="44" cy="56" rx="14" ry="16" fill="none" stroke="#1a1a1a" stroke-width="2.5"/>
-<ellipse cx="76" cy="56" rx="14" ry="16" fill="none" stroke="#1a1a1a" stroke-width="2.5"/>
-<text x="60" y="114" text-anchor="middle" font-size="7" fill="#C62828" font-weight="900" font-family="system-ui" letter-spacing="1">SPIDER-MAN</text></svg>`
+"Mintu Raval":`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="120" rx="28" fill="#F5E6E8"/><defs><linearGradient id="im1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF1744"/><stop offset="50%" stop-color="#D50000"/><stop offset="100%" stop-color="#B71C1C"/></linearGradient><linearGradient id="im2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFD740"/><stop offset="100%" stop-color="#FFC400"/></linearGradient></defs><path d="M60 14 Q30 14 24 50 L24 72 Q24 90 40 96 L60 100 L80 96 Q96 90 96 72 L96 50 Q90 14 60 14Z" fill="url(#im1)"/><path d="M60 18 Q34 18 28 50 L28 54 L60 58 L92 54 L92 50 Q86 18 60 18Z" fill="url(#im1)" opacity=".9"/><path d="M38 56 L28 54 L26 70 Q28 78 38 80 Z" fill="url(#im2)"/><path d="M82 56 L92 54 L94 70 Q92 78 82 80 Z" fill="url(#im2)"/><rect x="42" y="54" width="36" height="6" rx="3" fill="url(#im2)" opacity=".8"/><path d="M36 62 Q38 58 46 56" stroke="#FFD740" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M84 62 Q82 58 74 56" stroke="#FFD740" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse cx="42" cy="64" rx="8" ry="5" fill="#fff" opacity=".95"/><ellipse cx="78" cy="64" rx="8" ry="5" fill="#fff" opacity=".95"/><ellipse cx="42" cy="64" rx="6" ry="3.5" fill="#87CEFA"/><ellipse cx="78" cy="64" rx="6" ry="3.5" fill="#87CEFA"/><ellipse cx="42" cy="63" rx="2.5" ry="1.5" fill="#fff" opacity=".7"/><ellipse cx="78" cy="63" rx="2.5" ry="1.5" fill="#fff" opacity=".7"/><path d="M48 56 L60 52 L72 56" stroke="#FFD740" stroke-width="1.5" fill="none"/><rect x="50" y="76" width="20" height="6" rx="3" fill="#B71C1C"/><path d="M60 58 L60 74" stroke="#B71C1C" stroke-width="2"/><circle cx="60" cy="92" r="4" fill="#87CEFA" opacity=".6"/><circle cx="60" cy="92" r="2" fill="#fff" opacity=".5"/><text x="60" y="114" text-anchor="middle" font-size="8" fill="#D50000" font-weight="900" font-family="system-ui" letter-spacing="1.5">IRON MAN</text></svg>`,
+"Kashish Khanuja":`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="120" rx="28" fill="#F5EDE0"/><defs><linearGradient id="bw1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C62828"/><stop offset="100%" stop-color="#8B1A1A"/></linearGradient><radialGradient id="bws" cx=".4" cy=".3"><stop offset="0%" stop-color="#FFE0C8"/><stop offset="100%" stop-color="#F0C8A0"/></radialGradient></defs><path d="M26 48 Q24 70 28 90 L22 95 Q20 80 22 50Z" fill="url(#bw1)" opacity=".8"/><path d="M94 48 Q96 70 92 90 L98 95 Q100 80 98 50Z" fill="url(#bw1)" opacity=".8"/><path d="M30 52 Q28 75 32 100" stroke="url(#bw1)" stroke-width="5" fill="none" stroke-linecap="round" opacity=".5"/><path d="M90 52 Q92 75 88 100" stroke="url(#bw1)" stroke-width="5" fill="none" stroke-linecap="round" opacity=".5"/><ellipse cx="60" cy="60" rx="28" ry="30" fill="url(#bws)"/><path d="M32 48 Q36 22 60 18 Q84 22 88 48 Q84 34 60 30 Q36 34 32 48Z" fill="url(#bw1)"/><ellipse cx="47" cy="56" rx="10" ry="10" fill="#fff" opacity=".95"/><ellipse cx="73" cy="56" rx="10" ry="10" fill="#fff" opacity=".95"/><circle cx="46" cy="55.5" r="5" fill="#2E7D32"/><circle cx="72" cy="55.5" r="5" fill="#2E7D32"/><circle cx="44.5" cy="54" r="2" fill="#fff" opacity=".7"/><circle cx="70.5" cy="54" r="2" fill="#fff" opacity=".7"/><path d="M40 46 Q47 43 54 47" stroke="#5D3A1A" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M66 47 Q73 43 80 46" stroke="#5D3A1A" stroke-width="2" fill="none" stroke-linecap="round"/><ellipse cx="38" cy="64" rx="5" ry="3.5" fill="#FF9999" opacity=".3"/><ellipse cx="82" cy="64" rx="5" ry="3.5" fill="#FF9999" opacity=".3"/><path d="M52 72 Q60 78 68 72" stroke="#C05040" stroke-width="2" fill="#FF8888" opacity=".5"/><text x="60" y="114" text-anchor="middle" font-size="7.5" fill="#C62828" font-weight="900" font-family="system-ui" letter-spacing="1">BLACK WIDOW</text></svg>`,
+"Naman Kothari":`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="120" rx="28" fill="#E0E8F5"/><defs><linearGradient id="ca1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1565C0"/><stop offset="50%" stop-color="#0D47A1"/><stop offset="100%" stop-color="#0A3880"/></linearGradient><radialGradient id="cas" cx=".4" cy=".3"><stop offset="0%" stop-color="#FFD5B8"/><stop offset="100%" stop-color="#E8A96A"/></radialGradient></defs><path d="M60 14 Q28 16 22 52 L22 62 Q22 66 32 66 L32 58 Q36 20 60 18 Q84 20 88 58 L88 66 Q98 66 98 62 L98 52 Q92 16 60 14Z" fill="url(#ca1)"/><path d="M32 66 L32 58 Q36 20 60 18 Q84 20 88 58 L88 66" fill="url(#ca1)"/><rect x="22" y="56" width="76" height="4" rx="2" fill="#fff"/><rect x="22" y="48" width="76" height="4" rx="2" fill="#E53935"/><polygon points="60,22 63,30 71,30 65,35 67,43 60,38 53,43 55,35 49,30 57,30" fill="#fff"/><text x="60" y="46" text-anchor="middle" font-size="12" fill="#fff" font-weight="900" opacity=".6">A</text><path d="M32 66 L32 92 Q42 100 60 102 Q78 100 88 92 L88 66" fill="url(#cas)"/><ellipse cx="48" cy="76" rx="10" ry="10" fill="#fff" opacity=".95"/><ellipse cx="72" cy="76" rx="10" ry="10" fill="#fff" opacity=".95"/><circle cx="47" cy="75.5" r="5" fill="#1565C0"/><circle cx="71" cy="75.5" r="5" fill="#1565C0"/><circle cx="45.5" cy="74" r="2" fill="#fff" opacity=".7"/><circle cx="69.5" cy="74" r="2" fill="#fff" opacity=".7"/><path d="M52 90 Q60 96 68 90" stroke="#8B6040" stroke-width="2.5" fill="none" stroke-linecap="round"/><text x="60" y="114" text-anchor="middle" font-size="7.5" fill="#1565C0" font-weight="900" font-family="system-ui" letter-spacing="1">CAPTAIN A</text></svg>`,
+"Viraj Patel":`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="120" rx="28" fill="#EDE0F8"/><defs><linearGradient id="th1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFD700"/><stop offset="100%" stop-color="#DAA520"/></linearGradient><radialGradient id="ths" cx=".4" cy=".3"><stop offset="0%" stop-color="#B380E0"/><stop offset="100%" stop-color="#7B48A8"/></radialGradient></defs><path d="M60 12 Q26 14 20 55 L20 60 Q20 62 28 58 L34 54 Q38 18 60 16 Q82 18 86 54 L92 58 Q100 62 100 60 L100 55 Q94 14 60 12Z" fill="url(#th1)"/><path d="M34 54 Q38 18 60 16 Q82 18 86 54 L86 96 Q78 104 60 106 Q42 104 34 96Z" fill="url(#ths)"/><path d="M44 50 L48 42 L56 48" stroke="#DAA520" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M76 50 L72 42 L64 48" stroke="#DAA520" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse cx="48" cy="62" rx="7" ry="6" fill="#D0A0FF" opacity=".9"/><ellipse cx="72" cy="62" rx="7" ry="6" fill="#D0A0FF" opacity=".9"/><circle cx="47" cy="61" r="3.5" fill="#4A0080"/><circle cx="71" cy="61" r="3.5" fill="#4A0080"/><circle cx="45.5" cy="59.5" r="1.5" fill="#fff" opacity=".6"/><circle cx="69.5" cy="59.5" r="1.5" fill="#fff" opacity=".6"/><path d="M42 76 L50 80 L60 76 L70 80 L78 76" stroke="#5A2888" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="60" cy="40" r="4" fill="#FFD700" opacity=".5"/><circle cx="60" cy="40" r="2" fill="#fff" opacity=".4"/><text x="60" y="114" text-anchor="middle" font-size="9" fill="#7B48A8" font-weight="900" font-family="system-ui" letter-spacing="1.5">THANOS</text></svg>`,
+"Kritik Khanuja":`<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="120" rx="28" fill="#F0E0EA"/><defs><linearGradient id="sp1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E53935"/><stop offset="60%" stop-color="#C62828"/><stop offset="100%" stop-color="#1565C0"/></linearGradient></defs><path d="M60 12 Q28 14 22 55 L22 75 Q22 98 42 104 L60 108 L78 104 Q98 98 98 75 L98 55 Q92 14 60 12Z" fill="url(#sp1)"/><path d="M60 12 L60 108" stroke="#1a1a1a" stroke-width="1" opacity=".15"/><path d="M60 12 Q40 40 22 75" stroke="#1a1a1a" stroke-width="1" opacity=".15"/><path d="M60 12 Q80 40 98 75" stroke="#1a1a1a" stroke-width="1" opacity=".15"/><path d="M22 55 Q60 48 98 55" stroke="#1a1a1a" stroke-width="1" opacity=".12"/><path d="M22 75 Q60 68 98 75" stroke="#1a1a1a" stroke-width="1" opacity=".12"/><ellipse cx="44" cy="56" rx="14" ry="16" fill="#fff" opacity=".97"/><ellipse cx="76" cy="56" rx="14" ry="16" fill="#fff" opacity=".97"/><ellipse cx="44" cy="56" rx="14" ry="16" fill="none" stroke="#1a1a1a" stroke-width="2.5"/><ellipse cx="76" cy="56" rx="14" ry="16" fill="none" stroke="#1a1a1a" stroke-width="2.5"/><text x="60" y="114" text-anchor="middle" font-size="7" fill="#C62828" font-weight="900" font-family="system-ui" letter-spacing="1">SPIDER-MAN</text></svg>`
 };
 
 const R={
@@ -203,12 +111,11 @@ const MA=[
 {id:"M29",ti:"PBKS vs LSG",dt:"Apr 19",rs:"PBKS won by 54 runs",t1:"PBKS",t2:"LSG",b:{"Priyansh Arya":93,"Shreyas Iyer":5,"Marcus Stoinis":29,"Nehal Wadhera":13,"Marco Jansen":1,"Mitchell Marsh":40,"Rishabh Pant":43,"Nicholas Pooran":9,"Aiden Markram":42},w:{"Mohammad Shami":1,"Arshdeep Singh":1,"Marco Jansen":2,"Yuzvendra Chahal":1},ct:{"Mitchell Marsh":1,"Mohammad Shami":1,"Nicholas Pooran":1,"Aiden Markram":1,"Prabhsimran Singh":1,"Shreyas Iyer":1,"Marcus Stoinis":1},ro:{"Nicholas Pooran":1}},
 {id:"M30",ti:"GT vs MI",dt:"Apr 20",rs:"MI won by 99 runs",t1:"GT",t2:"MI",b:{"Surya Kumar Yadav":15,"Tilak Varma":101,"Hardik Pandya":15,"Shubman Gill":14,"Jos Buttler":5,"Washington Sundar":26,"Rashid Khan":4},w:{"Jasprit Bumrah":1,"Hardik Pandya":1,"Mohammed Siraj":1},ct:{},ro:{}},
 {id:"M31",ti:"SRH vs DC",dt:"Apr 21",rs:"SRH won by 47 runs",t1:"SRH",t2:"DC",b:{"Abhishek Sharma":135,"Travis Head":37,"Ishan Kishan":25,"KL Rahul":37,"Tristan Stubbs":27,"Axar Patel":2,"Kuldeep Yadav":1},w:{"Axar Patel":1},ct:{"Abhishek Sharma":2,"Aniket Verma":1,"Nitish Kumar Reddy":1},ro:{}},
-{id:"M32",ti:"LSG vs RR",dt:"Apr 22",rs:"RR won by 40 runs",t1:"LSG",t2:"RR",b:{"Yashasvi Jaiswal":22,"Vaibhav Suryavanshi":8,"Dhruv Jurel":0,"Riyan Parag":20,"Ravindra Jadeja":43,"Ravi Bishnoi":0,"Mitchell Marsh":55,"Rishabh Pant":0,"Aiden Markram":0,"Nicholas Pooran":22,"Mohammad Shami":6},w:{"Mohammad Shami":2,"Ravindra Jadeja":1,"Ravi Bishnoi":1},ct:{"Rishabh Pant":2,"Nicholas Pooran":1,"Dhruv Jurel":2,"Riyan Parag":2},ro:{}}
+{id:"M32",ti:"LSG vs RR",dt:"Apr 22",rs:"Rajasthan Royals won by 40 runs",t1:"LSG",t2:"RR",b:{"Yashasvi Jaiswal":22,"Vaibhav Suryavanshi":8,"Dhruv Jurel":0,"Riyan Parag":20,"Ravindra Jadeja":43,"Mitchell Marsh":55,"Rishabh Pant":0,"Aiden Markram":0,"Nicholas Pooran":22,"Mohammad Shami":6,"Ravi Bishnoi":0},w:{"Mohammad Shami":2,"Ravindra Jadeja":1,"Ravi Bishnoi":1},ct:{"Rishabh Pant":2,"Nicholas Pooran":1,"Dhruv Jurel":2,"Riyan Parag":2},ro:{}},
 ];
 const PT=[
-{t:"PBKS",m:6,w:5,l:0,nrr:"+1.420",pts:11},
-{t:"RR",m:7,w:5,l:2,nrr:"+0.790",pts:10},{t:"RCB",m:6,w:4,l:2,nrr:"+1.171",pts:8},{t:"SRH",m:7,w:4,l:3,nrr:"+0.820",pts:8},{t:"DC",m:6,w:3,l:3,nrr:"-0.130",pts:6},{t:"GT",m:6,w:3,l:3,nrr:"-0.821",pts:6},{t:"MI",m:6,w:2,l:4,nrr:"+0.067",pts:4},{t:"CSK",m:6,w:2,l:4,nrr:"-0.780",pts:4},{t:"LSG",m:7,w:2,l:5,nrr:"-1.277",pts:4},
-{t:"KKR",m:7,w:1,l:5,nrr:"-0.879",pts:3}
+{t:"PBKS",m:6,w:5,l:0,nrr:"+1.095",pts:11},
+{t:"RR",m:7,w:5,l:2,nrr:"+0.790",pts:10},{t:"RCB",m:6,w:4,l:2,nrr:"+3.163",pts:8},{t:"SRH",m:7,w:4,l:3,nrr:"+0.469",pts:8},{t:"GT",m:6,w:3,l:3,nrr:"-0.156",pts:6},{t:"DC",m:6,w:3,l:3,nrr:"+0.893",pts:6},{t:"MI",m:6,w:2,l:4,nrr:"+0.418",pts:4},{t:"CSK",m:6,w:2,l:4,nrr:"-2.870",pts:4},{t:"LSG",m:7,w:2,l:5,nrr:"-1.425",pts:4},{t:"KKR",m:7,w:1,l:5,nrr:"-1.830",pts:3}
 ];
 const SCH=[
 {n:1,t1:"RCB",t2:"SRH",dt:"Mar 28",v:"Bengaluru",done:1},{n:2,t1:"MI",t2:"KKR",dt:"Mar 29",v:"Mumbai",done:1},{n:3,t1:"RR",t2:"CSK",dt:"Mar 30",v:"Guwahati",done:1},
@@ -232,317 +139,41 @@ const SCH=[
 ];
 const NAVTABS=[["board","🏆","Board"],["squads","👥","Squads"],["highlights","🎯","Highlights"],["players","👤","Players"],["next","🔮","Preview"],["table","📊","Table"],["schedule","📅","Schedule"]];
 let st={tab:"board",exp:null,selM:MA.length-1,selT:"Mintu Raval",prevDay:0};
-
-function calc(){
-  let mg={},ps={};
-  Object.keys(M).forEach(k=>{mg[k]={r:0,w:0,c:0,ro:0,tot:0,pl:{}}});
-  Object.entries(R).forEach(([p,i])=>{ps[p]={n:p,r:0,w:0,c:0,ro:0,pt:0,mg:i.m,rl:i.r,t:i.t}});
-  MA.forEach(match=>{
-    Object.entries(R).forEach(([p,i])=>{
-      let r=match.b?.[p]||0,w=match.w?.[p]||0,c=match.ct?.[p]||0,ro=match.ro?.[p]||0;
-      if(r>0||w>0||c>0||ro>0){let pt=r*P.r+w*P.w+c*P.c+ro*P.ro;
-      mg[i.m].r+=r;mg[i.m].w+=w;mg[i.m].c+=c;mg[i.m].ro+=ro;mg[i.m].tot+=pt;
-      if(!mg[i.m].pl[p])mg[i.m].pl[p]={n:p,r:0,w:0,c:0,ro:0,pt:0,t:i.t,matches:0};
-      mg[i.m].pl[p].r+=r;mg[i.m].pl[p].w+=w;mg[i.m].pl[p].c+=c;mg[i.m].pl[p].ro+=ro;mg[i.m].pl[p].pt+=pt;mg[i.m].pl[p].matches++;
-      ps[p].r+=r;ps[p].w+=w;ps[p].c+=c;ps[p].ro+=ro;ps[p].pt+=pt}
-    });
-  });
-  Object.keys(mg).forEach(k=>{mg[k].pl=Object.values(mg[k].pl).sort((a,b)=>b.pt-a.pt)});
-  return{mg,so:Object.entries(mg).sort((a,b)=>b[1].tot-a[1].tot),tp:Object.values(ps).filter(x=>x.pt>0).sort((a,b)=>b.pt-a.pt).slice(0,20),ps};
-}
+function calc(){let mg={},ps={};Object.keys(M).forEach(k=>{mg[k]={r:0,w:0,c:0,ro:0,tot:0,pl:{}}});Object.entries(R).forEach(([p,i])=>{ps[p]={n:p,r:0,w:0,c:0,ro:0,pt:0,mg:i.m,rl:i.r,t:i.t}});MA.forEach(match=>{Object.entries(R).forEach(([p,i])=>{let r=match.b?.[p]||0,w=match.w?.[p]||0,c=match.ct?.[p]||0,ro=match.ro?.[p]||0;if(r>0||w>0||c>0||ro>0){let pt=r*P.r+w*P.w+c*P.c+ro*P.ro;mg[i.m].r+=r;mg[i.m].w+=w;mg[i.m].c+=c;mg[i.m].ro+=ro;mg[i.m].tot+=pt;if(!mg[i.m].pl[p])mg[i.m].pl[p]={n:p,r:0,w:0,c:0,ro:0,pt:0,t:i.t,matches:0};mg[i.m].pl[p].r+=r;mg[i.m].pl[p].w+=w;mg[i.m].pl[p].c+=c;mg[i.m].pl[p].ro+=ro;mg[i.m].pl[p].pt+=pt;mg[i.m].pl[p].matches++ ;ps[p].r+=r;ps[p].w+=w;ps[p].c+=c;ps[p].ro+=ro;ps[p].pt+=pt}})});Object.keys(mg).forEach(k=>{mg[k].pl=Object.values(mg[k].pl).sort((a,b)=>b.pt-a.pt)});return{mg,so:Object.entries(mg).sort((a,b)=>b[1].tot-a[1].tot),tp:Object.values(ps).filter(x=>x.pt>0).sort((a,b)=>b.pt-a.pt).slice(0,20),ps}}
 function pb(p){let s=[];if(p.r>0)s.push(p.r+"R");if(p.w>0)s.push(p.w+"W");if(p.c>0)s.push(p.c+"C");if(p.ro>0)s.push(p.ro+"RO");return s.join(" · ")}
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
 function getNext(){return SCH.find(s=>!s.done)}
 function getUpcoming(){return SCH.filter(s=>!s.done)}
 function groupByDate(matches){const g={};matches.forEach(m=>{if(!g[m.dt])g[m.dt]=[];g[m.dt].push(m)});return g}
-function getPlayersForTeam(t){return Object.entries(R).filter(([_,i])=>i.t===t).map(([n,i])=>({n,m:i.m,r:i.r,mc:M[i.m]}))}
 
 function render(){
-  const{mg,so,tp,ps}=calc();const ld=so[0],ln=ld[0],lv=ld[1],lc=M[ln];
-  const next=getNext();
+  const{mg,so,tp,ps}=calc();const ld=so[0],ln=ld[0],lv=ld[1],lc=M[ln];const next=getNext();
+  let h=`<div style="padding:10px 0 12px"><div class="topstrip"><div><div class="header-title float">🏏 Fantasy IPL 2026</div><div style="font-size:12px;color:#6b7280;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-top:4px">Responsive redesign · latest data</div></div><div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;font-size:11px;color:#9ca3af;font-weight:600"><span class="stat-chip">🏏 Run = 1</span><span class="stat-chip">🎯 Wicket = 25</span><span class="stat-chip">🧤 Catch / Stumping / RO = 5</span></div></div></div>`;
+  h+=`<div class="topstrip" style="margin-bottom:12px"><div class="match-pill"><span style="width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block;animation:pulse 1.5s infinite"></span>${MA.length} Matches Tracked</div>${next?`<div class="match-pill">Next: ${tb(next.t1)} vs ${tb(next.t2)} · ${next.dt}</div>`:""}</div>`;
+  h+=`<div class="cd-hero ri"><div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.1);color:#f9c74f;padding:8px 12px;border-radius:999px;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;position:relative;z-index:1;margin-bottom:14px">🏆 League Leader</div><div style="display:flex;align-items:center;justify-content:space-between;gap:18px;position:relative;z-index:1;flex-wrap:wrap"><div style="display:flex;align-items:center;gap:18px;flex:1;min-width:240px"><div class="avatar-lg" style="width:88px;height:88px;border-radius:24px;box-shadow:0 12px 26px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.28)">${ROBOTS[ln]}</div><div style="flex:1;min-width:0"><div style="color:#c4b5fd;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px">${lc.tag} · First Place</div><div style="font-size:clamp(26px,4vw,34px);font-weight:900;line-height:1.05;letter-spacing:-.03em">${esc(ln)}</div><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px"><span style="background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.08);padding:9px 12px;border-radius:14px;font-size:12px;font-weight:800;color:rgba(255,255,255,.92)">🏏 ${lv.r} Runs</span><span style="background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.08);padding:9px 12px;border-radius:14px;font-size:12px;font-weight:800;color:rgba(255,255,255,.92)">🎯 ${lv.w} Wickets</span><span style="background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.08);padding:9px 12px;border-radius:14px;font-size:12px;font-weight:800;color:rgba(255,255,255,.92)">🧤 ${lv.c+lv.ro} Fielding</span></div></div></div><div style="text-align:right;min-width:150px"><div style="font-size:clamp(48px,8vw,72px);line-height:.95;font-weight:900;color:${lc.c};text-shadow:0 8px 22px rgba(255,93,115,.18)">${lv.tot}</div><div style="margin-top:8px;font-size:11px;letter-spacing:.18em;color:rgba(255,255,255,.55);font-weight:800;text-transform:uppercase">Fantasy Points</div></div></div><div class="hero-mini-grid"><div class="hero-mini"><div class="label">Top performer</div><div class="value">${lv.pl[0]?.n || "-"}</div></div><div class="hero-mini"><div class="label">Lead gap</div><div class="value">${so.length>1?`+${lv.tot-so[1][1].tot}`:"0"}</div></div><div class="hero-mini"><div class="label">Matches tracked</div><div class="value">${MA.length}</div></div></div></div>`;
 
-  let h=`<div style="text-align:center;padding:16px 0 10px">
-    <div class="header-title float">🏏 Fantasy IPL 2026</div>
-    <div style="display:flex;justify-content:center;gap:12px;margin-top:6px;font-size:11px;color:#9ca3af;font-weight:600">
-      <span class="stat-chip">🏏 1R = 1pt</span><span class="stat-chip">🎯 1W = 25pt</span><span class="stat-chip">🧤 1C/RO = 5pt</span>
-    </div>
-  </div>`;
-
-  // Status pill
-  h+=`<div class="cd" style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px">
-    <div style="display:flex;align-items:center;gap:8px">
-      <span style="width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block;animation:pulse 1.5s infinite"></span>
-      <span style="font-weight:700;font-size:12px;color:#6c3ce0">${MA.length} Matches Tracked</span>
-    </div>
-    ${next?`<div style="font-size:10px;color:#9ca3af;font-weight:600">Next: ${tb(next.t1)} vs ${tb(next.t2)}</div>`:""}
-  </div>`;
-
-  // === LEADER CARD ===
-  h+=`<div class="cd-hero ri">
-    <div style="display:flex;align-items:center;gap:14px;position:relative;z-index:1">
-      <div class="avatar-lg">${ROBOTS[ln]}</div>
-      <div style="flex:1;min-width:0">
-        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
-          <span class="badge" style="background:rgba(255,255,255,.15);color:#fbbf24;font-size:9px">🏆 LEADER</span>
-          <span style="font-size:9px;opacity:.6;font-weight:700;letter-spacing:1px">${lc.tag}</span>
-        </div>
-        <div style="font-size:20px;font-weight:900">${esc(ln)}</div>
-        <div style="display:flex;gap:8px;margin-top:6px;font-size:11px;opacity:.75">
-          <span>🏏 <strong>${lv.r}</strong>R</span>
-          <span>🎯 <strong>${lv.w}</strong>W</span>
-          <span>🧤 <strong>${lv.c}</strong>C</span>
-        </div>
-        ${so.length>1?`<div style="margin-top:4px;font-size:10px;color:#4ade80;font-weight:700">▲ ${lv.tot-so[1][1].tot} pts ahead</div>`:""}
-      </div>
-      <div style="text-align:right;flex-shrink:0">
-        <div style="font-size:38px;font-weight:900;line-height:1;color:${lc.c}">${lv.tot}</div>
-        <div class="pts-label" style="color:rgba(255,255,255,.5)">POINTS</div>
-      </div>
-    </div>
-  </div>`;
-
-  // === BOARD ===
   if(st.tab==="board"){
     const isDesk=window.innerWidth>=768;
-    if(isDesk)h+=`<div class="desk-grid">`;
-    so.forEach(([n,d],i)=>{
-      const c=M[n],isE=st.exp===n,bw=lv.tot>0?(d.tot/lv.tot)*100:0;
-      h+=`<div class="cd ri" style="cursor:pointer;animation-delay:${i*.06}s;background:${c.bg};border-left:4px solid ${c.c};border-color:${c.c}${isE?"60":"25"}" onclick="st.exp=st.exp==='${esc(n)}'?null:'${esc(n)}';render()">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;align-items:center;gap:12px">
-            <div class="avatar-sm">${ROBOTS[n]}</div>
-            <div>
-              <div style="font-weight:800;font-size:14px;color:#1a1a2e">${c.e} ${esc(n)} ${i===0?'<span style="font-size:8px;background:'+c.c+';color:#fff;padding:2px 8px;border-radius:10px;margin-left:4px;vertical-align:middle">LEADER</span>':''}</div>
-              <div style="font-size:10px;color:#9ca3af;margin-top:2px;font-weight:600">${c.tag} · ${d.r}R · ${d.w}W · ${d.c}C</div>
-            </div>
-          </div>
-          <div style="text-align:right;flex-shrink:0">
-            <div style="font-size:24px;font-weight:900;color:${c.c}">${d.tot}</div>
-            <div class="pts-label">PTS</div>
-          </div>
-        </div>
-        <div class="bar"><div style="width:${bw}%;background:${c.g}"></div></div>`;
-      if(isE&&d.pl.length>0){
-        h+=`<div style="margin-top:12px;border-top:1.5px solid #f0f2f8;padding-top:10px">
-          <div class="section-title">Scoring Players</div>`;
-        d.pl.forEach((p,j)=>{
-          h+=`<div class="ri" style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:${j<d.pl.length-1?"1px solid #f8f8fc":"none"};animation-delay:${j*.03}s">
-            <div>${re(R[p.n]?.r||"")} <span style="font-weight:700;font-size:12px">${esc(p.n)}</span> <span style="font-size:9px;color:#9ca3af">${tb(p.t)}${p.matches>1?" · "+p.matches+"m":""}</span></div>
-            <div style="font-weight:800;color:${c.c};font-size:12px">${pb(p)} = ${p.pt}</div>
-          </div>`;
-        });
-        h+=`</div>`;
-      }
-      h+=`</div>`;
-    });
-    if(isDesk)h+=`</div>`;
+    h+=`<div class="board-wrap"><div${isDesk?` class="desk-grid"`:''}>`;
+    so.forEach(([n,d],i)=>{const c=M[n],isE=st.exp===n,bw=lv.tot>0?(d.tot/lv.tot)*100:0;h+=`<div class="cd ri" style="cursor:pointer;animation-delay:${i*.06}s;background:${c.bg};border-left:4px solid ${c.c};border-color:${c.c}${isE?"60":"25"}" onclick="st.exp=st.exp==='${esc(n)}'?null:'${esc(n)}';render()"><div style="display:flex;align-items:center;justify-content:space-between"><div style="display:flex;align-items:center;gap:12px"><div class="avatar-sm">${ROBOTS[n]}</div><div><div style="font-weight:800;font-size:15px;color:#1a1a2e">${c.e} ${esc(n)} ${i===0?'<span style="font-size:8px;background:'+c.c+';color:#fff;padding:2px 8px;border-radius:10px;margin-left:4px;vertical-align:middle">LEADER</span>':''}</div><div style="font-size:10px;color:#9ca3af;margin-top:2px;font-weight:600">${c.tag} · ${d.r}R · ${d.w}W · ${d.c+d.ro}F</div></div></div><div style="text-align:right;flex-shrink:0"><div style="font-size:28px;font-weight:900;color:${c.c}">${d.tot}</div><div class="pts-label">PTS</div></div></div><div class="bar"><div style="width:${bw}%"></div></div>`;if(isE&&d.pl.length>0){h+=`<div style="margin-top:12px;border-top:1.5px solid #f0f2f8;padding-top:10px"><div class="section-title">Scoring Players</div>`;d.pl.forEach((p,j)=>{h+=`<div class="ri" style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:${j<d.pl.length-1?"1px solid #f8f8fc":"none"};animation-delay:${j*.03}s"><div>${re(R[p.n]?.r||"")} <span style="font-weight:700;font-size:12px">${esc(p.n)}</span> <span style="font-size:9px;color:#9ca3af">${tb(p.t)}${p.matches>1?" · "+p.matches+"m":""}</span></div><div style="font-weight:800;color:${c.c};font-size:12px">${pb(p)} = ${p.pt}</div></div>`});h+=`</div>`}h+=`</div>`});
+    h+=`</div><div class="board-side"><div class="cd"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px"><div style="font-size:17px;font-weight:900;letter-spacing:-.02em">Top Players</div><div style="font-size:11px;color:#8b5cf6;font-weight:800;letter-spacing:.14em;text-transform:uppercase">Fantasy</div></div>${tp.slice(0,5).map((p,i)=>`<div class="mini-row"><div style="width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:#f3f0ff;color:#7c3aed;font-weight:900;font-size:13px">${i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1}</div><div><div style="font-size:13px;font-weight:800">${esc(p.n)}</div><div style="color:#9ca3af;font-size:11px;font-weight:700;margin-top:3px">${tb(p.t)} · ${M[p.mg].e} ${p.mg.split(' ')[0]}</div></div><div style="font-size:18px;font-weight:900;color:${M[p.mg].c}">${p.pt}</div></div>`).join('')}</div></div></div>`;
   }
 
-  // === SQUADS ===
-  if(st.tab==="squads"){
-    const tc=M[st.selT];const sqPl=Object.values(ps).filter(p=>p.mg===st.selT).sort((a,b)=>b.pt-a.pt);
-    h+=`<div style="display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;padding-bottom:4px">${Object.keys(M).map(n=>`<div onclick="st.selT='${esc(n)}';render()" style="min-width:64px;padding:8px 6px;border-radius:14px;cursor:pointer;font-weight:700;font-size:9px;text-align:center;border:2px solid ${st.selT===n?M[n].c:"transparent"};background:${st.selT===n?M[n].bg:"#fff"};color:${st.selT===n?M[n].c:"#9ca3af"};transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.04)">${M[n].e}<br>${n.split(" ")[0]}</div>`).join("")}</div>`;
-    h+=`<div class="cd" style="border-color:${tc.c}20;background:${tc.bg}">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-        <div style="display:flex;align-items:center;gap:12px">
-          <div class="avatar-sq">${ROBOTS[st.selT]}</div>
-          <div>
-            <div style="font-size:9px;color:${tc.c};font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:.7">${tc.tag}</div>
-            <div style="font-size:18px;font-weight:900;color:#1a1a2e">${tc.e} ${esc(st.selT)}</div>
-            <div style="font-size:9px;color:#9ca3af;margin-top:2px;font-weight:600">15 players</div>
-          </div>
-        </div>
-        <div style="font-size:28px;font-weight:900;color:${tc.c}">${mg[st.selT].tot}</div>
-      </div>`;
-    h+=`<div class="grid-header" style="grid-template-columns:1fr 36px 26px 26px 46px"><div>PLAYER</div><div style="text-align:center">R</div><div style="text-align:center">W</div><div style="text-align:center">C</div><div style="text-align:right">PTS</div></div>`;
-    sqPl.forEach((p,i)=>{
-      h+=`<div class="ri grid-row" style="grid-template-columns:1fr 36px 26px 26px 46px;animation-delay:${i*.03}s">
-        <div><div style="display:flex;align-items:center;gap:3px"><span style="font-size:9px">${re(p.rl)}</span><span style="font-weight:700;font-size:11px;color:${p.pt>0?"#1a1a2e":"#ccc"}">${esc(p.n)}</span></div>
-        <div style="font-size:8px;color:#bbb;margin-left:16px">${tb(p.t)}</div></div>
-        <div style="text-align:center;color:${p.r>0?"#1a1a2e":"#ddd"};font-weight:700;font-size:10px">${p.r||"-"}</div>
-        <div style="text-align:center;color:${p.w>0?"#22c55e":"#ddd"};font-weight:700;font-size:10px">${p.w||"-"}</div>
-        <div style="text-align:center;color:${p.c>0?"#6c3ce0":"#ddd"};font-weight:700;font-size:10px">${p.c||"-"}</div>
-        <div style="text-align:right;font-weight:900;font-size:12px;color:${p.pt>0?tc.c:"#ddd"}">${p.pt||"0"}</div>
-      </div>`;
-    });
-    h+=`</div>`;
-  }
+  if(st.tab==="squads"){const tc=M[st.selT];const sqPl=Object.values(ps).filter(p=>p.mg===st.selT).sort((a,b)=>b.pt-a.pt);h+=`<div style="display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;padding-bottom:4px">${Object.keys(M).map(n=>`<div onclick="st.selT='${esc(n)}';render()" style="min-width:72px;padding:9px 8px;border-radius:16px;cursor:pointer;font-weight:700;font-size:10px;text-align:center;border:2px solid ${st.selT===n?M[n].c:"transparent"};background:${st.selT===n?M[n].bg:"rgba(255,255,255,.88)"};color:${st.selT===n?M[n].c:"#9ca3af"};transition:all .2s;box-shadow:0 8px 24px rgba(34,35,58,.06)">${M[n].e}<br>${n.split(" ")[0]}</div>`).join("")}</div>`;h+=`<div class="cd" style="border-color:${tc.c}20;background:${tc.bg}"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:14px;flex-wrap:wrap"><div style="display:flex;align-items:center;gap:12px"><div class="avatar-sq">${ROBOTS[st.selT]}</div><div><div style="font-size:10px;color:${tc.c};font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:.7">${tc.tag}</div><div style="font-size:19px;font-weight:900;color:#1a1a2e">${tc.e} ${esc(st.selT)}</div><div style="font-size:10px;color:#9ca3af;margin-top:2px;font-weight:600">15 players</div></div></div><div style="font-size:30px;font-weight:900;color:${tc.c}">${mg[st.selT].tot}</div></div>`;h+=`<div class="grid-header" style="grid-template-columns:1fr 36px 26px 36px 52px"><div>PLAYER</div><div style="text-align:center">R</div><div style="text-align:center">W</div><div style="text-align:center">F</div><div style="text-align:right">PTS</div></div>`;sqPl.forEach((p,i)=>{h+=`<div class="ri grid-row" style="grid-template-columns:1fr 36px 26px 36px 52px;animation-delay:${i*.03}s"><div><div style="display:flex;align-items:center;gap:3px"><span style="font-size:9px">${re(p.rl)}</span><span style="font-weight:700;font-size:11px;color:${p.pt>0?"#1a1a2e":"#ccc"}">${esc(p.n)}</span></div><div style="font-size:8px;color:#bbb;margin-left:16px">${tb(p.t)}</div></div><div style="text-align:center;color:${p.r>0?"#1a1a2e":"#ddd"};font-weight:700;font-size:10px">${p.r||"-"}</div><div style="text-align:center;color:${p.w>0?"#22c55e":"#ddd"};font-weight:700;font-size:10px">${p.w||"-"}</div><div style="text-align:center;color:${(p.c+p.ro)>0?"#6c3ce0":"#ddd"};font-weight:700;font-size:10px">${(p.c+p.ro)||"-"}</div><div style="text-align:right;font-weight:900;font-size:12px;color:${p.pt>0?tc.c:"#ddd"}">${p.pt||"0"}</div></div>`});h+=`</div>`}
 
-  // === HIGHLIGHTS ===
-  if(st.tab==="highlights"){
-    if(MA.length===0){h+=`<div class="cd" style="text-align:center;padding:30px"><div style="font-size:28px;margin-bottom:8px">📭</div><div style="font-size:14px;font-weight:800;color:#6c3ce0">No matches played yet</div></div>`;
-    } else {
-    if(st.selM>=MA.length)st.selM=MA.length-1;
-    const match=MA[st.selM];
-    h+=`<div class="cd" style="padding:14px 16px">
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <div onclick="if(st.selM>0){st.selM--;render()}" class="nav-btn ${st.selM>0?"nav-btn-on":"nav-btn-off"}">
-          <span style="color:${st.selM>0?"#6c3ce0":"#ddd"};font-size:18px;font-weight:900">‹</span>
-        </div>
-        <div style="text-align:center;flex:1">
-          <div style="font-size:9px;color:#a855f7;font-weight:800;letter-spacing:2px;margin-bottom:4px">🎯 MATCH HIGHLIGHTS</div>
-          <div style="font-size:18px;font-weight:900">${tb(match.t1)} <span style="color:#ccc;font-size:11px;margin:0 3px">vs</span> ${tb(match.t2)}</div>
-          <div style="font-size:10px;color:#9ca3af;margin-top:4px;font-weight:600">Match ${st.selM+1} of ${MA.length} · ${match.dt}</div>
-        </div>
-        <div onclick="if(st.selM<${MA.length-1}){st.selM++;render()}" class="nav-btn ${st.selM<MA.length-1?"nav-btn-on":"nav-btn-off"}">
-          <span style="color:${st.selM<MA.length-1?"#6c3ce0":"#ddd"};font-size:18px;font-weight:900">›</span>
-        </div>
-      </div>
-    </div>`;
-    h+=`<div class="cd" style="text-align:center;padding:8px 14px;background:#ecfdf5"><div style="font-size:12px;font-weight:800;color:#16a34a">✅ ${match.rs}</div></div>`;
-    const mgrPts={};
-    Object.entries(R).forEach(([p,i])=>{let r=match.b?.[p]||0,w=match.w?.[p]||0,c=match.ct?.[p]||0,ro=match.ro?.[p]||0;if(r>0||w>0||c>0||ro>0){let pt=r*P.r+w*P.w+c*P.c+ro*P.ro;if(!mgrPts[i.m])mgrPts[i.m]={tot:0,pls:[]};mgrPts[i.m].tot+=pt;mgrPts[i.m].pls.push({n:p,r,w,c,ro,pt,t:i.t,rl:i.r})}});
-    const mgrSorted=Object.entries(mgrPts).sort((a,b)=>b[1].tot-a[1].tot);
-    mgrSorted.forEach(([mgr,data],mi)=>{
-      const mc=M[mgr];
-      h+=`<div class="cd ri" style="animation-delay:${mi*.06}s;border-color:${mi===0?mc.c+"30":"transparent"};background:${mi===0?mc.bg:"#fff"}">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-          <div style="display:flex;align-items:center;gap:10px">
-            <div style="width:30px;height:30px;border-radius:10px;background:${mc.g};display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;font-weight:800;flex-shrink:0">${mi===0?"🏆":mi+1}</div>
-            <div><div style="font-size:13px;font-weight:800">${mc.e} ${mgr}</div><div style="font-size:9px;color:#9ca3af;font-weight:600">${mc.tag} · ${data.pls.length} scorers</div></div>
-          </div>
-          <div style="font-size:24px;font-weight:900;color:${mc.c}">${data.tot}<span style="font-size:8px;color:#9ca3af;margin-left:2px">PTS</span></div>
-        </div>`;
-      data.pls.sort((a,b)=>b.pt-a.pt).forEach((p,j)=>{
-        h+=`<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-top:1px solid #f8f8fc">
-          <div style="display:flex;align-items:center;gap:6px"><span style="font-size:9px">${re(p.rl)}</span><span style="font-weight:700;font-size:11px">${esc(p.n)}</span><span style="font-size:8px;color:#bbb">${tb(p.t)}</span></div>
-          <div style="font-weight:800;color:${mc.c};font-size:11px">${pb(p)} = ${p.pt}</div>
-        </div>`;
-      });
-      h+=`</div>`;
-    });
-    }
-  }
+  if(st.tab==="highlights"){if(MA.length===0){h+=`<div class="cd" style="text-align:center;padding:30px"><div style="font-size:28px;margin-bottom:8px">📭</div><div style="font-size:14px;font-weight:800;color:#6c3ce0">No matches played yet</div></div>`} else {if(st.selM>=MA.length)st.selM=MA.length-1;const match=MA[st.selM];h+=`<div class="cd" style="padding:14px 16px"><div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><div onclick="if(st.selM>0){st.selM--;render()}" class="nav-btn ${st.selM>0?"nav-btn-on":"nav-btn-off"}"><span style="color:${st.selM>0?"#6c3ce0":"#ddd"};font-size:18px;font-weight:900">‹</span></div><div style="text-align:center;flex:1"><div style="font-size:9px;color:#a855f7;font-weight:800;letter-spacing:2px;margin-bottom:4px">🎯 MATCH HIGHLIGHTS</div><div style="font-size:18px;font-weight:900">${tb(match.t1)} <span style="color:#ccc;font-size:11px;margin:0 3px">vs</span> ${tb(match.t2)}</div><div style="font-size:10px;color:#9ca3af;margin-top:4px;font-weight:600">Match ${st.selM+1} of ${MA.length} · ${match.dt}</div></div><div onclick="if(st.selM<${MA.length-1}){st.selM++;render()}" class="nav-btn ${st.selM<MA.length-1?"nav-btn-on":"nav-btn-off"}"><span style="color:${st.selM<MA.length-1?"#6c3ce0":"#ddd"};font-size:18px;font-weight:900">›</span></div></div></div>`;h+=`<div class="cd" style="text-align:center;padding:10px 14px;background:#ecfdf5"><div style="font-size:12px;font-weight:800;color:#16a34a">✅ ${match.rs}</div></div>`;const mgrPts={};Object.entries(R).forEach(([p,i])=>{let r=match.b?.[p]||0,w=match.w?.[p]||0,c=match.ct?.[p]||0,ro=match.ro?.[p]||0;if(r>0||w>0||c>0||ro>0){let pt=r*P.r+w*P.w+c*P.c+ro*P.ro;if(!mgrPts[i.m])mgrPts[i.m]={tot:0,pls:[]};mgrPts[i.m].tot+=pt;mgrPts[i.m].pls.push({n:p,r,w,c,ro,pt,t:i.t,rl:i.r})}});const mgrSorted=Object.entries(mgrPts).sort((a,b)=>b[1].tot-a[1].tot);mgrSorted.forEach(([mgr,data],mi)=>{const mc=M[mgr];h+=`<div class="cd ri" style="animation-delay:${mi*.06}s;border-color:${mi===0?mc.c+"30":"transparent"};background:${mi===0?mc.bg:"rgba(255,255,255,.88)"}"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px"><div style="display:flex;align-items:center;gap:10px"><div style="width:32px;height:32px;border-radius:10px;background:${mc.g};display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;font-weight:800;flex-shrink:0">${mi===0?"🏆":mi+1}</div><div><div style="font-size:13px;font-weight:800">${mc.e} ${mgr}</div><div style="font-size:9px;color:#9ca3af;font-weight:600">${mc.tag} · ${data.pls.length} scorers</div></div></div><div style="font-size:24px;font-weight:900;color:${mc.c}">${data.tot}<span style="font-size:8px;color:#9ca3af;margin-left:2px">PTS</span></div></div>`;data.pls.sort((a,b)=>b.pt-a.pt).forEach((p,j)=>{h+=`<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-top:1px solid #f8f8fc"><div style="display:flex;align-items:center;gap:6px"><span style="font-size:9px">${re(p.rl)}</span><span style="font-weight:700;font-size:11px">${esc(p.n)}</span><span style="font-size:8px;color:#bbb">${tb(p.t)}</span></div><div style="font-weight:800;color:${mc.c};font-size:11px">${pb(p)} = ${p.pt}</div></div>`});h+=`</div>`})}}
 
-  // === PLAYERS ===
-  if(st.tab==="players"){
-    h+=`<div class="cd">`;
-    tp.forEach((p,i)=>{
-      const mc=M[p.mg];
-      h+=`<div class="ri" style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;${i<tp.length-1?"border-bottom:1px solid #f8f8fc":""};animation-delay:${i*.03}s">
-        <div style="display:flex;align-items:center;gap:10px">
-          <span style="font-weight:900;font-size:14px;width:26px;text-align:center;color:${i<3?"#6c3ce0":"#ccc"}">${i===0?"🥇":i===1?"🥈":i===2?"🥉":i+1}</span>
-          <div>
-            <div style="font-size:12px;font-weight:700">${re(p.rl)} ${esc(p.n)}</div>
-            <div style="font-size:9px;color:#9ca3af;margin-top:1px;font-weight:600">${tb(p.t)} · <span style="color:${mc?.c}">${mc?.e} ${p.mg.split(" ")[0]}</span></div>
-          </div>
-        </div>
-        <div style="text-align:right">
-          <div style="font-weight:900;font-size:18px;color:${mc?.c}">${p.pt}</div>
-          <div style="font-size:8px;color:#bbb;font-weight:600">${pb(p)}</div>
-        </div>
-      </div>`;
-    });
-    h+=`</div>`;
-  }
+  if(st.tab==="players"){h+=`<div class="cd">`;tp.forEach((p,i)=>{const mc=M[p.mg];h+=`<div class="ri" style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;${i<tp.length-1?"border-bottom:1px solid #f8f8fc":""};animation-delay:${i*.03}s"><div style="display:flex;align-items:center;gap:10px"><span style="font-weight:900;font-size:14px;width:26px;text-align:center;color:${i<3?"#6c3ce0":"#ccc"}">${i===0?"🥇":i===1?"🥈":i===2?"🥉":i+1}</span><div><div style="font-size:12px;font-weight:700">${re(p.rl)} ${esc(p.n)}</div><div style="font-size:9px;color:#9ca3af;margin-top:1px;font-weight:600">${tb(p.t)} · <span style="color:${mc?.c}">${mc?.e} ${p.mg.split(" ")[0]}</span></div></div></div><div style="text-align:right"><div style="font-weight:900;font-size:18px;color:${mc?.c}">${p.pt}</div><div style="font-size:8px;color:#bbb;font-weight:600">${pb(p)}</div></div></div>`});h+=`</div>`}
 
-  // === PREVIEW ===
-  if(st.tab==="next"){
-    const upcoming=getUpcoming();
-    if(upcoming.length===0){h+=`<div class="cd" style="text-align:center;padding:30px"><div style="font-size:28px;margin-bottom:8px">🏆</div><div style="font-size:14px;font-weight:800;color:#6c3ce0">All matches completed!</div></div>`;
-    } else {
-      const grouped=groupByDate(upcoming);const dates=Object.keys(grouped);
-      if(st.prevDay>=dates.length)st.prevDay=dates.length-1;
-      const dt=dates[st.prevDay],dayMatches=grouped[dt],isDH=dayMatches.length>1;
-      h+=`<div class="cd" style="padding:14px 16px">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <div onclick="if(st.prevDay>0){st.prevDay--;render()}" class="nav-btn ${st.prevDay>0?"nav-btn-on":"nav-btn-off"}">
-            <span style="color:${st.prevDay>0?"#6c3ce0":"#ddd"};font-size:18px;font-weight:900">‹</span>
-          </div>
-          <div style="text-align:center">
-            <div style="font-size:9px;color:#a855f7;font-weight:800;letter-spacing:2px;margin-bottom:4px">🔮 MATCH DAY PREVIEW</div>
-            <div style="font-size:18px;font-weight:900">${dt}</div>
-            <div style="font-size:10px;color:#9ca3af;margin-top:3px;font-weight:600">${isDH?"🔥 Double Header":"Single Match"} · Day ${st.prevDay+1} of ${dates.length}</div>
-          </div>
-          <div onclick="if(st.prevDay<${dates.length-1}){st.prevDay++;render()}" class="nav-btn ${st.prevDay<dates.length-1?"nav-btn-on":"nav-btn-off"}">
-            <span style="color:${st.prevDay<dates.length-1?"#6c3ce0":"#ddd"};font-size:18px;font-weight:900">›</span>
-          </div>
-        </div>
-      </div>`;
-      if(isDH)h+=`<div class="dh">🔥 DOUBLE HEADER · ${dt}</div>`;
-      dayMatches.forEach((m,mi)=>{
-        h+=`<div class="cd ri" style="animation-delay:${mi*.06}s;${isDH?"border-left:3px solid #ec4899":""}">
-          <div style="display:flex;align-items:center;justify-content:space-between">
-            <div><div style="font-size:16px;font-weight:900">${tb(m.t1)} <span style="color:#ccc;font-size:11px;margin:0 4px">vs</span> ${tb(m.t2)}</div>
-            <div style="font-size:10px;color:#9ca3af;margin-top:4px;font-weight:600">Match #${m.n} · ${m.v}</div></div>
-            <span class="badge" style="background:#eef6ff;color:#2d7dd2;font-size:9px">Upcoming</span>
-          </div>
-        </div>`;
-      });
-      const allTeams=[];dayMatches.forEach(m=>{allTeams.push(m.t1);allTeams.push(m.t2)});
-      const mgrPlayers={};Object.keys(M).forEach(mgr=>{mgrPlayers[mgr]=[]});
-      allTeams.forEach(t=>{Object.entries(R).filter(([_,i])=>i.t===t).forEach(([n,i])=>{mgrPlayers[i.m].push({n,r:i.r,t})})});
-      const activeMgrs=Object.entries(mgrPlayers).filter(([_,pls])=>pls.length>0).sort((a,b)=>b[1].length-a[1].length);
-      if(activeMgrs.length>0){
-        h+=`<div class="cd ri" style="animation-delay:.12s">
-          <div class="section-title">${isDH?"🔥 Fantasy Players — Both Matches":"⚡ Fantasy Players In Action"}</div>`;
-        activeMgrs.forEach(([mgr,pls])=>{
-          const mc=M[mgr];
-          h+=`<div style="margin-bottom:10px"><div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
-            <span style="font-size:11px">${mc.e}</span><span style="font-weight:800;font-size:11px;color:${mc.c}">${mgr}</span>
-            <span style="font-size:9px;color:#9ca3af;font-weight:700">${mc.tag} · ${pls.length} in action</span></div>`;
-          pls.forEach((p,pi)=>{
-            h+=`<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:${pi<pls.length-1?"1px solid #f8f8fc":"none"}">
-              <div style="display:flex;align-items:center;gap:5px"><span style="font-size:9px">${re(p.r)}</span><span style="font-weight:600;font-size:11px">${esc(p.n)}</span></div>
-              <span style="color:${TC[p.t]};font-weight:700;font-size:9px">${p.t}</span>
-            </div>`;
-          });
-          h+=`</div>`;
-        });
-        h+=`</div>`;
-      }
-    }
-  }
+  if(st.tab==="next"){const upcoming=getUpcoming();if(upcoming.length===0){h+=`<div class="cd" style="text-align:center;padding:30px"><div style="font-size:28px;margin-bottom:8px">🏆</div><div style="font-size:14px;font-weight:800;color:#6c3ce0">All matches completed!</div></div>`} else {const grouped=groupByDate(upcoming);const dates=Object.keys(grouped);if(st.prevDay>=dates.length)st.prevDay=dates.length-1;const dt=dates[st.prevDay],dayMatches=grouped[dt],isDH=dayMatches.length>1;h+=`<div class="preview-grid"><div><div class="cd" style="padding:16px 18px"><div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><div onclick="if(st.prevDay>0){st.prevDay--;render()}" class="nav-btn ${st.prevDay>0?"nav-btn-on":"nav-btn-off"}"><span style="color:${st.prevDay>0?"#6c3ce0":"#ddd"};font-size:18px;font-weight:900">‹</span></div><div style="text-align:center"><div style="font-size:9px;color:#a855f7;font-weight:800;letter-spacing:2px;margin-bottom:4px">🔮 MATCH DAY PREVIEW</div><div style="font-size:18px;font-weight:900">${dt}</div><div style="font-size:10px;color:#9ca3af;margin-top:3px;font-weight:600">${isDH?"🔥 Double Header":"Single Match"} · Day ${st.prevDay+1} of ${dates.length}</div></div><div onclick="if(st.prevDay<${dates.length-1}){st.prevDay++;render()}" class="nav-btn ${st.prevDay<dates.length-1?"nav-btn-on":"nav-btn-off"}"><span style="color:${st.prevDay<dates.length-1?"#6c3ce0":"#ddd"};font-size:18px;font-weight:900">›</span></div></div></div>${isDH?`<div class="dh">🔥 DOUBLE HEADER · ${dt}</div>`:''}${dayMatches.map((m,mi)=>`<div class="cd ri" style="animation-delay:${mi*.06}s;${isDH?"border-left:3px solid #ec4899;":""}"><div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap"><div><div style="font-size:16px;font-weight:900">${tb(m.t1)} <span style="color:#ccc;font-size:11px;margin:0 4px">vs</span> ${tb(m.t2)}</div><div style="font-size:10px;color:#9ca3af;margin-top:4px;font-weight:600">Match #${m.n} · ${m.v}</div></div><span class="badge" style="background:#eef6ff;color:#2d7dd2;font-size:9px">Upcoming</span></div></div>`).join('')}</div><div><div class="cd"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px"><div style="font-size:17px;font-weight:900;letter-spacing:-.02em">Fantasy Players In Action</div><div style="font-size:11px;color:#8b5cf6;font-weight:800;letter-spacing:.14em;text-transform:uppercase">Preview</div></div>${Object.entries(M).map(([mgr,mc])=>{const pls=[];dayMatches.forEach(m=>{Object.entries(R).forEach(([n,i])=>{if(i.m===mgr&&(i.t===m.t1||i.t===m.t2))pls.push({n,r:i.r,t:i.t})})});if(!pls.length)return '';return `<div style="margin-bottom:12px"><div style="display:flex;align-items:center;gap:6px;margin-bottom:6px"><span style="font-size:11px">${mc.e}</span><span style="font-weight:800;font-size:11px;color:${mc.c}">${mgr}</span><span style="font-size:9px;color:#9ca3af;font-weight:700">${mc.tag} · ${pls.length} in action</span></div>${pls.map((p,pi)=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:${pi<pls.length-1?"1px solid #f8f8fc":"none"}"><div style="display:flex;align-items:center;gap:5px"><span style="font-size:9px">${re(p.r)}</span><span style="font-weight:600;font-size:11px">${esc(p.n)}</span></div><span style="color:${TC[p.t]};font-weight:700;font-size:9px">${p.t}</span></div>`).join('')}</div>`}).join('')}</div></div></div>`}}
 
-  // === TABLE ===
-  if(st.tab==="table"){
-    h+=`<div class="cd">
-      <div style="font-size:16px;font-weight:800;color:#1a1a2e;margin-bottom:12px">📊 IPL 2026 Standings</div>`;
-    h+=`<div class="grid-header" style="grid-template-columns:24px 1fr 28px 28px 28px 50px 36px"><div>#</div><div>TEAM</div><div style="text-align:center">M</div><div style="text-align:center">W</div><div style="text-align:center">L</div><div style="text-align:right">NRR</div><div style="text-align:right">PTS</div></div>`;
-    PT.forEach((t,i)=>{
-      h+=`<div class="ri grid-row" style="grid-template-columns:24px 1fr 28px 28px 28px 50px 36px;animation-delay:${i*.03}s;${i<4?"background:#f8f8fc;border-radius:8px;margin:2px 0":""}">
-        <div style="font-weight:800;font-size:11px;color:${i<4?"#6c3ce0":"#ccc"}">${i+1}</div>
-        <div style="font-weight:800;font-size:12px;color:${TC[t.t]}">${t.t}</div>
-        <div style="text-align:center;color:#888;font-weight:700;font-size:10px">${t.m}</div>
-        <div style="text-align:center;color:#22c55e;font-weight:700;font-size:10px">${t.w||"-"}</div>
-        <div style="text-align:center;color:${t.l>0?"#ef4444":"#eee"};font-weight:700;font-size:10px">${t.l||"-"}</div>
-        <div style="text-align:right;color:${parseFloat(t.nrr)>0?"#22c55e":parseFloat(t.nrr)<0?"#ef4444":"#999"};font-weight:700;font-size:9px">${t.nrr}</div>
-        <div style="text-align:right;font-weight:900;font-size:13px;color:${t.pts>0?"#6c3ce0":"#ddd"}">${t.pts}</div>
-      </div>`;
-    });
-    h+=`<div style="margin-top:10px;padding-top:8px;border-top:1.5px solid #f0f2f8;font-size:9px;color:#bbb;font-weight:600">Top 4 qualify for playoffs · 2pts per win</div></div>`;
-  }
+  if(st.tab==="table"){h+=`<div class="cd"><div style="font-size:16px;font-weight:800;color:#1a1a2e;margin-bottom:12px">📊 IPL 2026 Standings</div>`;h+=`<div class="grid-header" style="grid-template-columns:24px 1fr 28px 28px 28px 50px 36px"><div>#</div><div>TEAM</div><div style="text-align:center">M</div><div style="text-align:center">W</div><div style="text-align:center">L</div><div style="text-align:right">NRR</div><div style="text-align:right">PTS</div></div>`;PT.forEach((t,i)=>{h+=`<div class="ri grid-row" style="grid-template-columns:24px 1fr 28px 28px 28px 50px 36px;animation-delay:${i*.03}s;${i<4?"background:#f8f8fc;border-radius:8px;margin:2px 0":""}"><div style="font-weight:800;font-size:11px;color:${i<4?"#6c3ce0":"#ccc"}">${i+1}</div><div style="font-weight:800;font-size:12px;color:${TC[t.t]}">${t.t}</div><div style="text-align:center;color:#888;font-weight:700;font-size:10px">${t.m}</div><div style="text-align:center;color:#22c55e;font-weight:700;font-size:10px">${t.w||"-"}</div><div style="text-align:center;color:${t.l>0?"#ef4444":"#eee"};font-weight:700;font-size:10px">${t.l||"-"}</div><div style="text-align:right;color:${parseFloat(t.nrr)>0?"#22c55e":parseFloat(t.nrr)<0?"#ef4444":"#999"};font-weight:700;font-size:9px">${t.nrr}</div><div style="text-align:right;font-weight:900;font-size:13px;color:${t.pts>0?"#6c3ce0":"#ddd"}">${t.pts}</div></div>`});h+=`<div style="margin-top:10px;padding-top:8px;border-top:1.5px solid #f0f2f8;font-size:9px;color:#bbb;font-weight:600">Top 4 qualify for playoffs · 2pts per win</div></div>`}
 
-  // === SCHEDULE ===
-  if(st.tab==="schedule"){
-    h+=`<div style="font-size:16px;font-weight:800;color:#1a1a2e;margin-bottom:12px">📅 IPL 2026 Schedule</div>`;
-    let prevDt="";
-    SCH.forEach((s,i)=>{
-      if(s.dh&&s.dt!==prevDt){h+=`<div class="dh">🔥 DOUBLE HEADER · ${s.dt}</div>`}
-      prevDt=s.dt;
-      h+=`<div class="cd ri" style="padding:10px 14px;animation-delay:${i*.02}s;${s.done?"opacity:.45":""}">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <div>
-            <div style="font-size:12px;font-weight:800">${tb(s.t1)} <span style="color:#ccc;font-size:9px">vs</span> ${tb(s.t2)}</div>
-            <div style="font-size:9px;color:#bbb;margin-top:3px;font-weight:600">#${s.n} · ${s.dt} · ${s.v}</div>
-          </div>
-          <div>${s.done?`<span class="badge" style="background:#ecfdf5;color:#16a34a">✓ Done</span>`:`<span class="badge" style="background:#eef6ff;color:#2d7dd2">Upcoming</span>`}</div>
-        </div>
-      </div>`;
-    });
-  }
+  if(st.tab==="schedule"){h+=`<div style="font-size:16px;font-weight:800;color:#1a1a2e;margin-bottom:12px">📅 IPL 2026 Schedule</div>`;let prevDt="";SCH.forEach((s,i)=>{if(s.dh&&s.dt!==prevDt){h+=`<div class="dh">🔥 DOUBLE HEADER · ${s.dt}</div>`}prevDt=s.dt;h+=`<div class="cd ri" style="padding:10px 14px;animation-delay:${i*.02}s;${s.done?"opacity:.5":""}"><div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap"><div><div style="font-size:12px;font-weight:800">${tb(s.t1)} <span style="color:#ccc;font-size:9px">vs</span> ${tb(s.t2)}</div><div style="font-size:9px;color:#bbb;margin-top:3px;font-weight:600">#${s.n} · ${s.dt} · ${s.v}</div></div><div>${s.done?`<span class="badge" style="background:#ecfdf5;color:#16a34a">✓ Done</span>`:`<span class="badge" style="background:#eef6ff;color:#2d7dd2">Upcoming</span>`}</div></div></div>`})}
 
-  h+=`<div style="text-align:center;margin-top:16px;padding:12px 0">
-    <div style="font-size:9px;color:#bbb;font-weight:700;letter-spacing:1.5px">FANTASY IPL 2026 · 5 MANAGERS · 75 PLAYERS · ${MA.length} MATCHES</div>
-  </div>`;
-
+  h+=`<div style="text-align:center;margin-top:16px;padding:12px 0"><div style="font-size:9px;color:#bbb;font-weight:700;letter-spacing:1.5px">FANTASY IPL 2026 · RESPONSIVE PREVIEW · 5 MANAGERS · 75 PLAYERS · ${MA.length} MATCHES</div></div>`;
   document.getElementById("app").innerHTML=h;
-
-  // Bottom Nav
-  let nav=document.getElementById("bnav");
-  if(!nav){nav=document.createElement("div");nav.id="bnav";nav.className="bnav";document.body.appendChild(nav)}
-  nav.innerHTML=NAVTABS.map(([k,ic,label])=>`<div class="bnav-item ${st.tab===k?"on":""}" onclick="st.tab='${k}';render()"><span class="bi">${ic}</span>${label}</div>`).join("");
-}
+  let nav=document.getElementById("bnav");if(!nav){nav=document.createElement("div");nav.id="bnav";nav.className="bnav";document.body.appendChild(nav)}nav.innerHTML=NAVTABS.map(([k,ic,label])=>`<div class="bnav-item ${st.tab===k?"on":""}" onclick="st.tab='${k}';render()"><span class="bi">${ic}</span>${label}</div>`).join("")}
 render();
 </script>
 </body>
