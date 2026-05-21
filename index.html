@@ -143,18 +143,21 @@ const MA=[
 {id:"M61",ti:"RCB vs PBKS",dt:"May 17",rs:"RCB won by 23 runs",t1:"RCB",t2:"PBKS",b:{"Virat Kohli":58,"Priyansh Arya":0,"Prabhsimran Singh":2,"Shreyas Iyer":1,"Marcus Stoinis":37,"Arshdeep Singh":0,"Josh Hazlewood":0,"Harpreet Brar":5,"Krunal Pandya":0,"Romario Shepherd":0,"Yuzvendra Chahal":0},w:{"Harpreet Brar":2,"Arshdeep Singh":1,"Josh Hazlewood":1,"Romario Shepherd":1,"Yuzvendra Chahal":1},ct:{"Priyansh Arya":1,"Shreyas Iyer":1,"Harpreet Brar":1,"Virat Kohli":2},ro:{}},
 {id:"M62",ti:"DC vs RR",dt:"May 17",rs:"DC won by 5 wkts",t1:"RR",t2:"DC",b:{"Yashasvi Jaiswal":12,"Vaibhav Suryavanshi":46,"Dhruv Jurel":53,"Riyan Parag":51,"KL Rahul":56,"Tristan Stubbs":4,"Axar Patel":34,"Abishek Porel":51},w:{"Mitchell Starc":4},ct:{"Mitchell Starc":1,"Axar Patel":2,"Tristan Stubbs":1,"Dhruv Jurel":1,"Yashasvi Jaiswal":1},ro:{}},
 {id:"M63",ti:"CSK vs SRH",dt:"May 18",rs:"SRH won by 5 wkts",t1:"CSK",t2:"SRH",b:{"Sanju Samson":27,"Ruturaj Gaikwad":15,"Dewald Brevis":44,"Shivam Dube":26,"Travis Head":6,"Abhishek Sharma":26,"Ishan Kishan":70,"Nitish Kumar Reddy":11,"Noor Ahmed":0,"Pat Cummins":0},w:{"Pat Cummins":3,"Noor Ahmed":1},ct:{"Ishan Kishan":1,"Nitish Kumar Reddy":1,"Sanju Samson":1},ro:{}},
+{id:"M64",ti:"RR vs LSG",dt:"May 19",rs:"RR won by 7 wkts",t1:"LSG",t2:"RR",b:{"Mitchell Marsh":96,"Nicholas Pooran":16,"Rishabh Pant":35,"Yashasvi Jaiswal":43,"Vaibhav Suryavanshi":93,"Dhruv Jurel":53,"Sandeep Sharma":0},w:{},ct:{"Rishabh Pant":1},ro:{"Yashasvi Jaiswal":1,"Dhruv Jurel":1}},
+{id:"M65",ti:"KKR vs MI",dt:"May 20",rs:"KKR won by 4 wkts",t1:"MI",t2:"KKR",b:{"Surya Kumar Yadav":15,"Tilak Varma":20,"Hardik Pandya":26,"Jasprit Bumrah":0,"Varun Chakravarthy":0,"Ajinkya Rahane":21,"Finn Allen":8,"Angkrish Raghuvanshi":0,"Cameron Green":4,"Rovman Powell":40,"Rinku Singh":9,"Sunil Narine":0},w:{"Cameron Green":2,"Sunil Narine":1,"Jasprit Bumrah":1},ct:{"Cameron Green":1,"Angkrish Raghuvanshi":1,"Rinku Singh":1},ro:{}},
+{id:"M66",ti:"CSK vs GT",dt:"May 21",rs:"GT won by 89 runs",t1:"GT",t2:"CSK",b:{"Sai Sudarshan":84,"Shubman Gill":64,"Jos Buttler":57,"Washington Sundar":7,"Sanju Samson":0,"Ruturaj Gaikwad":16,"Dewald Brevis":8,"Shivam Dube":47,"Matthew Short":24,"Noor Ahmed":1,"Rashid Khan":0,"Mohammed Siraj":0},w:{"Mohammed Siraj":3,"Rashid Khan":3},ct:{"Jos Buttler":2,"Shubman Gill":1,"Matthew Short":1,"Shivam Dube":1},ro:{"Shubman Gill":1}},
 ];
 const PT=[
 {t:"RCB",m:14,w:10,l:4,nrr:"+1.214",pts:20},
+{t:"GT",m:14,w:9,l:5,nrr:"+0.698",pts:18},
 {t:"SRH",m:13,w:8,l:5,nrr:"+0.934",pts:16},
-{t:"GT",m:13,w:8,l:5,nrr:"+0.412",pts:16},
-{t:"KKR",m:13,w:6,l:6,nrr:"-0.512",pts:13},
-{t:"PBKS",m:13,w:6,l:6,nrr:"+0.102",pts:13},
 {t:"DC",m:14,w:7,l:7,nrr:"-0.012",pts:14},
-{t:"RR",m:13,w:6,l:7,nrr:"+0.098",pts:12},
-{t:"CSK",m:13,w:6,l:7,nrr:"-0.012",pts:12},
-{t:"MI",m:12,w:4,l:8,nrr:"-0.098",pts:8},
-{t:"LSG",m:12,w:4,l:8,nrr:"-1.312",pts:8}
+{t:"KKR",m:14,w:7,l:6,nrr:"-0.312",pts:15},
+{t:"RR",m:14,w:7,l:7,nrr:"+0.198",pts:14},
+{t:"PBKS",m:13,w:6,l:6,nrr:"+0.102",pts:13},
+{t:"CSK",m:14,w:6,l:8,nrr:"-0.198",pts:12},
+{t:"MI",m:13,w:4,l:9,nrr:"-0.214",pts:8},
+{t:"LSG",m:13,w:4,l:9,nrr:"-1.498",pts:8}
 ];
 const SCH=[
 {n:1,t1:"RCB",t2:"SRH",dt:"Mar 28",v:"Bengaluru",done:1},{n:2,t1:"MI",t2:"KKR",dt:"Mar 29",v:"Mumbai",done:1},{n:3,t1:"RR",t2:"CSK",dt:"Mar 30",v:"Guwahati",done:1},
@@ -173,7 +176,7 @@ const SCH=[
 {n:51,t1:"DC",t2:"KKR",dt:"May 8",v:"Delhi",done:1},{n:52,t1:"RR",t2:"GT",dt:"May 9",v:"Jaipur",done:1},{n:53,t1:"CSK",t2:"LSG",dt:"May 10",v:"Chennai",done:1},{n:54,t1:"RCB",t2:"MI",dt:"May 10",v:"Raipur",dh:1,done:1},
 {n:55,t1:"PBKS",t2:"DC",dt:"May 11",v:"Dharamshala",done:1},{n:56,t1:"GT",t2:"SRH",dt:"May 12",v:"Ahmedabad",done:1},{n:57,t1:"RCB",t2:"KKR",dt:"May 13",v:"Raipur",done:1},{n:58,t1:"PBKS",t2:"MI",dt:"May 14",v:"Dharamshala",done:1},
 {n:59,t1:"LSG",t2:"CSK",dt:"May 15",v:"Lucknow",done:1},{n:60,t1:"KKR",t2:"GT",dt:"May 16",v:"Kolkata",done:1},{n:61,t1:"PBKS",t2:"RCB",dt:"May 17",v:"Dharamshala",done:1},{n:62,t1:"DC",t2:"RR",dt:"May 17",v:"Delhi",dh:1,done:1},
-{n:63,t1:"CSK",t2:"SRH",dt:"May 18",v:"Chennai",done:1},{n:64,t1:"RR",t2:"LSG",dt:"May 19",v:"Jaipur"},{n:65,t1:"KKR",t2:"MI",dt:"May 20",v:"Kolkata"},{n:66,t1:"CSK",t2:"GT",dt:"May 21",v:"Chennai"},
+{n:63,t1:"CSK",t2:"SRH",dt:"May 18",v:"Chennai",done:1},{n:64,t1:"RR",t2:"LSG",dt:"May 19",v:"Jaipur",done:1},{n:65,t1:"KKR",t2:"MI",dt:"May 20",v:"Kolkata",done:1},{n:66,t1:"CSK",t2:"GT",dt:"May 21",v:"Chennai",done:1},
 {n:67,t1:"SRH",t2:"RCB",dt:"May 22",v:"Hyderabad"},{n:68,t1:"LSG",t2:"PBKS",dt:"May 23",v:"Lucknow"},{n:69,t1:"MI",t2:"RR",dt:"May 24",v:"Mumbai"},{n:70,t1:"KKR",t2:"DC",dt:"May 24",v:"Kolkata",dh:1}
 ];
 const NAVTABS=[["board","🏆","Board"],["squads","👥","Squads"],["highlights","🎯","Highlights"],["players","👤","Players"],["next","🔮","Preview"],["table","📊","Table"],["schedule","📅","Schedule"]];
