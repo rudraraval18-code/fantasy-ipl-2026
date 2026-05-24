@@ -41,6 +41,21 @@ body{font-family:'Outfit',system-ui,sans-serif;background:radial-gradient(circle
 .nav-btn-on{background:#f0f2f8;box-shadow:0 2px 8px rgba(0,0,0,.08)}
 .nav-btn-on:active{background:#e4e6ee;transform:scale(.95)}
 .nav-btn-off{background:#f8f8fc;cursor:default}
+.pl-bracket{display:grid;gap:10px;margin-bottom:16px}
+.pl-match{background:rgba(255,255,255,.92);border-radius:20px;padding:14px 16px;box-shadow:0 8px 24px rgba(39,44,63,.08);border:1.5px solid rgba(124,58,237,.08);position:relative;overflow:hidden}
+.pl-match::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.pl-match.q1::before{background:linear-gradient(90deg,#6d28d9,#a855f7)}
+.pl-match.el::before{background:linear-gradient(90deg,#0891b2,#06b6d4)}
+.pl-match.q2::before{background:linear-gradient(90deg,#d97706,#f59e0b)}
+.pl-match.fn::before{background:linear-gradient(90deg,#dc2626,#f43f5e)}
+.pl-badge{display:inline-block;padding:3px 10px;border-radius:999px;font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+.pl-team{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-radius:12px;margin-bottom:6px;transition:all .2s}
+.pl-team.winner{box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.pl-connector{display:flex;align-items:center;justify-content:center;padding:4px 0;color:#d1d5db;font-size:10px;font-weight:700;letter-spacing:1px}
+.pl-arrow{width:2px;height:20px;background:linear-gradient(180deg,#e0e7ff,#c7d2fe);border-radius:2px;margin:0 auto}
+.pl-leaderboard{background:rgba(255,255,255,.92);border-radius:20px;padding:16px;box-shadow:0 8px 24px rgba(39,44,63,.08);border:1.5px solid rgba(124,58,237,.08)}
+.pl-pts-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f3f4f6}
+.pl-pts-row:last-child{border-bottom:0;padding-bottom:0}
 .avatar-lg{width:80px;height:80px;border-radius:20px;flex-shrink:0;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.12)}
 .avatar-lg svg{width:100%;height:100%;display:block}
 .avatar-sm{width:44px;height:44px;border-radius:13px;flex-shrink:0;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)}
@@ -147,18 +162,21 @@ const MA=[
 {id:"M65",ti:"KKR vs MI",dt:"May 20",rs:"KKR won by 4 wkts",t1:"MI",t2:"KKR",b:{"Surya Kumar Yadav":15,"Tilak Varma":20,"Hardik Pandya":26,"Jasprit Bumrah":0,"Varun Chakravarthy":0,"Ajinkya Rahane":21,"Finn Allen":8,"Angkrish Raghuvanshi":0,"Cameron Green":4,"Rovman Powell":40,"Rinku Singh":9,"Sunil Narine":0},w:{"Cameron Green":2,"Sunil Narine":1,"Jasprit Bumrah":1},ct:{"Cameron Green":1,"Angkrish Raghuvanshi":1,"Rinku Singh":1},ro:{}},
 {id:"M66",ti:"CSK vs GT",dt:"May 21",rs:"GT won by 89 runs",t1:"GT",t2:"CSK",b:{"Sai Sudarshan":84,"Shubman Gill":64,"Jos Buttler":57,"Washington Sundar":7,"Sanju Samson":0,"Ruturaj Gaikwad":16,"Dewald Brevis":8,"Shivam Dube":47,"Matthew Short":24,"Noor Ahmed":1,"Rashid Khan":0,"Mohammed Siraj":0},w:{"Mohammed Siraj":3,"Rashid Khan":3},ct:{"Jos Buttler":2,"Shubman Gill":1,"Matthew Short":1,"Shivam Dube":1},ro:{"Shubman Gill":1}},
 {id:"M67",ti:"SRH vs RCB",dt:"May 22",rs:"SRH won by 55 runs",t1:"SRH",t2:"RCB",b:{"Abhishek Sharma":56,"Travis Head":26,"Ishan Kishan":79,"Nitish Kumar Reddy":29,"Virat Kohli":15,"Rajat Patidar":56,"Krunal Pandya":41,"Romario Shepherd":0,"Josh Hazlewood":0,"Harshal Patel":0,"Pat Cummins":0},w:{"Krunal Pandya":1,"Travis Head":1},ct:{"Abhishek Sharma":2},ro:{}},
+{id:"M68",ti:"LSG vs PBKS",dt:"May 23",rs:"PBKS won by 7 wkts",t1:"LSG",t2:"PBKS",b:{"Nicholas Pooran":2,"Rishabh Pant":26,"Priyansh Arya":0,"Prabhsimran Singh":69,"Shreyas Iyer":101,"Marco Jansen":0,"Arshdeep Singh":0,"Yuzvendra Chahal":0,"Mohammad Shami":0},w:{"Yuzvendra Chahal":2,"Marco Jansen":2,"Mohammad Shami":2},ct:{"Shreyas Iyer":1,"Prabhsimran Singh":2,"Marco Jansen":1},ro:{}},
+{id:"M69",ti:"MI vs RR",dt:"May 24",rs:"RR won by 30 runs",t1:"RR",t2:"MI",b:{"Yashasvi Jaiswal":27,"Vaibhav Suryavanshi":4,"Dhruv Jurel":38,"Riyan Parag":14,"Ravindra Jadeja":19,"Surya Kumar Yadav":60,"Tilak Varma":3,"Hardik Pandya":34},w:{},ct:{"Tilak Varma":2,"Dhruv Jurel":2},ro:{}},
+{id:"M70",ti:"KKR vs DC",dt:"May 24",rs:"DC won by 40 runs",t1:"DC",t2:"KKR",b:{"KL Rahul":60,"Axar Patel":39,"Tristan Stubbs":0,"Abishek Porel":22,"Varun Chakravarthy":5,"Rovman Powell":29,"Mitchell Starc":0,"Kuldeep Yadav":0,"Ajinkya Rahane":63,"Finn Allen":20,"Cameron Green":2,"Rinku Singh":0,"Sunil Narine":0},w:{"Sunil Narine":1,"Varun Chakravarthy":1,"Mitchell Starc":2,"Kuldeep Yadav":3,"Axar Patel":1},ct:{"Rovman Powell":1,"Ajinkya Rahane":1,"Finn Allen":1,"Mitchell Starc":1,"Tristan Stubbs":1,"Axar Patel":2,"Rinku Singh":1},ro:{}},
 ];
 const PT=[
 {t:"RCB",m:15,w:10,l:5,nrr:"+0.912",pts:20},
-{t:"GT",m:14,w:9,l:5,nrr:"+0.698",pts:18},
 {t:"SRH",m:14,w:9,l:5,nrr:"+1.124",pts:18},
-{t:"KKR",m:14,w:7,l:6,nrr:"-0.312",pts:15},
-{t:"DC",m:14,w:7,l:7,nrr:"-0.012",pts:14},
-{t:"RR",m:14,w:7,l:7,nrr:"+0.198",pts:14},
-{t:"PBKS",m:13,w:6,l:6,nrr:"+0.102",pts:13},
+{t:"GT",m:14,w:9,l:5,nrr:"+0.698",pts:18},
+{t:"DC",m:15,w:8,l:7,nrr:"+0.112",pts:16},
+{t:"KKR",m:15,w:7,l:7,nrr:"-0.498",pts:14},
+{t:"RR",m:15,w:8,l:7,nrr:"+0.312",pts:16},
+{t:"PBKS",m:14,w:7,l:6,nrr:"+0.298",pts:15},
 {t:"CSK",m:14,w:6,l:8,nrr:"-0.198",pts:12},
-{t:"MI",m:13,w:4,l:9,nrr:"-0.214",pts:8},
-{t:"LSG",m:13,w:4,l:9,nrr:"-1.498",pts:8}
+{t:"MI",m:14,w:4,l:10,nrr:"-0.312",pts:8},
+{t:"LSG",m:14,w:4,l:10,nrr:"-1.612",pts:8}
 ];
 const SCH=[
 {n:1,t1:"RCB",t2:"SRH",dt:"Mar 28",v:"Bengaluru",done:1},{n:2,t1:"MI",t2:"KKR",dt:"Mar 29",v:"Mumbai",done:1},{n:3,t1:"RR",t2:"CSK",dt:"Mar 30",v:"Guwahati",done:1},
@@ -178,9 +196,16 @@ const SCH=[
 {n:55,t1:"PBKS",t2:"DC",dt:"May 11",v:"Dharamshala",done:1},{n:56,t1:"GT",t2:"SRH",dt:"May 12",v:"Ahmedabad",done:1},{n:57,t1:"RCB",t2:"KKR",dt:"May 13",v:"Raipur",done:1},{n:58,t1:"PBKS",t2:"MI",dt:"May 14",v:"Dharamshala",done:1},
 {n:59,t1:"LSG",t2:"CSK",dt:"May 15",v:"Lucknow",done:1},{n:60,t1:"KKR",t2:"GT",dt:"May 16",v:"Kolkata",done:1},{n:61,t1:"PBKS",t2:"RCB",dt:"May 17",v:"Dharamshala",done:1},{n:62,t1:"DC",t2:"RR",dt:"May 17",v:"Delhi",dh:1,done:1},
 {n:63,t1:"CSK",t2:"SRH",dt:"May 18",v:"Chennai",done:1},{n:64,t1:"RR",t2:"LSG",dt:"May 19",v:"Jaipur",done:1},{n:65,t1:"KKR",t2:"MI",dt:"May 20",v:"Kolkata",done:1},{n:66,t1:"CSK",t2:"GT",dt:"May 21",v:"Chennai",done:1},
-{n:67,t1:"SRH",t2:"RCB",dt:"May 22",v:"Hyderabad",done:1},{n:68,t1:"LSG",t2:"PBKS",dt:"May 23",v:"Lucknow"},{n:69,t1:"MI",t2:"RR",dt:"May 24",v:"Mumbai"},{n:70,t1:"KKR",t2:"DC",dt:"May 24",v:"Kolkata",dh:1}
+{n:67,t1:"SRH",t2:"RCB",dt:"May 22",v:"Hyderabad",done:1},{n:68,t1:"LSG",t2:"PBKS",dt:"May 23",v:"Lucknow",done:1},{n:69,t1:"MI",t2:"RR",dt:"May 24",v:"Mumbai",done:1},{n:70,t1:"KKR",t2:"DC",dt:"May 24",v:"Kolkata",dh:1,done:1}
 ];
-const NAVTABS=[["board","🏆","Board"],["squads","👥","Squads"],["highlights","🎯","Highlights"],["players","👤","Players"],["next","🔮","Preview"],["table","📊","Table"],["schedule","📅","Schedule"]];
+const NAVTABS=[["board","🏆","Board"],["squads","👥","Squads"],["highlights","🎯","Highlights"],["players","👤","Players"],["playoffs","🏅","Playoffs"]];
+const PL_TEAMS=["RCB","SRH","GT","RR"];
+const PL=[
+{id:"Q1",label:"Qualifier 1",cls:"q1",dt:"May 27",v:"Kolkata",t1:"RCB",t2:"SRH",rs:"",done:0,b:{},w:{},ct:{},ro:{}},
+{id:"EL",label:"Eliminator",cls:"el",dt:"May 28",v:"Ahmedabad",t1:"GT",t2:"RR",rs:"",done:0,b:{},w:{},ct:{},ro:{}},
+{id:"Q2",label:"Qualifier 2",cls:"q2",dt:"May 30",v:"Kolkata",t1:"TBD",t2:"TBD",rs:"",done:0,b:{},w:{},ct:{},ro:{}},
+{id:"FN",label:"🏆 Final",cls:"fn",dt:"Jun 1",v:"Ahmedabad",t1:"TBD",t2:"TBD",rs:"",done:0,b:{},w:{},ct:{},ro:{}}
+];
 let st={tab:"board",exp:null,selM:MA.length-1,selT:"Mintu Raval",prevDay:0};
 function calc(){let mg={},ps={};Object.keys(M).forEach(k=>{mg[k]={r:0,w:0,c:0,ro:0,tot:0,pl:{}}});Object.entries(R).forEach(([p,i])=>{ps[p]={n:p,r:0,w:0,c:0,ro:0,pt:0,mg:i.m,rl:i.r,t:i.t}});MA.forEach(match=>{Object.entries(R).forEach(([p,i])=>{let r=match.b?.[p]||0,w=match.w?.[p]||0,c=match.ct?.[p]||0,ro=match.ro?.[p]||0;if(r>0||w>0||c>0||ro>0){let pt=r*P.r+w*P.w+c*P.c+ro*P.ro;mg[i.m].r+=r;mg[i.m].w+=w;mg[i.m].c+=c;mg[i.m].ro+=ro;mg[i.m].tot+=pt;if(!mg[i.m].pl[p])mg[i.m].pl[p]={n:p,r:0,w:0,c:0,ro:0,pt:0,t:i.t,matches:0};mg[i.m].pl[p].r+=r;mg[i.m].pl[p].w+=w;mg[i.m].pl[p].c+=c;mg[i.m].pl[p].ro+=ro;mg[i.m].pl[p].pt+=pt;mg[i.m].pl[p].matches++ ;ps[p].r+=r;ps[p].w+=w;ps[p].c+=c;ps[p].ro+=ro;ps[p].pt+=pt}})});Object.keys(mg).forEach(k=>{mg[k].pl=Object.values(mg[k].pl).sort((a,b)=>b.pt-a.pt)});return{mg,so:Object.entries(mg).sort((a,b)=>b[1].tot-a[1].tot),tp:Object.values(ps).filter(x=>x.pt>0).sort((a,b)=>b.pt-a.pt).slice(0,20),ps}}
 function pb(p){let s=[];if(p.r>0)s.push(p.r+"R");if(p.w>0)s.push(p.w+"W");if(p.c>0)s.push(p.c+"C");if(p.ro>0)s.push(p.ro+"RO");return s.join(" · ")}
@@ -190,16 +215,157 @@ function getUpcoming(){return SCH.filter(s=>!s.done)}
 function groupByDate(matches){const g={};matches.forEach(m=>{if(!g[m.dt])g[m.dt]=[];g[m.dt].push(m)});return g}
 
 function render(){
-  const{mg,so,tp,ps}=calc();const ld=so[0],ln=ld[0],lv=ld[1],lc=M[ln];const next=getNext();
-  let h=`<div style="padding:10px 0 12px"><div class="topstrip"><div><div class="header-title float">🏏 Fantasy IPL 2026</div><div style="font-size:12px;color:#6b7280;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-top:4px">Responsive redesign · latest data</div></div><div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;font-size:11px;color:#9ca3af;font-weight:600"><span class="stat-chip">🏏 Run = 1</span><span class="stat-chip">🎯 Wicket = 25</span><span class="stat-chip">🧤 Catch / Stumping / RO = 5</span></div></div></div>`;
-  h+=`<div class="topstrip" style="margin-bottom:12px"><div class="match-pill"><span style="width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block;animation:pulse 1.5s infinite"></span>${MA.length} Matches Tracked</div>${next?`<div class="match-pill">Next: ${tb(next.t1)} vs ${tb(next.t2)} · ${next.dt}</div>`:""}</div>`;
-  h+=`<div class="cd-hero ri"><div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.1);color:#f9c74f;padding:8px 12px;border-radius:999px;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;position:relative;z-index:1;margin-bottom:14px">🏆 League Leader</div><div style="display:flex;align-items:center;justify-content:space-between;gap:18px;position:relative;z-index:1;flex-wrap:wrap"><div style="display:flex;align-items:center;gap:18px;flex:1;min-width:240px"><div class="avatar-lg" style="width:88px;height:88px;border-radius:24px;box-shadow:0 12px 26px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.28)">${ROBOTS[ln]}</div><div style="flex:1;min-width:0"><div style="color:#c4b5fd;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px">${lc.tag} · First Place</div><div style="font-size:clamp(26px,4vw,34px);font-weight:900;line-height:1.05;letter-spacing:-.03em">${esc(ln)}</div><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px"><span style="background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.08);padding:9px 12px;border-radius:14px;font-size:12px;font-weight:800;color:rgba(255,255,255,.92)">🏏 ${lv.r} Runs</span><span style="background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.08);padding:9px 12px;border-radius:14px;font-size:12px;font-weight:800;color:rgba(255,255,255,.92)">🎯 ${lv.w} Wickets</span><span style="background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.08);padding:9px 12px;border-radius:14px;font-size:12px;font-weight:800;color:rgba(255,255,255,.92)">🧤 ${lv.c+lv.ro} Fielding</span></div></div></div><div style="text-align:right;min-width:150px"><div style="font-size:clamp(48px,8vw,72px);line-height:.95;font-weight:900;color:${lc.c};text-shadow:0 8px 22px rgba(255,93,115,.18)">${lv.tot}</div><div style="margin-top:8px;font-size:11px;letter-spacing:.18em;color:rgba(255,255,255,.55);font-weight:800;text-transform:uppercase">Fantasy Points</div></div></div><div class="hero-mini-grid"><div class="hero-mini"><div class="label">Top performer</div><div class="value">${lv.pl[0]?.n || "-"}</div></div><div class="hero-mini"><div class="label">Lead gap</div><div class="value">${so.length>1?`+${lv.tot-so[1][1].tot}`:"0"}</div></div><div class="hero-mini"><div class="label">Matches tracked</div><div class="value">${MA.length}</div></div></div></div>`;
+  const{mg,so,tp,ps}=calc();const ld=so[0],ln=ld[0],lv=ld[1],lc=M[ln];
+  let h=``;
+  const plTeams=["RCB","SRH","GT","RR"];
+  const plStakes={};
+  Object.keys(M).forEach(k=>{plStakes[k]={}; plTeams.forEach(t=>{plStakes[k][t]=[]})});
+  Object.entries(R).forEach(([p,i])=>{if(plTeams.includes(i.t))plStakes[i.m][i.t].push(p)});
+
+  // Season awards
+  let topRuns=null,topWkts=null,topField=null,topMatch=null,topMatchPts=0;
+  Object.values(ps).forEach(p=>{
+    if(!topRuns||p.r>topRuns.r)topRuns=p;
+    if(!topWkts||p.w>topWkts.w)topWkts=p;
+    if(!(topField)||(p.c+p.ro)>(topField.c+topField.ro))topField=p;
+  });
+  MA.forEach(m=>{Object.entries(R).forEach(([p,i])=>{
+    let r=m.b?.[p]||0,w=m.w?.[p]||0,c=m.ct?.[p]||0,ro=m.ro?.[p]||0;
+    let pt=r*P.r+w*P.w+c*P.c+ro*P.ro;
+    if(pt>topMatchPts){topMatchPts=pt;topMatch={n:p,pt,m:i.m,dt:m.dt,ti:m.ti}}
+  })});
+
+  // Playoff stakes: which managers have players in each playoff team
+  h+=`<div style="background:linear-gradient(145deg,#0f0c29,#302b63,#24243e);border-radius:30px;padding:24px;margin-bottom:14px;color:#fff;position:relative;overflow:hidden;box-shadow:0 24px 50px rgba(15,12,41,.4)">
+  <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(168,85,247,.25),transparent 70%);border-radius:50%"></div>
+  <div style="position:absolute;bottom:-30px;left:-20px;width:160px;height:160px;background:radial-gradient(circle,rgba(236,72,153,.18),transparent 70%);border-radius:50%"></div>
+  <div style="position:relative;z-index:1">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+      <div style="background:linear-gradient(135deg,#f43f5e,#ec4899);padding:6px 14px;border-radius:999px;font-size:10px;font-weight:900;letter-spacing:1.5px">🔥 SEASON FINALE</div>
+      <div style="background:rgba(255,255,255,.1);padding:6px 14px;border-radius:999px;font-size:10px;font-weight:800;color:rgba(255,255,255,.8)">4 Playoff Matches Left</div>
+    </div>
+    <div style="font-size:clamp(28px,5vw,40px);font-weight:900;line-height:1.05;letter-spacing:-.03em;margin-bottom:6px">Fantasy IPL 2026</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.55);font-weight:700;margin-bottom:20px">70 league matches · 5 managers · 75 players</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:14px">
+        <div class="avatar-lg" style="width:72px;height:72px;border-radius:20px;box-shadow:0 8px 20px rgba(0,0,0,.3)">${ROBOTS[ln]}</div>
+        <div>
+          <div style="font-size:11px;color:#c4b5fd;font-weight:800;letter-spacing:1.5px;margin-bottom:4px">🏆 LEADING</div>
+          <div style="font-size:20px;font-weight:900">${esc(ln)}</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.5);font-weight:700">${lc.tag}</div>
+        </div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:52px;font-weight:900;line-height:1;color:${lc.c}">${lv.tot}</div>
+        <div style="font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.4);font-weight:800">FANTASY PTS</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px">
+      <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:12px;text-align:center">
+        <div style="font-size:18px;font-weight:900;color:#f9c74f">${so.length>1?lv.tot-so[1][1].tot:0}</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.45);font-weight:800;letter-spacing:1px;margin-top:3px">LEAD GAP</div>
+      </div>
+      <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:12px;text-align:center">
+        <div style="font-size:18px;font-weight:900;color:#a78bfa">${MA.length}</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.45);font-weight:800;letter-spacing:1px;margin-top:3px">MATCHES</div>
+      </div>
+      <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:12px;text-align:center">
+        <div style="font-size:18px;font-weight:900;color:#34d399">4</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.45);font-weight:800;letter-spacing:1px;margin-top:3px">REMAINING</div>
+      </div>
+    </div>
+  </div></div>`;
 
   if(st.tab==="board"){
     const isDesk=window.innerWidth>=768;
+
+    // ── CHASE THE LEADER CARD ─────────────────────────────────────
+    h+=`<div class="cd ri" style="background:linear-gradient(135deg,#fdf4ff,#fce7f3);border:1.5px solid rgba(168,85,247,.15);margin-bottom:12px">
+    <div style="font-size:11px;font-weight:800;color:#9333ea;letter-spacing:1.5px;margin-bottom:12px">⚡ CHASE THE LEADER</div>`;
+    so.forEach(([n,d],i)=>{
+      const c=M[n];
+      const gap=lv.tot-d.tot;
+      const pct=lv.tot>0?(d.tot/lv.tot)*100:0;
+      h+=`<div style="margin-bottom:${i<so.length-1?"12px":"0"}">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px">
+          <div style="display:flex;align-items:center;gap:7px">
+            <span style="font-size:12px">${c.e}</span>
+            <span style="font-weight:800;font-size:12px;color:${i===0?"#9333ea":"#374151"}">${n.split(" ")[0]}</span>
+            ${i===0?`<span style="font-size:8px;background:#9333ea;color:#fff;padding:2px 7px;border-radius:999px">LEADER</span>`:`<span style="font-size:9px;color:#9ca3af;font-weight:700">-${gap} pts behind</span>`}
+          </div>
+          <span style="font-weight:900;font-size:14px;color:${c.c}">${d.tot}</span>
+        </div>
+        <div style="height:7px;background:#f3e8ff;border-radius:999px;overflow:hidden">
+          <div style="height:100%;width:${pct}%;background:${c.g};border-radius:999px;transition:width .8s cubic-bezier(.22,1,.36,1)"></div>
+        </div>
+      </div>`;
+    });
+    h+=`</div>`;
+
+    // ── PLAYOFF STAKES ─────────────────────────────────────────────
+    h+=`<div class="cd ri" style="margin-bottom:12px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+      <div style="font-size:15px;font-weight:900">⚔️ Playoff Stakes</div>
+      <div style="font-size:9px;color:#a855f7;font-weight:800;letter-spacing:1.5px">WHO WINS WINS</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">`;
+    plTeams.forEach(t=>{
+      const tc=TC[t]||"#888";
+      const owners=Object.entries(plStakes).map(([mgr,ts])=>({mgr,pls:ts[t]})).filter(x=>x.pls.length>0);
+      h+=`<div style="background:${tc}0f;border:1.5px solid ${tc}25;border-radius:14px;padding:10px">
+        <div style="font-weight:900;font-size:13px;color:${tc};margin-bottom:6px">${t}</div>`;
+      owners.forEach(({mgr,pls})=>{
+        const mc=M[mgr];
+        h+=`<div style="font-size:9px;color:#6b7280;font-weight:700;margin-bottom:2px">${mc.e} <span style="color:${mc.c}">${mgr.split(" ")[0]}</span>: ${pls.slice(0,2).map(p=>p.split(" ").pop()).join(", ")}${pls.length>2?` +${pls.length-2}`:""}`;
+        h+=`</div>`;
+      });
+      h+=`</div>`;
+    });
+    h+=`</div>`;
+
+    // Per-manager playoff player summary
+    h+=`<div style="font-size:10px;font-weight:800;color:#9ca3af;letter-spacing:1px;margin-bottom:8px">PLAYOFF PLAYERS BY MANAGER</div>`;
+    so.forEach(([n,d])=>{
+      const c=M[n];
+      const allPl=plTeams.flatMap(t=>plStakes[n][t].map(p=>({p,t})));
+      if(!allPl.length)return;
+      h+=`<div style="display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-top:1px solid #f3f4f6">
+        <span style="font-size:11px;min-width:20px">${c.e}</span>
+        <div style="flex:1">
+          <span style="font-weight:800;font-size:11px;color:${c.c}">${n.split(" ")[0]}</span>
+          <span style="font-size:9px;color:#9ca3af;margin-left:4px">${allPl.length} players in playoffs</span>
+          <div style="margin-top:4px;display:flex;flex-wrap:wrap;gap:4px">
+            ${allPl.map(({p,t})=>`<span style="font-size:8px;background:${TC[t]}15;color:${TC[t]};border:1px solid ${TC[t]}30;padding:2px 7px;border-radius:999px;font-weight:700">${p.split(" ").slice(-1)[0]} (${t})</span>`).join("")}
+          </div>
+        </div>
+      </div>`;
+    });
+    h+=`</div>`;
+
+    // ── SEASON AWARDS ──────────────────────────────────────────────
+    h+=`<div class="cd ri" style="margin-bottom:12px;background:linear-gradient(135deg,#fffbeb,#fef3c7);border:1.5px solid rgba(245,158,11,.2)">
+    <div style="font-size:11px;font-weight:800;color:#d97706;letter-spacing:1.5px;margin-bottom:14px">🏅 SEASON AWARDS</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">`;
+    [
+      {label:"💰 Most Runs",stat:`${topRuns?.r||0} runs`,name:topRuns?.n||"-",mgr:topRuns?.mg,team:topRuns?.t},
+      {label:"🎯 Most Wickets",stat:`${topWkts?.w||0} wkts`,name:topWkts?.n||"-",mgr:topWkts?.mg,team:topWkts?.t},
+      {label:"🧤 Best Fielder",stat:`${topField?(topField.c+topField.ro):0} catches`,name:topField?.n||"-",mgr:topField?.mg,team:topField?.t},
+      {label:"⚡ Best Match",stat:`${topMatchPts} pts`,name:topMatch?.n||"-",mgr:topMatch?.m,team:null,extra:topMatch?.dt||""}
+    ].forEach(a=>{
+      const mc=a.mgr?M[a.mgr]:null;
+      h+=`<div style="background:rgba(255,255,255,.6);border-radius:14px;padding:10px">
+        <div style="font-size:10px;font-weight:800;color:#92400e;margin-bottom:6px">${a.label}</div>
+        <div style="font-size:12px;font-weight:900;color:#1a1a2e;margin-bottom:2px">${esc(a.name)}</div>
+        <div style="font-size:11px;font-weight:900;color:${mc?.c||"#6b7280"}">${a.stat}</div>
+        ${mc?`<div style="font-size:9px;color:#9ca3af;font-weight:700;margin-top:2px">${mc.e} ${a.mgr?.split(" ")[0]||""} ${a.extra||""}</div>`:""}
+      </div>`;
+    });
+    h+=`</div></div>`;
+
+    // ── LEADERBOARD CARDS ──────────────────────────────────────────
     h+=`<div class="board-wrap"><div${isDesk?` class="desk-grid"`:''}>`;
     so.forEach(([n,d],i)=>{const c=M[n],isE=st.exp===n,bw=lv.tot>0?(d.tot/lv.tot)*100:0;h+=`<div class="cd ri" style="cursor:pointer;animation-delay:${i*.06}s;background:${c.bg};border-left:4px solid ${c.c};border-color:${c.c}${isE?"60":"25"}" onclick="st.exp=st.exp==='${esc(n)}'?null:'${esc(n)}';render()"><div style="display:flex;align-items:center;justify-content:space-between"><div style="display:flex;align-items:center;gap:12px"><div class="avatar-sm">${ROBOTS[n]}</div><div><div style="font-weight:800;font-size:15px;color:#1a1a2e">${c.e} ${esc(n)} ${i===0?'<span style="font-size:8px;background:'+c.c+';color:#fff;padding:2px 8px;border-radius:10px;margin-left:4px;vertical-align:middle">LEADER</span>':''}</div><div style="font-size:10px;color:#9ca3af;margin-top:2px;font-weight:600">${c.tag} · ${d.r}R · ${d.w}W · ${d.c+d.ro}F</div></div></div><div style="text-align:right;flex-shrink:0"><div style="font-size:28px;font-weight:900;color:${c.c}">${d.tot}</div><div class="pts-label">PTS</div></div></div><div class="bar"><div style="width:${bw}%"></div></div>`;if(isE&&d.pl.length>0){h+=`<div style="margin-top:12px;border-top:1.5px solid #f0f2f8;padding-top:10px"><div class="section-title">Scoring Players</div>`;d.pl.forEach((p,j)=>{h+=`<div class="ri" style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:${j<d.pl.length-1?"1px solid #f8f8fc":"none"};animation-delay:${j*.03}s"><div>${re(R[p.n]?.r||"")} <span style="font-weight:700;font-size:12px">${esc(p.n)}</span> <span style="font-size:9px;color:#9ca3af">${tb(p.t)}${p.matches>1?" · "+p.matches+"m":""}</span></div><div style="font-weight:800;color:${c.c};font-size:12px">${pb(p)} = ${p.pt}</div></div>`});h+=`</div>`}h+=`</div>`});
-    h+=`</div><div class="board-side"><div class="cd"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px"><div style="font-size:17px;font-weight:900;letter-spacing:-.02em">Top Players</div><div style="font-size:11px;color:#8b5cf6;font-weight:800;letter-spacing:.14em;text-transform:uppercase">Fantasy</div></div>${tp.slice(0,5).map((p,i)=>`<div class="mini-row"><div style="width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:#f3f0ff;color:#7c3aed;font-weight:900;font-size:13px">${i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1}</div><div><div style="font-size:13px;font-weight:800">${esc(p.n)}</div><div style="color:#9ca3af;font-size:11px;font-weight:700;margin-top:3px">${tb(p.t)} · ${M[p.mg].e} ${p.mg.split(' ')[0]}</div></div><div style="font-size:18px;font-weight:900;color:${M[p.mg].c}">${p.pt}</div></div>`).join('')}</div></div></div>`;
+    h+=`</div><div class="board-side"><div class="cd"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px"><div style="font-size:17px;font-weight:900;letter-spacing:-.02em">Top Players</div><div style="font-size:11px;color:#8b5cf6;font-weight:800;letter-spacing:.14em;text-transform:uppercase">Season</div></div>${tp.slice(0,5).map((p,i)=>`<div class="mini-row"><div style="width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:#f3f0ff;color:#7c3aed;font-weight:900;font-size:13px">${i===0?'🥇':i===1?'🥈':i===2?'🥉':i+1}</div><div><div style="font-size:13px;font-weight:800">${esc(p.n)}</div><div style="color:#9ca3af;font-size:11px;font-weight:700;margin-top:3px">${tb(p.t)} · ${M[p.mg].e} ${p.mg.split(' ')[0]}</div></div><div style="font-size:18px;font-weight:900;color:${M[p.mg].c}">${p.pt}</div></div>`).join('')}</div></div></div>`;
   }
 
   if(st.tab==="squads"){const tc=M[st.selT];const sqPl=Object.values(ps).filter(p=>p.mg===st.selT).sort((a,b)=>b.pt-a.pt);h+=`<div style="display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;padding-bottom:4px">${Object.keys(M).map(n=>`<div onclick="st.selT='${esc(n)}';render()" style="min-width:72px;padding:9px 8px;border-radius:16px;cursor:pointer;font-weight:700;font-size:10px;text-align:center;border:2px solid ${st.selT===n?M[n].c:"transparent"};background:${st.selT===n?M[n].bg:"rgba(255,255,255,.88)"};color:${st.selT===n?M[n].c:"#9ca3af"};transition:all .2s;box-shadow:0 8px 24px rgba(34,35,58,.06)">${M[n].e}<br>${n.split(" ")[0]}</div>`).join("")}</div>`;h+=`<div class="cd" style="border-color:${tc.c}20;background:${tc.bg}"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:14px;flex-wrap:wrap"><div style="display:flex;align-items:center;gap:12px"><div class="avatar-sq">${ROBOTS[st.selT]}</div><div><div style="font-size:10px;color:${tc.c};font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:.7">${tc.tag}</div><div style="font-size:19px;font-weight:900;color:#1a1a2e">${tc.e} ${esc(st.selT)}</div><div style="font-size:10px;color:#9ca3af;margin-top:2px;font-weight:600">15 players</div></div></div><div style="font-size:30px;font-weight:900;color:${tc.c}">${mg[st.selT].tot}</div></div>`;h+=`<div class="grid-header" style="grid-template-columns:1fr 36px 26px 36px 52px"><div>PLAYER</div><div style="text-align:center">R</div><div style="text-align:center">W</div><div style="text-align:center">F</div><div style="text-align:right">PTS</div></div>`;sqPl.forEach((p,i)=>{h+=`<div class="ri grid-row" style="grid-template-columns:1fr 36px 26px 36px 52px;animation-delay:${i*.03}s"><div><div style="display:flex;align-items:center;gap:3px"><span style="font-size:9px">${re(p.rl)}</span><span style="font-weight:700;font-size:11px;color:${p.pt>0?"#1a1a2e":"#ccc"}">${esc(p.n)}</span></div><div style="font-size:8px;color:#bbb;margin-left:16px">${tb(p.t)}</div></div><div style="text-align:center;color:${p.r>0?"#1a1a2e":"#ddd"};font-weight:700;font-size:10px">${p.r||"-"}</div><div style="text-align:center;color:${p.w>0?"#22c55e":"#ddd"};font-weight:700;font-size:10px">${p.w||"-"}</div><div style="text-align:center;color:${(p.c+p.ro)>0?"#6c3ce0":"#ddd"};font-weight:700;font-size:10px">${(p.c+p.ro)||"-"}</div><div style="text-align:right;font-weight:900;font-size:12px;color:${p.pt>0?tc.c:"#ddd"}">${p.pt||"0"}</div></div>`});h+=`</div>`}
@@ -214,7 +380,125 @@ function render(){
 
   if(st.tab==="schedule"){h+=`<div style="font-size:16px;font-weight:800;color:#1a1a2e;margin-bottom:12px">📅 IPL 2026 Schedule</div>`;let prevDt="";SCH.forEach((s,i)=>{if(s.dh&&s.dt!==prevDt){h+=`<div class="dh">🔥 DOUBLE HEADER · ${s.dt}</div>`}prevDt=s.dt;h+=`<div class="cd ri" style="padding:10px 14px;animation-delay:${i*.02}s;${s.done?"opacity:.5":""}"><div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap"><div><div style="font-size:12px;font-weight:800">${tb(s.t1)} <span style="color:#ccc;font-size:9px">vs</span> ${tb(s.t2)}</div><div style="font-size:9px;color:#bbb;margin-top:3px;font-weight:600">#${s.n} · ${s.dt} · ${s.v}</div></div><div>${s.done?`<span class="badge" style="background:#ecfdf5;color:#16a34a">✓ Done</span>`:`<span class="badge" style="background:#eef6ff;color:#2d7dd2">Upcoming</span>`}</div></div></div>`})}
 
-  h+=`<div style="text-align:center;margin-top:16px;padding:12px 0"><div style="font-size:9px;color:#bbb;font-weight:700;letter-spacing:1.5px">FANTASY IPL 2026 · RESPONSIVE PREVIEW · 5 MANAGERS · 75 PLAYERS · ${MA.length} MATCHES</div></div>`;
+  if(st.tab==="playoffs"){
+    // Calc playoff points per manager
+    function plPts(match){
+      const mgp={};
+      Object.entries(R).forEach(([p,i])=>{
+        let r=match.b?.[p]||0,w=match.w?.[p]||0,c=match.ct?.[p]||0,ro=match.ro?.[p]||0;
+        if(r>0||w>0||c>0||ro>0){
+          let pt=r*P.r+w*P.w+c*P.c+ro*P.ro;
+          if(!mgp[i.m])mgp[i.m]={tot:0,pls:[]};
+          mgp[i.m].tot+=pt;
+          mgp[i.m].pls.push({n:p,r,w,c,ro,pt,t:i.t,rl:i.r});
+        }
+      });
+      return mgp;
+    }
+    const plDone=PL.filter(m=>m.done);
+    const plTotals={};Object.keys(M).forEach(k=>plTotals[k]=0);
+    plDone.forEach(m=>{const mp=plPts(m);Object.entries(mp).forEach(([mg,d])=>{plTotals[mg]=(plTotals[mg]||0)+d.tot})});
+    const plSorted=Object.entries(plTotals).sort((a,b)=>b[1]-a[1]);
+
+    // Header
+    h+=`<div class="cd" style="background:linear-gradient(145deg,#18182d,#251c4f,#321b5f);color:#fff;padding:20px;margin-bottom:12px"><div style="font-size:9px;color:#c4b5fd;font-weight:800;letter-spacing:2px;margin-bottom:6px">🏅 IPL 2026 PLAYOFFS</div><div style="font-size:22px;font-weight:900;margin-bottom:4px">Bracket & Fantasy</div><div style="font-size:11px;color:rgba(255,255,255,.55);font-weight:700">Top 4: RCB · SRH · GT · RR</div></div>`;
+
+    // BRACKET
+    h+=`<div class="pl-bracket">`;
+
+    // Row 1: Q1 + EL side by side
+    h+=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">`;
+    [PL[0],PL[1]].forEach(m=>{
+      const isDone=m.done;
+      const winner=isDone?m.winner:"";
+      h+=`<div class="pl-match ${m.cls}">`;
+      h+=`<div class="pl-badge" style="background:${m.cls==='q1'?"#ede9fe;color:#6d28d9":m.cls==='el'?"#cffafe;color:#0891b2":"#fef3c7;color:#d97706"}">${m.label}</div>`;
+      h+=`<div style="font-size:8px;color:#9ca3af;font-weight:700;margin-bottom:8px">📅 ${m.dt} · ${m.v}</div>`;
+      [m.t1,m.t2].forEach(t=>{
+        const isW=isDone&&t===winner;
+        const tc=TC[t]||"#888";
+        h+=`<div class="pl-team ${isW?"winner":""}" style="background:${isW?tc+"18":"#f9fafb"};border:${isW?"1.5px solid "+tc+"40":"1.5px solid transparent"}">`;
+        h+=`<div style="font-weight:900;font-size:13px;color:${tc}">${t==="TBD"?'<span style="color:#d1d5db">TBD</span>':t}</div>`;
+        if(isW)h+=`<div style="font-size:9px;font-weight:800;color:${tc}">✓ WIN</div>`;
+        h+=`</div>`;
+      });
+      if(isDone&&m.rs)h+=`<div style="margin-top:8px;padding:6px 8px;background:#f0fdf4;border-radius:8px;font-size:9px;font-weight:800;color:#16a34a">✅ ${m.rs}</div>`;
+      else h+=`<div style="margin-top:8px;padding:6px 8px;background:#f8f8fc;border-radius:8px;font-size:9px;font-weight:700;color:#9ca3af">⏳ Upcoming</div>`;
+      h+=`</div>`;
+    });
+    h+=`</div>`;
+
+    // Arrow connectors
+    h+=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 30px"><div style="display:flex;flex-direction:column;align-items:center;gap:2px"><div class="pl-arrow"></div><div style="font-size:8px;color:#a855f7;font-weight:800">Q1 Loser</div><div class="pl-arrow"></div></div><div style="display:flex;flex-direction:column;align-items:center;gap:2px"><div class="pl-arrow"></div><div style="font-size:8px;color:#06b6d4;font-weight:800">EL Winner</div><div class="pl-arrow"></div></div></div>`;
+
+    // Q2
+    const q2=PL[2];
+    h+=`<div class="pl-match q2">`;
+    h+=`<div class="pl-badge" style="background:#fef3c7;color:#d97706">${q2.label}</div>`;
+    h+=`<div style="font-size:8px;color:#9ca3af;font-weight:700;margin-bottom:8px">📅 ${q2.dt} · ${q2.v}</div>`;
+    [q2.t1,q2.t2].forEach(t=>{
+      const isW=q2.done&&t===q2.winner;
+      const tc=TC[t]||"#888";
+      h+=`<div class="pl-team ${isW?"winner":""}" style="background:${isW?tc+"18":"#f9fafb"};border:${isW?"1.5px solid "+tc+"40":"1.5px solid transparent"}">`;
+      h+=`<div style="font-weight:900;font-size:13px;color:${t==="TBD"?"#d1d5db":tc}">${t==="TBD"?'TBD':t}</div>`;
+      if(isW)h+=`<div style="font-size:9px;font-weight:800;color:${tc}">✓ WIN</div>`;
+      h+=`</div>`;
+    });
+    if(q2.done&&q2.rs)h+=`<div style="margin-top:8px;padding:6px 8px;background:#f0fdf4;border-radius:8px;font-size:9px;font-weight:800;color:#16a34a">✅ ${q2.rs}</div>`;
+    else h+=`<div style="margin-top:8px;padding:6px 8px;background:#f8f8fc;border-radius:8px;font-size:9px;font-weight:700;color:#9ca3af">⏳ Upcoming</div>`;
+    h+=`</div>`;
+
+    // Arrow to Final
+    h+=`<div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:0 40px"><div class="pl-arrow" style="background:linear-gradient(180deg,#fca5a5,#f43f5e)"></div><div style="font-size:8px;color:#f43f5e;font-weight:800">↓ FINAL ↓</div><div class="pl-arrow" style="background:linear-gradient(180deg,#fca5a5,#f43f5e)"></div></div>`;
+
+    // Final
+    const fn=PL[3];
+    h+=`<div class="pl-match fn" style="border:2px solid rgba(220,38,38,.2);background:linear-gradient(135deg,rgba(254,242,242,.8),rgba(255,255,255,.95))">`;
+    h+=`<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><div class="pl-badge" style="background:#fef2f2;color:#dc2626">${fn.label}</div><div style="font-size:8px;color:#9ca3af;font-weight:700">📅 ${fn.dt} · ${fn.v}</div></div>`;
+    [fn.t1,fn.t2].forEach(t=>{
+      const isW=fn.done&&t===fn.winner;
+      const tc=TC[t]||"#888";
+      h+=`<div class="pl-team ${isW?"winner":""}" style="background:${isW?tc+"22":"rgba(255,255,255,.7)"};border:${isW?"2px solid "+tc+"60":"1.5px solid rgba(220,38,38,.08)"}">`;
+      h+=`<div style="font-weight:900;font-size:15px;color:${t==="TBD"?"#d1d5db":tc}">${t==="TBD"?'TBD':t}</div>`;
+      if(isW)h+=`<div style="font-size:10px;font-weight:900;color:${tc}">🏆 CHAMPION</div>`;
+      h+=`</div>`;
+    });
+    if(fn.done&&fn.rs)h+=`<div style="margin-top:8px;padding:8px 10px;background:#f0fdf4;border-radius:10px;font-size:10px;font-weight:800;color:#16a34a">✅ ${fn.rs}</div>`;
+    else h+=`<div style="margin-top:8px;padding:8px 10px;background:#fef2f2;border-radius:10px;font-size:10px;font-weight:700;color:#ef4444">⏳ Upcoming — The Grand Final</div>`;
+    h+=`</div>`;
+    h+=`</div>`; // end bracket
+
+    // FANTASY LEADERBOARD (playoff only)
+    h+=`<div class="pl-leaderboard" style="margin-bottom:12px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px"><div style="font-size:16px;font-weight:900">🏅 Playoff Fantasy</div><div style="font-size:9px;color:#a855f7;font-weight:800;letter-spacing:1.5px">${plDone.length} MATCHES</div></div>`;
+    if(plDone.length===0){
+      h+=`<div style="text-align:center;padding:20px;color:#9ca3af;font-size:12px;font-weight:700">Playoff matches will appear here</div>`;
+    } else {
+      plSorted.forEach(([mgr,tot],i)=>{
+        const mc=M[mgr];
+        h+=`<div class="pl-pts-row"><div style="display:flex;align-items:center;gap:10px"><div style="width:30px;height:30px;border-radius:10px;background:${mc.g};display:grid;place-items:center;font-size:12px;color:#fff;font-weight:900">${i===0?"🏆":i+1}</div><div><div style="font-size:12px;font-weight:800">${mc.e} ${mgr}</div><div style="font-size:9px;color:#9ca3af;font-weight:700">${mc.tag}</div></div></div><div style="font-size:22px;font-weight:900;color:${mc.c}">${tot}</div></div>`;
+      });
+    }
+    h+=`</div>`;
+
+    // Per-match breakdown
+    plDone.forEach(m=>{
+      const mp=plPts(m);
+      const mSorted=Object.entries(mp).sort((a,b)=>b[1].tot-a[1].tot);
+      h+=`<div class="cd ri" style="margin-bottom:10px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px"><div><div style="font-size:13px;font-weight:900">${tb(m.t1)} vs ${tb(m.t2)}</div><div style="font-size:9px;color:#9ca3af;font-weight:700">${m.label} · ${m.dt}</div></div><div style="padding:4px 10px;border-radius:999px;font-size:9px;font-weight:800;background:#ecfdf5;color:#16a34a">✅ Done</div></div>`;
+      mSorted.forEach(([mgr,d],mi)=>{
+        const mc=M[mgr];
+        h+=`<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-top:1px solid #f8f8fc"><div style="display:flex;align-items:center;gap:6px"><span style="font-size:10px">${mc.e}</span><span style="font-weight:800;font-size:11px">${mgr.split(" ")[0]}</span></div><div style="font-weight:900;font-size:14px;color:${mc.c}">${d.tot}</div></div>`;
+        d.pls.sort((a,b)=>b.pt-a.pt).forEach(p=>{
+          h+=`<div style="display:flex;justify-content:space-between;align-items:center;padding:3px 0 3px 20px;border-top:1px solid #f9fafb"><div style="font-size:10px;color:#6b7280;font-weight:700">${re(p.rl)} ${esc(p.n)} ${tb(p.t)}</div><div style="font-size:10px;font-weight:800;color:${mc.c}">${pb(p)} = ${p.pt}</div></div>`;
+        });
+      });
+      h+=`</div>`;
+    });
+
+    if(plDone.length===0){
+      h+=`<div class="cd" style="text-align:center;padding:24px"><div style="font-size:28px;margin-bottom:8px">🏏</div><div style="font-size:13px;font-weight:800;color:#6c3ce0">Drop the playoff scorecards!</div><div style="font-size:11px;color:#9ca3af;margin-top:4px;font-weight:600">Fantasy points will auto-calculate here</div></div>`;
+    }
+  }
   document.getElementById("app").innerHTML=h;
   let nav=document.getElementById("bnav");if(!nav){nav=document.createElement("div");nav.id="bnav";nav.className="bnav";document.body.appendChild(nav)}nav.innerHTML=NAVTABS.map(([k,ic,label])=>`<div class="bnav-item ${st.tab===k?"on":""}" onclick="st.tab='${k}';render()"><span class="bi">${ic}</span>${label}</div>`).join("")}
 render();
