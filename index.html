@@ -229,7 +229,10 @@ ct:{"Dhruv Jurel":1,"Abhishek Sharma":3,"Nitish Kumar Reddy":1,"Vaibhav Suryavan
 b:{"Yashasvi Jaiswal":1,"Vaibhav Suryavanshi":96,"Dhruv Jurel":7,"Ravindra Jadeja":45,"Riyan Parag":11,"Sai Sudarshan":58,"Shubman Gill":104,"Jos Buttler":9,"Washington Sundar":16,"Mohammed Siraj":0},
 w:{"Mohammed Siraj":1},
 ct:{"Shubman Gill":1,"Jos Buttler":2},ro:{}},
-{id:"FN",label:"🏆 Final",cls:"fn",dt:"Jun 1",v:"Ahmedabad",t1:"RCB",t2:"GT",rs:"",done:0,b:{},w:{},ct:{},ro:{}}
+{id:"FN",label:"🏆 Final",cls:"fn",dt:"Jun 1",v:"Ahmedabad",t1:"RCB",t2:"GT",rs:"RCB won by 5 wkts",done:1,winner:"RCB",
+b:{"Virat Kohli":75,"Rajat Patidar":15,"Krunal Pandya":1,"Romario Shepherd":0,"Sai Sudarshan":12,"Shubman Gill":10,"Jos Buttler":19,"Washington Sundar":50,"Rashid Khan":7,"Mohammed Siraj":0,"Josh Hazlewood":0},
+w:{"Mohammed Siraj":1,"Rashid Khan":2,"Krunal Pandya":1,"Josh Hazlewood":2},
+ct:{"Rajat Patidar":2,"Josh Hazlewood":1,"Romario Shepherd":1,"Jos Buttler":1},ro:{}}
 ];
 let st={tab:"board",exp:null,selM:MA.length-1,selT:"Mintu Raval",prevDay:0,h2hM:0};
 function calc(){let mg={},ps={};Object.keys(M).forEach(k=>{mg[k]={r:0,w:0,c:0,ro:0,tot:0,pl:{}}});Object.entries(R).forEach(([p,i])=>{ps[p]={n:p,r:0,w:0,c:0,ro:0,pt:0,mg:i.m,rl:i.r,t:i.t}});const allMatches=[...MA,...PL.filter(m=>m.done)];allMatches.forEach(match=>{Object.entries(R).forEach(([p,i])=>{let r=match.b?.[p]||0,w=match.w?.[p]||0,c=match.ct?.[p]||0,ro=match.ro?.[p]||0;if(r>0||w>0||c>0||ro>0){let pt=r*P.r+w*P.w+c*P.c+ro*P.ro;mg[i.m].r+=r;mg[i.m].w+=w;mg[i.m].c+=c;mg[i.m].ro+=ro;mg[i.m].tot+=pt;if(!mg[i.m].pl[p])mg[i.m].pl[p]={n:p,r:0,w:0,c:0,ro:0,pt:0,t:i.t,matches:0};mg[i.m].pl[p].r+=r;mg[i.m].pl[p].w+=w;mg[i.m].pl[p].c+=c;mg[i.m].pl[p].ro+=ro;mg[i.m].pl[p].pt+=pt;mg[i.m].pl[p].matches++;ps[p].r+=r;ps[p].w+=w;ps[p].c+=c;ps[p].ro+=ro;ps[p].pt+=pt}})});Object.keys(mg).forEach(k=>{mg[k].pl=Object.values(mg[k].pl).sort((a,b)=>b.pt-a.pt)});return{mg,so:Object.entries(mg).sort((a,b)=>b[1].tot-a[1].tot),tp:Object.values(ps).filter(x=>x.pt>0).sort((a,b)=>b.pt-a.pt).slice(0,20),ps}}
